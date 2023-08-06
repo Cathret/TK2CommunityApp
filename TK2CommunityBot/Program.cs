@@ -15,10 +15,12 @@ namespace TK2Bot
                 Intents         = Settings.INTENTS,
                 MinimumLogLevel = Settings.LOG_LEVEL,
             });
-
+            
+            await API.ApiSystem.TryAuthentificate();
+            
             SlashCommandsExtension slashCommandsExtension = discordClient.UseSlashCommands();
             slashCommandsExtension.RegisterCommands<CommandsHandler>();
-
+            
             await discordClient.ConnectAsync();
             await Task.Delay(-1); // Avoid closing console
         }
