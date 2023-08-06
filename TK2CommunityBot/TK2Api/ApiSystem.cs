@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Headers;
+﻿using System.Diagnostics;
+using System.Net.Http.Headers;
 using System.Net.Mime;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -54,14 +55,81 @@ namespace TK2Bot.API
         
         private const UInt32 WR_PLACEMENT = 1;
 
-        public static PlayerInfo GetPlayerInfoFromId(ApiPlayerId _playerId)
+        public static async Task<FullPlayerInfo> GetFullPlayerInfoFromName(string _playerName)
         {
-            // TODO: Request API to get Player's info from its PlayerId
-            return new PlayerInfo()
+            string contentAsString = await httpClient.GetStringAsync($"player?search={_playerName}");
+
+            dynamic contentAsJson = JObject.Parse(contentAsString);
+            Console.WriteLine($"PlayerInfo: {contentAsJson.ToString()}");
+
+            PlayerInfo playerInfo = new PlayerInfo()
             {
-                PlayerName = "Arca",
-                ProfileUrl = "https://the-karters-community.com/player/415"
+                PlayerName = contentAsJson.data.player.name,
+                ProfileUrl = contentAsJson.data.player.profile_url,
+                AvatarUrl  = contentAsJson.data.player.avatar_url,
             };
+
+            PlayerStats playerStats = new PlayerStats()
+            {
+                PosWorldwide = 0,// contentAsJson.data.player.position.worldwide,
+                PosContinent = 0,// contentAsJson.data.player.position.continent,
+                PosCountry   = 0,// contentAsJson.data.player.position.country,
+                Points       = 0,// contentAsJson.data.player.points
+            };
+
+            ContinentInfo continentInfo = new ContinentInfo()
+            {
+                Name     = contentAsJson.data.player.continent.name,
+                Alias    = contentAsJson.data.player.continent.alpha2,
+                ImageUrl = contentAsJson.data.player.continent.image_url,
+            };
+
+            CountryInfo countryInfo = new CountryInfo()
+            {
+                Name     = contentAsJson.data.player.country.name,
+                Alias    = contentAsJson.data.player.country.alpha2,
+                ImageUrl = contentAsJson.data.player.country.image_url,
+            };
+
+            List<PlayerTrackTime> playerTrackTimes = new List<PlayerTrackTime>();
+            foreach (dynamic oneRecord in contentAsJson.data.records)
+            {
+                playerTrackTimes.Add(new PlayerTrackTime()
+                    {
+                        PlayerInfo = playerInfo,
+                        PlayerStats = new PlayerStats()
+                        {
+                            PosWorldwide = oneRecord.data.position.worldwide,
+                            PosContinent = oneRecord.data.position.continent,
+                            PosCountry   = oneRecord.data.position.country,
+                            Points       = oneRecord.data.points
+                        },
+                        TrackInfo = new TrackInfo()
+                        {
+                            MapName        = oneRecord.track.name,
+                            ImageUrl       = oneRecord.track.image_url,
+                            LeaderboardUrl = oneRecord.track.leaderboard_url
+                        },
+                        RunTime = TimeSpan.FromMilliseconds(double.Parse(oneRecord.score.ToString())),
+                    }
+                );
+            }
+
+            PlayerRecords playerRecords = new PlayerRecords()
+            {
+                PlayerTrackTimes = playerTrackTimes.ToArray(),
+            };
+            
+            FullPlayerInfo fullPlayerInfo = new FullPlayerInfo()
+            {
+                PlayerInfo = playerInfo,
+                PlayerStats = playerStats,
+                ContinentInfo = continentInfo,
+                CountryInfo = countryInfo,
+                PlayerRecords = playerRecords,
+            };
+
+            return fullPlayerInfo;
         }
         
         public static async Task<PlayerTrackTime> GetWorldRecordForTrack(ETrackId _trackId)
@@ -69,7 +137,6 @@ namespace TK2Bot.API
             string mapSlug = MapTranslator.GetSlugFromTrackId(_trackId);
 
             string contentAsString = await httpClient.GetStringAsync($"track/{mapSlug}/world-record");
-            Console.WriteLine($"HTTP String Content: {contentAsString}");
             
             dynamic contentAsJson = JObject.Parse(contentAsString);
 
@@ -84,8 +151,6 @@ namespace TK2Bot.API
 
             TrackInfo trackInfo = new TrackInfo()
             {
-                TrackId        = _trackId,
-                Slug           = mapSlug,
                 MapName        = contentAsJson.data.track.name,
                 ImageUrl       = contentAsJson.data.track.image_url,
                 LeaderboardUrl = contentAsJson.data.track.leaderboard_url,
@@ -94,10 +159,10 @@ namespace TK2Bot.API
 
             PlayerTrackTime wrTrackTime = new PlayerTrackTime()
             {
-                PlayerInfo = wrHolderInfo,
-                TrackInfo  = trackInfo,
-                RunTime    = TimeSpan.FromMilliseconds(double.Parse(contentAsJson.data.record.score.ToString())),
-                Placement  = WR_PLACEMENT,
+                PlayerInfo  = wrHolderInfo,
+                TrackInfo   = trackInfo,
+                RunTime     = TimeSpan.FromMilliseconds(double.Parse(contentAsJson.data.record.score.ToString())),
+                PlayerStats = new PlayerStats(),
             };
             Console.WriteLine($"WrTrackTime: {wrTrackTime}");
 
@@ -112,19 +177,16 @@ namespace TK2Bot.API
                 new PlayerTrackTime()
                 {
                     RunTime     = TimeSpan.FromMilliseconds(65000),
-                    Placement   = 1,
                 },
                 
                 new PlayerTrackTime()
                 {
                     RunTime     = TimeSpan.FromMilliseconds(95000),
-                    Placement   = 2,
                 },
                 
                 new PlayerTrackTime()
                 {
                     RunTime     = TimeSpan.FromMilliseconds(100000),
-                    Placement   = 3,
                 },
             };
 
