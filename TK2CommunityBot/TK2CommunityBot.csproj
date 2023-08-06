@@ -12,4 +12,8 @@
     <PackageReference Include="DSharpPlus.CommandsNext" Version="5.0.0-nightly-01663" />
   </ItemGroup>
 
+
+
+
+
 </Project>
