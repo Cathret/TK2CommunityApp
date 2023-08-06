@@ -9,6 +9,6 @@ namespace TK2Bot
         
         public const string COMMAND_PREFIX      = "!tk2 ";
         public const LogLevel LOG_LEVEL         = LogLevel.Debug;
-        public const DiscordIntents INTENTS     = DiscordIntents.Guilds | DiscordIntents.GuildMessageTyping | DiscordIntents.GuildMessages | DiscordIntents.GuildWebhooks | DiscordIntents.MessageContents;
+        public const DiscordIntents INTENTS     = DiscordIntents.Guilds | DiscordIntents.GuildMessageTyping | DiscordIntents.GuildMessages | DiscordIntents.GuildWebhooks | DiscordIntents.GuildIntegrations | DiscordIntents.MessageContents;
     }
 }
