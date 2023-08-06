@@ -30,7 +30,7 @@
                 new PlayerTrackTime()
                 {
                     ApiPlayerId = new ApiPlayerId() { WebPlayerId = 1 },
-                    RunTime     = TimeSpan.FromMilliseconds(90000),
+                    RunTime     = TimeSpan.FromMilliseconds(65000),
                     Placement   = 1,
                 },
                 

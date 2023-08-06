@@ -4,6 +4,6 @@
     {
         public string PlayerName { get; internal init; }
         public ApiPlayerId ApiPlayerId { get; internal init; }
-        public String KartersId { get; internal init; }
+        public string KartersId { get; internal init; }
     }
 }
