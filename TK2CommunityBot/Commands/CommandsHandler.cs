@@ -19,14 +19,14 @@ namespace TK2Bot
         private async Task WrCommand(InteractionContext _context, [Option("Map", "Map for which we want the WR")] ETrackId _trackId)
         {
             //await _context.CreateResponseAsync(InteractionResponseType.DeferredChannelMessageWithSource);
-            await _context.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder(CreateWrMessage(_trackId)));
+            await _context.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder(await CreateWrMessage(_trackId)));
         }
 
-        public static DiscordMessageBuilder CreateWrMessage(ETrackId _trackId)
+        private static async Task<DiscordMessageBuilder> CreateWrMessage(ETrackId _trackId)
         {
-            TrackInfo trackInfo = ApiSystem.GetTrackInfoFromId(_trackId);
-            PlayerTrackTime worldRecord = ApiSystem.GetWorldRecordForTrack(_trackId);
-            PlayerInfo playerInfo = ApiSystem.GetPlayerInfoFromId(worldRecord.ApiPlayerId);
+            PlayerTrackTime worldRecord = await ApiSystem.GetWorldRecordForTrack(_trackId);
+            PlayerInfo playerInfo = worldRecord.PlayerInfo;
+            TrackInfo trackInfo = worldRecord.TrackInfo;
 
             string formattedDuration = worldRecord.RunTime.ToString(@"m\:ss\.fff");
             
@@ -35,35 +35,28 @@ namespace TK2Bot
                 Author = new DiscordEmbedBuilder.EmbedAuthor()
                 {
                     Name    = playerInfo.PlayerName,
-                    Url     = $"https://the-karters-community.com/player/{playerInfo.KartersId}",
-                    IconUrl = $"https://the-karters-community.com/storage/users/{playerInfo.ApiPlayerId}/avatar.jpg"
+                    Url     = playerInfo.ProfileUrl,
+                    IconUrl = playerInfo.AvatarUrl,
                 },
                 Title       = "WORLD RECORD HOLDER",
                 Description = $"Current WR is held by {playerInfo.PlayerName} with a {formattedDuration}",
-                Url         = $"https://the-karters-community.com/leaderboard/time-trial/{trackInfo.WebMapShortUrl}",
+                Url         = trackInfo.LeaderboardUrl,
                 // ImageUrl = "https://www.youtube.com/watch?v=cnszxGaMmws", // Framework doesn't handle Youtube
                 Timestamp   = DateTimeOffset.UtcNow,
                 Color     = DiscordColor.Blue,
                 Thumbnail   = new DiscordEmbedBuilder.EmbedThumbnail()
                 {
-                    Url     = $"https://the-karters-community.com/images/tracks/{trackInfo.WebMapShortUrl}.png",
+                    Url     = trackInfo.ImageUrl,
                 },
                 Footer      = new DiscordEmbedBuilder.EmbedFooter()
                 {
-                    Text    = "https://www.youtube.com/watch?v=cnszxGaMmws",
-                    IconUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/1280px-YouTube_full-color_icon_%282017%29.svg.png"
+                    Text    = trackInfo.LeaderboardUrl,
+                    IconUrl = "https://the-karters-community.com/images/the-karters-logo.png"
                 }
             };
 
-            DiscordComponent[] components = new DiscordComponent[]
-            {
-                new DiscordLinkButtonComponent("https://www.youtube.com/watch?v=cnszxGaMmws", "Go Watch!"),
-                // TODO: why not add a "compare" button?
-            };
-            
             return new DiscordMessageBuilder()
-                .WithEmbed(embedBuilder.Build())
-                .AddComponents(components);
+                .WithEmbed(embedBuilder.Build());
         }
     }
 }
