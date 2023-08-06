@@ -21,5 +21,15 @@ namespace TK2Bot
         {
             return TRACK_TRANSLATION.First(_pair => _pair.Value == _trackId).Key;
         }
+
+        public static IEnumerable<string> GetAllTrackNames()
+        {
+            return TRACK_TRANSLATION.Keys.ToArray();
+        }
+
+        public static UInt32 GetNumberOfTracks()
+        {
+            return (UInt32)TRACK_TRANSLATION.Count;
+        }
     }
 }
