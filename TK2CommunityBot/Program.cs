@@ -1,6 +1,6 @@
 ﻿using DSharpPlus;
-using DSharpPlus.CommandsNext;
 using DSharpPlus.Entities;
+using DSharpPlus.SlashCommands;
 
 namespace TK2Bot
 {
@@ -15,19 +15,9 @@ namespace TK2Bot
                 Intents         = Settings.INTENTS,
                 MinimumLogLevel = Settings.LOG_LEVEL,
             });
-            
-            CommandsNextExtension globalCommandsHandler = discordClient.UseCommandsNext(new CommandsNextConfiguration()
-            {
-                StringPrefixes  = new[] { Settings.COMMAND_PREFIX },
-            });
 
-            discordClient.ComponentInteractionCreated += async (s, e) =>
-            {
-                API.ETrackId trackId = MapTranslator.GetTrackIdFromMapName(e.Id);
-                await e.Interaction.CreateResponseAsync(InteractionResponseType.UpdateMessage, new DiscordInteractionResponseBuilder(CommandsHandler.CreateWrMessage(trackId).WithContent("")));
-            };
-
-            globalCommandsHandler.RegisterCommands<CommandsHandler>();
+            SlashCommandsExtension slashCommandsExtension = discordClient.UseSlashCommands();
+            slashCommandsExtension.RegisterCommands<CommandsHandler>();
 
             await discordClient.ConnectAsync();
             await Task.Delay(-1); // Avoid closing console

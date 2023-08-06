@@ -1,81 +1,25 @@
 ﻿using DSharpPlus;
-using DSharpPlus.CommandsNext;
-using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
+using DSharpPlus.SlashCommands;
 using TK2Bot.API;
 
 namespace TK2Bot
 {
     // [SuppressMessage("ReSharper", "UnusedMember.Local")] // Used from Command attribute
-    public class CommandsHandler : BaseCommandModule
+    public class CommandsHandler : ApplicationCommandModule
     {
-        [Command("ping")]
-        private async Task PongCommand(CommandContext _context)
+        [SlashCommand("ping", "Ping the bot and expect a response")]
+        private async Task PongCommand(InteractionContext _context)
         {
-            DiscordEmbedBuilder embedBuilder = new DiscordEmbedBuilder()
-            {
-                Description = "SomeDescription",
-            };
-            
-            DiscordMessage discordMessage = await new DiscordMessageBuilder()
-                .WithContent("Pong")
-                .WithEmbed(embedBuilder)
-                .WithReply(_context.Message.Id)
-                .SendAsync(_context.Channel);
-            
-            // await _context.RespondAsync("Pong!");
+            await _context.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource,
+                new DiscordInteractionResponseBuilder().WithContent("Pong!"));
         }
 
-        [Command("wr")]
-        private async Task WrCommand(CommandContext _context)
+        [SlashCommand("wr", "Request the WR info of a Track")]
+        private async Task WrCommand(InteractionContext _context, [Option("Map", "Map for which we want the WR")] ETrackId _trackId)
         {
-            UInt32 nbTracks = MapTranslator.GetNumberOfTracks();
-            string[]? allTracksName = MapTranslator.GetAllTrackNames() as string[];
-            // Using buttons //
-            //DiscordComponent[] components = new DiscordComponent[nbTracks];
-            //for (int i = 0; i < nbTracks; i++)
-            //{
-            //    string oneTrackName = allTracksName![i];
-            //    ButtonStyle buttonStyle = (i % 2 == 0) ? ButtonStyle.Primary : ButtonStyle.Secondary;
-            //    
-            //    components[i] = new DiscordButtonComponent(buttonStyle, oneTrackName, oneTrackName);
-            //}
-            ///// \Using Buttons
-            
-            // Using Select Dropdown //
-            DiscordSelectComponentOption[] selectOptions = new DiscordSelectComponentOption[nbTracks];
-            for (int i = 0; i < nbTracks; i++)
-            {
-                string oneTrackName = allTracksName![i];
-                
-                selectOptions[i] = new DiscordSelectComponentOption(oneTrackName, oneTrackName);
-            }
-            DiscordComponent[] components = new DiscordComponent[]
-            {
-                new DiscordSelectComponent("MapSelect", null!, selectOptions),
-            };
-            ///// \Using Select Dropdown
-            
-            await new DiscordMessageBuilder()
-                .WithContent("Which World Record?")
-                .AddComponents(components)
-                .WithReply(_context.Message.Id)
-                .SendAsync(_context.Channel);
-        }
-
-        [Command("wr")]
-        private async Task WrCommand(CommandContext _context, string _mapName)
-        {
-            ETrackId trackId = MapTranslator.GetTrackIdFromMapName(_mapName);
-            if (trackId == ETrackId.INVALID)
-            {
-                await _context.RespondAsync($"Can't find map using [{_mapName}]");
-                return;
-            }
-
-            await CreateWrMessage(trackId)
-                .WithReply(_context.Message.Id)
-                .SendAsync(_context.Channel);
+            //await _context.CreateResponseAsync(InteractionResponseType.DeferredChannelMessageWithSource);
+            await _context.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder(CreateWrMessage(_trackId)));
         }
 
         public static DiscordMessageBuilder CreateWrMessage(ETrackId _trackId)

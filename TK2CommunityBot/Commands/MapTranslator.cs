@@ -12,9 +12,9 @@ namespace TK2Bot
             { "MythicMoonlight", ETrackId.MythicMoonlight },
         };
 
-        public static ETrackId GetTrackIdFromMapName(string _mapName)
+        public static ETrackId? GetTrackIdFromMapName(string _mapName)
         {
-            return TRACK_TRANSLATION.TryGetValue(_mapName, out ETrackId trackId) ? trackId : ETrackId.INVALID;
+            return TRACK_TRANSLATION.TryGetValue(_mapName, out ETrackId trackId) ? trackId : null;
         }
 
         public static string GetMapNameFromTrackId(ETrackId _trackId)
