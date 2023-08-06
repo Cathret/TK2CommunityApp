@@ -1,5 +1,6 @@
 ﻿using DSharpPlus;
 using DSharpPlus.CommandsNext;
+using DSharpPlus.Entities;
 
 namespace TK2Bot
 {
@@ -19,7 +20,13 @@ namespace TK2Bot
             {
                 StringPrefixes  = new[] { Settings.COMMAND_PREFIX },
             });
-            
+
+            discordClient.ComponentInteractionCreated += async (s, e) =>
+            {
+                API.ETrackId trackId = MapTranslator.GetTrackIdFromMapName(e.Id);
+                await e.Interaction.CreateResponseAsync(InteractionResponseType.UpdateMessage, new DiscordInteractionResponseBuilder(CommandsHandler.CreateWrMessage(trackId).WithContent("")));
+            };
+
             globalCommandsHandler.RegisterCommands<CommandsHandler>();
 
             await discordClient.ConnectAsync();

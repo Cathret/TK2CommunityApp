@@ -1,4 +1,5 @@
-﻿using DSharpPlus.CommandsNext;
+﻿using DSharpPlus;
+using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
 using TK2Bot.API;
@@ -28,7 +29,38 @@ namespace TK2Bot
         [Command("wr")]
         private async Task WrCommand(CommandContext _context)
         {
-            await _context.RespondAsync("Usage: `!tk2 wr {MapName}` | No spaces in the name.");
+            UInt32 nbTracks = MapTranslator.GetNumberOfTracks();
+            string[]? allTracksName = MapTranslator.GetAllTrackNames() as string[];
+            // Using buttons //
+            //DiscordComponent[] components = new DiscordComponent[nbTracks];
+            //for (int i = 0; i < nbTracks; i++)
+            //{
+            //    string oneTrackName = allTracksName![i];
+            //    ButtonStyle buttonStyle = (i % 2 == 0) ? ButtonStyle.Primary : ButtonStyle.Secondary;
+            //    
+            //    components[i] = new DiscordButtonComponent(buttonStyle, oneTrackName, oneTrackName);
+            //}
+            ///// \Using Buttons
+            
+            // Using Select Dropdown //
+            DiscordSelectComponentOption[] selectOptions = new DiscordSelectComponentOption[nbTracks];
+            for (int i = 0; i < nbTracks; i++)
+            {
+                string oneTrackName = allTracksName![i];
+                
+                selectOptions[i] = new DiscordSelectComponentOption(oneTrackName, oneTrackName);
+            }
+            DiscordComponent[] components = new DiscordComponent[]
+            {
+                new DiscordSelectComponent("MapSelect", null!, selectOptions),
+            };
+            ///// \Using Select Dropdown
+            
+            await new DiscordMessageBuilder()
+                .WithContent("Which World Record?")
+                .AddComponents(components)
+                .WithReply(_context.Message.Id)
+                .SendAsync(_context.Channel);
         }
 
         [Command("wr")]
@@ -40,14 +72,19 @@ namespace TK2Bot
                 await _context.RespondAsync($"Can't find map using [{_mapName}]");
                 return;
             }
-            
-            TrackInfo trackInfo = ApiSystem.GetTrackInfoFromId(trackId);
-            PlayerTrackTime worldRecord = ApiSystem.GetWorldRecordForTrack(trackId);
+
+            await CreateWrMessage(trackId)
+                .WithReply(_context.Message.Id)
+                .SendAsync(_context.Channel);
+        }
+
+        public static DiscordMessageBuilder CreateWrMessage(ETrackId _trackId)
+        {
+            TrackInfo trackInfo = ApiSystem.GetTrackInfoFromId(_trackId);
+            PlayerTrackTime worldRecord = ApiSystem.GetWorldRecordForTrack(_trackId);
             PlayerInfo playerInfo = ApiSystem.GetPlayerInfoFromId(worldRecord.ApiPlayerId);
 
             string formattedDuration = worldRecord.RunTime.ToString(@"m\:ss\.fff");
-            
-            Console.WriteLine($"https://the-karters-community.com/storage/users/{playerInfo.ApiPlayerId}/avatar.jpg");
             
             DiscordEmbedBuilder embedBuilder = new DiscordEmbedBuilder()
             {
@@ -80,11 +117,9 @@ namespace TK2Bot
                 // TODO: why not add a "compare" button?
             };
             
-            DiscordMessage discordMessage = await new DiscordMessageBuilder()
+            return new DiscordMessageBuilder()
                 .WithEmbed(embedBuilder.Build())
-                .AddComponents(components)
-                .WithReply(_context.Message.Id)
-                .SendAsync(_context.Channel);
+                .AddComponents(components);
         }
     }
 }
