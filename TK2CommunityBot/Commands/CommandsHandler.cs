@@ -20,8 +20,8 @@ namespace TK2Bot
         [SlashCommand("player", "Get Player Info")]
         private async Task PlayerCommand(InteractionContext _context, [Option("PlayerName", "Name of the Player we want to retrieve the info")] string _playerName)
         {
-            //await _context.CreateResponseAsync(InteractionResponseType.DeferredChannelMessageWithSource);
-            await _context.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder(await CreatePlayerMessage(_playerName)));
+            await _context.CreateResponseAsync(InteractionResponseType.DeferredChannelMessageWithSource);
+            await _context.EditResponseAsync(new DiscordWebhookBuilder(await CreatePlayerMessage(_playerName)));
         }
 
         private static async Task<DiscordMessageBuilder> CreatePlayerMessage(string _playerName)
@@ -76,8 +76,8 @@ namespace TK2Bot
         [SlashCommand("wr", "Request the WR info of a Track")]
         private async Task WrCommand(InteractionContext _context, [Option("Map", "Map for which we want the WR")] ETrackId _trackId)
         {
-            //await _context.CreateResponseAsync(InteractionResponseType.DeferredChannelMessageWithSource);
-            await _context.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder(await CreateWrMessage(_trackId)));
+            await _context.CreateResponseAsync(InteractionResponseType.DeferredChannelMessageWithSource);
+            await _context.EditResponseAsync(new DiscordWebhookBuilder(await CreateWrMessage(_trackId)));
         }
 
         private static async Task<DiscordMessageBuilder> CreateWrMessage(ETrackId _trackId)
