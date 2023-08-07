@@ -9,7 +9,7 @@ namespace TK2Bot
     public class CommandsHandler : ApplicationCommandModule
     {
         private const string TIMER_FORMAT = @"m\:ss\.fff";
-        private const string NO_BREAK_SPACE = "\u00A0";
+        private const string FAKE_EMPTY_FIELD = "\u200B";
         
         [SlashCommand("ping", "Ping the bot and expect a response")]
         private async Task PongCommand(InteractionContext _context)
@@ -52,6 +52,8 @@ namespace TK2Bot
                     IconUrl = "https://the-karters-community.com/images/the-karters-logo.png"
                 }
             };
+            
+            // embedBuilder.AddField(FAKE_EMPTY_FIELD, FAKE_EMPTY_FIELD, false);
 
             for (int trackIdx = 0; trackIdx < playerRecords.PlayerTrackTimes.Length; trackIdx++)
             {
@@ -61,19 +63,18 @@ namespace TK2Bot
                 string posContinent = RankingUtils.GetPrettyStringForRank(oneTrackTime.PlayerStats.PosContinent);
                 string posCountry = RankingUtils.GetPrettyStringForRank(oneTrackTime.PlayerStats.PosCountry);
 
-                string fieldDescription = $"**Time:**{NO_BREAK_SPACE}{formattedTime}\n" +
+                string fieldDescription = $"**Time:** {formattedTime}\n" +
                                           //$"**Points:** {RankingUtils.GetPrettyStringForPoints(oneTrackTime.PlayerStats.Points)}\n" +
                                           $"\n" +
-                                          $":globe_with_meridians:{NO_BREAK_SPACE}**Worldwide:**{NO_BREAK_SPACE}{posWorld}\n" +
-                                          $"{RankingUtils.GetContinentEmojiTmp(continentInfo.Alias)}{NO_BREAK_SPACE}**{continentInfo.Name}:**{NO_BREAK_SPACE}{posContinent}\n" +
-                                          $":flag_{countryInfo.Alias.ToLower()}:{NO_BREAK_SPACE}**{countryInfo.Name}:**{NO_BREAK_SPACE}{posCountry}\n";
+                                          $":globe_with_meridians: **Worldwide:** {posWorld}\n" +
+                                          $"{RankingUtils.GetContinentEmojiTmp(continentInfo.Alias)} **{continentInfo.Name}:** {posContinent}\n" +
+                                          $":flag_{countryInfo.Alias.ToLower()}: **{countryInfo.Name}:** {posCountry}\n";
 
                 embedBuilder.AddField($"__{oneTrackTime.TrackInfo.MapName}__", fieldDescription, true);
 
                 if (trackIdx % 2 == 1)
                 {
-                    // embedBuilder.AddField("---", "---", false);
-                    // embedBuilder.AddField("", "", false); Crashshes app
+                    embedBuilder.AddField(FAKE_EMPTY_FIELD, FAKE_EMPTY_FIELD, false);
                 }
             }
 
