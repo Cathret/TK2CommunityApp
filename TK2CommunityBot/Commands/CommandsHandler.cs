@@ -36,24 +36,18 @@ namespace TK2Bot
             
             DiscordEmbedBuilder embedBuilder = new DiscordEmbedBuilder()
             {
-                Author = new DiscordEmbedBuilder.EmbedAuthor()
-                {
-                    Name    = playerInfo.PlayerName,
-                    Url     = playerInfo.ProfileUrl,
-                    IconUrl = playerInfo.AvatarUrl,
-                },
-                Title       = "PLAYER PROFILE",
-                Description = $"{playerInfo.PlayerName} is {playerStats.PosWorldwide} on the global leaderboards with {playerStats.Points} points",
+                Title       = $"{playerInfo.PlayerName}'s Profile",
+                Description = $"**{playerInfo.PlayerName}** is **{RankingUtils.GetPrettyStringForRank(playerStats.PosWorldwide)}** on the global leaderboard with **{RankingUtils.GetPrettyStringForPoints(playerStats.Points)} points**",
                 Url         = playerInfo.ProfileUrl,
                 Timestamp   = DateTimeOffset.UtcNow,
                 Color     = DiscordColor.Green,
                 Thumbnail   = new DiscordEmbedBuilder.EmbedThumbnail()
                 {
-                    Url = "https://the-karters-community.com/images/the-karters-logo.png",
+                    Url = playerInfo.AvatarUrl,
                 },
                 Footer = new DiscordEmbedBuilder.EmbedFooter()
                 {
-                    Text    = playerInfo.ProfileUrl,
+                    Text    = "https://the-karters-community.com/",
                     IconUrl = "https://the-karters-community.com/images/the-karters-logo.png"
                 }
             };
@@ -61,12 +55,18 @@ namespace TK2Bot
             foreach (PlayerTrackTime oneTrackTime in playerRecords.PlayerTrackTimes)
             {
                 string formattedTime = oneTrackTime.RunTime.ToString(TIMER_FORMAT);
-                string fieldDescription = $"Time: {formattedTime} | Points {oneTrackTime.PlayerStats.Points}\n" +
-                                          $"Worldwide: {oneTrackTime.PlayerStats.PosWorldwide}\n" +
-                                          $"{continentInfo.Name}: {oneTrackTime.PlayerStats.PosContinent}\n" +
-                                          $"{countryInfo.Name}: {oneTrackTime.PlayerStats.PosCountry}";
+                string posWorld = RankingUtils.GetPrettyStringForRank(oneTrackTime.PlayerStats.PosWorldwide);
+                string posContinent = RankingUtils.GetPrettyStringForRank(oneTrackTime.PlayerStats.PosContinent);
+                string posCountry = RankingUtils.GetPrettyStringForRank(oneTrackTime.PlayerStats.PosCountry);
+                    
+                string fieldDescription = $"**Time:** {formattedTime}\n" +
+                                          //$"**Points:** {RankingUtils.GetPrettyStringForPoints(oneTrackTime.PlayerStats.Points)}\n" +
+                                          $"\n" +
+                                          $":globe_with_meridians: **Worldwide:** {posWorld}\n" +
+                                          $"{RankingUtils.GetContinentEmojiTmp(continentInfo.Alias)} **{continentInfo.Name}:** {posContinent}\n" +
+                                          $":flag_{countryInfo.Alias.ToLower()}: **{countryInfo.Name}:** {posCountry}";
                 
-                embedBuilder.AddField(oneTrackTime.TrackInfo.MapName, fieldDescription, false);
+                embedBuilder.AddField($"__{oneTrackTime.TrackInfo.MapName}__", fieldDescription, true);
             }
             
             return new DiscordMessageBuilder()
@@ -97,7 +97,7 @@ namespace TK2Bot
                     IconUrl = playerInfo.AvatarUrl,
                 },
                 Title       = "WORLD RECORD HOLDER",
-                Description = $"Current WR is held by {playerInfo.PlayerName} with a {formattedDuration}",
+                Description = $"Current WR is held by **{playerInfo.PlayerName}** with a **{formattedDuration}**",
                 Url         = trackInfo.LeaderboardUrl,
                 // ImageUrl = "https://www.youtube.com/watch?v=cnszxGaMmws", // Framework doesn't handle Youtube
                 Timestamp   = DateTimeOffset.UtcNow,
