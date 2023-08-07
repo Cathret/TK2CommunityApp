@@ -71,10 +71,10 @@ namespace TK2Bot.API
 
             PlayerStats playerStats = new PlayerStats()
             {
-                PosWorldwide = 0,// contentAsJson.data.player.position.worldwide,
-                PosContinent = 0,// contentAsJson.data.player.position.continent,
-                PosCountry   = 0,// contentAsJson.data.player.position.country,
-                Points       = 0,// contentAsJson.data.player.points
+                PosWorldwide = contentAsJson.data.player.global.positions.worldwide,
+                PosContinent = contentAsJson.data.player.global.positions.continent,
+                PosCountry   = contentAsJson.data.player.global.positions.country,
+                Points       = contentAsJson.data.player.global.points
             };
 
             ContinentInfo continentInfo = new ContinentInfo()
