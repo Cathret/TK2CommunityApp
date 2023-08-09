@@ -99,9 +99,9 @@ namespace TK2Bot.API
                         PlayerInfo = playerInfo,
                         PlayerStats = new PlayerStats()
                         {
-                            PosWorldwide = oneRecord.data.position.worldwide,
-                            PosContinent = oneRecord.data.position.continent,
-                            PosCountry   = oneRecord.data.position.country,
+                            PosWorldwide = oneRecord.data.positions.worldwide,
+                            PosContinent = oneRecord.data.positions.continent,
+                            PosCountry   = oneRecord.data.positions.country,
                             Points       = oneRecord.data.points
                         },
                         TrackInfo = new TrackInfo()
