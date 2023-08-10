@@ -24,7 +24,7 @@ namespace TK2Bot
             DiscordEmbedBuilder embedBuilder = new DiscordEmbedBuilder()
             {
                 Title       = $"{playerInfo.PlayerName}'s Profile",
-                Description = $"**{playerInfo.PlayerName}** is **{RankingUtils.GetPrettyStringForRank(playerStats.PosWorldwide)}** on the global leaderboard with **{RankingUtils.GetPrettyStringForPoints(playerStats.Points)} points**",
+                Description = $"**{playerInfo.PlayerName}** is **{RankingUtils.GetPrettyStringForRank(playerStats.PosWorldwide)}** on the global leaderboard with **{RankingUtils.GetPrettyStringForPoints(playerStats.Points)} points**.",
                 Url         = playerInfo.ProfileUrl,
                 Timestamp   = DateTimeOffset.UtcNow,
                 Color     = DiscordColor.Green,
@@ -45,7 +45,7 @@ namespace TK2Bot
                 string posCountry = RankingUtils.GetPrettyStringForRank(oneTrackTime.PlayerStats.PosCountry);
 
                 // row for different tracks
-                tableContent += $" `☑️{oneTrackTime.TrackInfo.MapName}:`  {formattedTime} ⌛, {posCountry} :flag_{countryInfo.Alias.ToLower()}:, {posContinent} {RankingUtils.GetContinentEmojiTmp(continentInfo.Alias)}, {posWorld} :globe_with_meridians: \n";
+                tableContent += $" `☑️{oneTrackTime.TrackInfo.MapName}:` ⌛{formattedTime}, :flag_{countryInfo.Alias.ToLower()}: {posCountry}, {RankingUtils.GetContinentEmojiTmp(continentInfo.Alias)} {posContinent}, :globe_with_meridians: {posWorld}\n";
             }
 
             // table header
