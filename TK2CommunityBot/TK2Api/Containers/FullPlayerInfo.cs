@@ -7,5 +7,7 @@
         public CountryInfo CountryInfo { get; internal init; }
         public PlayerRecords PlayerRecords { get; internal init; }
         public PlayerStats PlayerStats { get; internal init; }
+        
+        public bool IsValid { get; internal init; }
     }
 }

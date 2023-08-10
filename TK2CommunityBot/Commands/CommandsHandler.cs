@@ -35,6 +35,12 @@ namespace TK2Bot
         private static async Task<DiscordMessageBuilder> CreatePlayerDetailedMessage(string _playerName)
         {
             FullPlayerInfo fullPlayerInfo = await ApiSystem.GetFullPlayerInfoFromName(_playerName);
+
+            if (fullPlayerInfo.IsValid == false)
+            {
+                return new DiscordMessageBuilder()
+                    .WithContent($"Can't find player from PlayerName [{_playerName}]");
+            }
             
             PlayerInfo    playerInfo    = fullPlayerInfo.PlayerInfo;
             PlayerRecords playerRecords = fullPlayerInfo.PlayerRecords;
@@ -70,7 +76,7 @@ namespace TK2Bot
                 string posContinent = RankingUtils.GetPrettyStringForRank(oneTrackTime.PlayerStats.PosContinent);
                 string posCountry = RankingUtils.GetPrettyStringForRank(oneTrackTime.PlayerStats.PosCountry);
 
-                string fieldDescription = $"**Time:** {formattedTime}\n" +
+                string fieldDescription = $"⌛ **Time:** {formattedTime}\n" +
                                           $"**Points:** {RankingUtils.GetPrettyStringForPoints(oneTrackTime.PlayerStats.Points)}\n" +
                                           $"\n" +
                                           $":globe_with_meridians: **Worldwide:** {posWorld}\n" +
@@ -92,6 +98,12 @@ namespace TK2Bot
         private static async Task<DiscordMessageBuilder> CreatePlayerMessage(string _playerName)
         {
             FullPlayerInfo fullPlayerInfo = await ApiSystem.GetFullPlayerInfoFromName(_playerName);
+            
+            if (fullPlayerInfo.IsValid == false)
+            {
+                return new DiscordMessageBuilder()
+                    .WithContent($"Can't find player from PlayerName [{_playerName}]");
+            }
             
             PlayerInfo    playerInfo    = fullPlayerInfo.PlayerInfo;
             PlayerRecords playerRecords = fullPlayerInfo.PlayerRecords;

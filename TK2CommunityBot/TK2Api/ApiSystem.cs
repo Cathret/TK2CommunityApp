@@ -10,8 +10,8 @@ namespace TK2Bot.API
     {
         private struct AuthInfoData
         {
-            public string Token { get; internal set; }
-            public TimeSpan ExpirationDate { get; internal set; }
+            public string Token { get; internal init; }
+            public TimeSpan ExpirationDate { get; internal init; }
         }
         
         private static readonly string API_LOGIN = Environment.GetEnvironmentVariable("TK2_API_LOGIN")!;
@@ -61,6 +61,11 @@ namespace TK2Bot.API
 
             dynamic contentAsJson = JObject.Parse(contentAsString);
             Console.WriteLine($"PlayerInfo: {contentAsJson.ToString()}");
+
+            if (contentAsJson.status == "error")
+            {
+                return new FullPlayerInfo() { IsValid = false };
+            }
 
             PlayerInfo playerInfo = new PlayerInfo()
             {
@@ -119,14 +124,15 @@ namespace TK2Bot.API
             {
                 PlayerTrackTimes = playerTrackTimes.ToArray(),
             };
-            
+
             FullPlayerInfo fullPlayerInfo = new FullPlayerInfo()
             {
-                PlayerInfo = playerInfo,
-                PlayerStats = playerStats,
+                PlayerInfo    = playerInfo,
+                PlayerStats   = playerStats,
                 ContinentInfo = continentInfo,
-                CountryInfo = countryInfo,
+                CountryInfo   = countryInfo,
                 PlayerRecords = playerRecords,
+                IsValid       = true,
             };
 
             return fullPlayerInfo;
