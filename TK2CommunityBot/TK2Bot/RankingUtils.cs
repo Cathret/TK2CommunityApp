@@ -32,12 +32,13 @@ namespace TK2Bot
         {
             return _continentAlias switch
             {
-                "EU" => ":flag_eu:",
-                "AF" => ":earth_africa:",
-                "NA" => ":earth_americas:",
-                "SA" => ":earth_asia:",
-                "OC" => ":earth_asia:",
-                _ => ":globe_with_meridians:" // AN -> antartica
+                "EU" => ":flag_eu:",              // EUROPE
+                "AF" => ":earth_africa:",         // AMERICA
+                "NA" => ":earth_americas:",       // NORTH AMERICA
+                "SA" => ":earth_americas:",       // SOUTH AMERICA
+                "OC" => ":earth_asia:",           // OCEANIA
+                "AN" => ":globe_with_meridians:", // ANTARCTIC 
+                _ => ":globe_with_meridians:"
             };
         }
     }
