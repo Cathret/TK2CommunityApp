@@ -22,7 +22,7 @@ namespace TK2Bot
                     IconUrl = playerInfo.AvatarUrl,
                 },
                 Title       = $"{trackInfo.MapName}'s World Record",
-                Description = $"Current WR is held by **{playerInfo.PlayerName}** with a **{formattedDuration}**.",
+                Description = $"Current WR is held by **{playerInfo.PlayerName}** with a time of **{formattedDuration}**.",
                 Url         = trackInfo.LeaderboardUrl,
                 Timestamp   = DateTimeOffset.UtcNow,
                 Color       = DiscordColor.Blue,
