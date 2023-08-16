@@ -94,6 +94,7 @@ namespace TK2Bot.ClassesGenerator
                 "using DSharpPlus.SlashCommands;\n\n" +
                 "namespace TK2Bot.API\n" +
                 "{\n" +
+                "    [Flags]\n" +
                 "    public enum ELocation\n" +
                 "    {\n" +
                 "        [ChoiceName(\"None\")]\n" +
