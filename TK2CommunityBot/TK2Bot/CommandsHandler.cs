@@ -20,24 +20,28 @@ namespace TK2Bot
         }
         
         [SlashCommand("playerdetailed", "Get Player Detailed Info")]
-        private async Task PlayerDetailedCommand(InteractionContext _context, [Option("PlayerName", "Name of the Player we want to retrieve the info")] string _playerName)
+        private async Task PlayerDetailedCommand(InteractionContext _context,
+            [Option("PlayerName", "Name of the Player we want to retrieve the info")] string _playerName)
         {
             await _context.CreateResponseAsync(InteractionResponseType.DeferredChannelMessageWithSource);
             await _context.EditResponseAsync(new DiscordWebhookBuilder(await MessageGenerator.CreatePlayerDetailedMessage(_playerName)));
         }
         
         [SlashCommand("player", "Get Player Info")]
-        private async Task PlayerCommand(InteractionContext _context, [Option("PlayerName", "Name of the Player we want to retrieve the info")] string _playerName)
+        private async Task PlayerCommand(InteractionContext _context,
+            [Option("PlayerName", "Name of the Player we want to retrieve the info")] string _playerName)
         {
             await _context.CreateResponseAsync(InteractionResponseType.DeferredChannelMessageWithSource);
             await _context.EditResponseAsync(new DiscordWebhookBuilder(await MessageGenerator.CreatePlayerMessage(_playerName)));
         }
 
         [SlashCommand("wr", "Request the WR info of a Track")]
-        private async Task WrCommand(InteractionContext _context, [Option("Map", "Map for which we want the WR")] ETrackId _trackId)
+        private async Task WrCommand(InteractionContext _context,
+            [Option("Map", "Map for which we want the WR")] ETrackId _trackId,
+            [Option("LocationFilter", "Filter to get information only for a specific location")] ELocation _locationFilter = ELocation.NO_FILTER)
         {
             await _context.CreateResponseAsync(InteractionResponseType.DeferredChannelMessageWithSource);
-            await _context.EditResponseAsync(new DiscordWebhookBuilder(await MessageGenerator.CreateWrMessage(_trackId)));
+            await _context.EditResponseAsync(new DiscordWebhookBuilder(await MessageGenerator.CreateWrMessage(_trackId, _locationFilter)));
         }
     }
 }

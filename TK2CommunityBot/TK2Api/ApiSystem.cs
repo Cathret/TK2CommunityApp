@@ -1,8 +1,4 @@
-﻿using System.Diagnostics;
-using System.Net.Http.Headers;
-using System.Net.Mime;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 
 namespace TK2Bot.API
 {
@@ -18,7 +14,7 @@ namespace TK2Bot.API
         private static readonly string API_KEY = Environment.GetEnvironmentVariable("TK2_API_KEY")!;
         private static AuthInfoData AuthInfo { get; set; }
 
-        private static readonly HttpClient httpClient = new()
+        private static readonly HttpClient HTTP_CLIENT = new()
         {
             BaseAddress = new Uri("https://the-karters-community.com/api/"),
         };
@@ -26,10 +22,10 @@ namespace TK2Bot.API
         public static async Task TryAuthentificate()
         {
             // Setup Headers which will be used for all requests
-            httpClient.DefaultRequestHeaders.Add("x-api-credentials", $"{API_LOGIN}@{API_KEY}");
+            HTTP_CLIENT.DefaultRequestHeaders.Add("x-api-credentials", $"{API_LOGIN}@{API_KEY}");
             
             // Make request to login for 1 day and get json from response
-            string contentAsString = await httpClient.GetStringAsync("login");
+            string contentAsString = await HTTP_CLIENT.GetStringAsync("login");
             
             // We have our json, so we check if it succeeded, and if it did we will set AuthInfo to correct Token and ExpirationDate
             dynamic json = JObject.Parse(contentAsString);
@@ -43,9 +39,9 @@ namespace TK2Bot.API
 
                 Console.WriteLine("[INFO] Retrieved Authentication Data");
 
-                httpClient.DefaultRequestHeaders.Clear();
-                httpClient.DefaultRequestHeaders.Add("authorization", $"Bearer {AuthInfo.Token}");
-                httpClient.DefaultRequestHeaders.Add("X-Requested-With", "XMLHttpRequest");
+                HTTP_CLIENT.DefaultRequestHeaders.Clear();
+                HTTP_CLIENT.DefaultRequestHeaders.Add("authorization", $"Bearer {AuthInfo.Token}");
+                HTTP_CLIENT.DefaultRequestHeaders.Add("X-Requested-With", "XMLHttpRequest");
             }
             else
             {
@@ -53,11 +49,9 @@ namespace TK2Bot.API
             }
         }
         
-        private const UInt32 WR_PLACEMENT = 1;
-
         public static async Task<FullPlayerInfo> GetFullPlayerInfoFromName(string _playerName)
         {
-            string contentAsString = await httpClient.GetStringAsync($"player?search={_playerName}");
+            string contentAsString = await HTTP_CLIENT.GetStringAsync($"player?search={_playerName}");
 
             dynamic contentAsJson = JObject.Parse(contentAsString);
             Console.WriteLine($"PlayerInfo: {contentAsJson.ToString()}");
@@ -138,11 +132,27 @@ namespace TK2Bot.API
             return fullPlayerInfo;
         }
         
-        public static async Task<PlayerTrackTime> GetWorldRecordForTrack(ETrackId _trackId)
+        public static async Task<PlayerTrackTime> GetWorldRecordForTrack(ETrackId _trackId, ELocation _location)
         {
             string mapSlug = MapTranslator.GetSlugFromTrackId(_trackId);
 
-            string contentAsString = await httpClient.GetStringAsync($"track/{mapSlug}/world-record");
+            string requestUri = $"track/{mapSlug}/world-record";
+
+            if (_location != ELocation.NO_FILTER)
+            {
+                string filterName =
+                    (_location & ELocation.COUNTRY) != ELocation.NO_FILTER
+                        ? "country"
+                        : (_location & ELocation.CONTINENT) != ELocation.NO_FILTER
+                            ? "continent"
+                            : string.Empty;
+                if (filterName != string.Empty)
+                {
+                    requestUri += $"?{filterName}={LocationUtils.GetAlias(_location)}";
+                }
+            }
+
+            string contentAsString = await HTTP_CLIENT.GetStringAsync(requestUri);
             
             dynamic contentAsJson = JObject.Parse(contentAsString);
 
@@ -153,7 +163,6 @@ namespace TK2Bot.API
                 ProfileUrl = contentAsJson.data.record.player.profile_url,
                 AvatarUrl  = contentAsJson.data.record.player.avatar_url, 
             };
-            Console.WriteLine($"WrHolder: {wrHolderInfo}");
 
             TrackInfo trackInfo = new TrackInfo()
             {
@@ -161,7 +170,6 @@ namespace TK2Bot.API
                 ImageUrl       = contentAsJson.data.track.image_url,
                 LeaderboardUrl = contentAsJson.data.track.leaderboard_url,
             };
-            Console.WriteLine($"TrackInfo: {trackInfo}");
 
             PlayerTrackTime wrTrackTime = new PlayerTrackTime()
             {
@@ -170,7 +178,6 @@ namespace TK2Bot.API
                 RunTime     = TimeSpan.FromMilliseconds(double.Parse(contentAsJson.data.record.score.ToString())),
                 PlayerStats = new PlayerStats(),
             };
-            Console.WriteLine($"WrTrackTime: {wrTrackTime}");
 
             return wrTrackTime;
         }
