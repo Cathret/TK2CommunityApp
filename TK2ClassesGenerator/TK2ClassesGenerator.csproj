@@ -11,4 +11,14 @@
       <PackageReference Include="CsvHelper" Version="30.0.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="StaticData\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="StaticData\tracks.csv">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

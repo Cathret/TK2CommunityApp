@@ -4,6 +4,8 @@
     {
         private static int Main(string[] _args)
         {
+            TrackStaticData.Generate();
+            
             return 0;
         }
     }
