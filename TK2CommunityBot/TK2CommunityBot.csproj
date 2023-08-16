@@ -11,11 +11,6 @@
     <PackageReference Include="DSharpPlus" Version="5.0.0-nightly-01663" />
     <PackageReference Include="DSharpPlus.Interactivity" Version="5.0.0-nightly-01663" />
     <PackageReference Include="DSharpPlus.SlashCommands" Version="5.0.0-nightly-01663" />
-
   </ItemGroup>
-
-
-
-
 
 </Project>

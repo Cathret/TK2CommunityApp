@@ -1,4 +1,6 @@
-﻿using DSharpPlus.SlashCommands;
+// GENERATED FILE - DO NOT MODIFY //
+
+using DSharpPlus.SlashCommands;
 
 namespace TK2Bot.API
 {
@@ -6,13 +8,13 @@ namespace TK2Bot.API
     {
         [ChoiceName("Woodsy Lane")]
         WoodsyLane,
-        
+
         [ChoiceName("Shiny Shroom")]
         ShinyShroom,
-        
+
         [ChoiceName("Molten Miles")]
         MoltenMiles,
-        
+
         [ChoiceName("Mythic Moonlight")]
         MythicMoonlight,
     }
