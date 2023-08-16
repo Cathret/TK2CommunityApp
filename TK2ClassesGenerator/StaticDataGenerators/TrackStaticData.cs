@@ -1,15 +1,12 @@
-﻿using System.Diagnostics;
-using System.Globalization;
+﻿using System.Globalization;
 using CsvHelper;
 
 namespace TK2Bot.ClassesGenerator
 {
     public static class TrackStaticData
     {
-        private static readonly string TK2_BOT_PROJECT_DIR = Environment.GetEnvironmentVariable("TK2_COMMUNITY_BOT_PROJECT")!;
-        private static readonly string TK2_GENERATED_DIR = TK2_BOT_PROJECT_DIR + "Generated\\";
-        private static readonly string TK2_GENERATED_MAPTRANSLATOR = TK2_GENERATED_DIR + "MapTranslator_Generated.cs";
-        private static readonly string TK2_GENERATED_TRACKID = TK2_GENERATED_DIR + "ETrackId_Generated.cs";
+        private static readonly string TK2_GENERATED_MAPTRANSLATOR = DataGenInfo.TK2_GENERATED_DIR + "MapTranslator_Generated.cs";
+        private static readonly string TK2_GENERATED_TRACKID = DataGenInfo.TK2_GENERATED_DIR + "ETrackId_Generated.cs";
 
         private const string TRACK_CSV_FILE = "tracks.csv";
 
