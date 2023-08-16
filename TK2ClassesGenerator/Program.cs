@@ -5,6 +5,7 @@
         private static int Main(string[] _args)
         {
             TrackStaticData.Generate();
+            LocationStaticData.Generate();
             
             return 0;
         }
