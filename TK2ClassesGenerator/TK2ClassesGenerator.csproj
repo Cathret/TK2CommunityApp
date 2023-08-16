@@ -12,11 +12,13 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="StaticData\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <None Update="StaticData\tracks.csv">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="StaticData\countries.csv">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="StaticData\continents.csv">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
     </ItemGroup>
