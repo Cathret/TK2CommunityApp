@@ -1,4 +1,251 @@
 ﻿Name,Alias,Enum,EmojiStr
-France,fr,France,:flag_fr:
+Afghanistan,af,Afghanistan,:flag_af:
+Åland Islands,ax,AlandIslands,:flag_ax:
+Albania,al,Albania,:flag_al:
+Algeria,dz,Algeria,:flag_dz:
+American Samoa,as,AmericanSamoa,:flag_as:
+Andorra,ad,Andorra,:flag_ad:
+Angola,ao,Angola,:flag_ao:
+Anguilla,ai,Anguilla,:flag_ai:
+Antarctica,aq,Antarctica,:flag_aq:
+Antigua and Barbuda,ag,AntiguaandBarbuda,:flag_ag:
+Argentina,ar,Argentina,:flag_ar:
+Armenia,am,Armenia,:flag_am:
+Aruba,aw,Aruba,:flag_aw:
+Australia,au,Australia,:flag_au:
+Austria,at,Austria,:flag_at:
+Azerbaijan,az,Azerbaijan,:flag_az:
+Bahamas,bs,Bahamas,:flag_bs:
+Bahrain,bh,Bahrain,:flag_bh:
+Bangladesh,bd,Bangladesh,:flag_bd:
+Barbados,bb,Barbados,:flag_bb:
+Belarus,by,Belarus,:flag_by:
+Belgium,be,Belgium,:flag_be:
+Belize,bz,Belize,:flag_bz:
+Benin,bj,Benin,:flag_bj:
+Bermuda,bm,Bermuda,:flag_bm:
+Bhutan,bt,Bhutan,:flag_bt:
+Bolivia,bo,Bolivia,:flag_bo:
+Bosnia and Herzegovina,ba,BosniaandHerzegovina,:flag_ba:
+Botswana,bw,Botswana,:flag_bw:
+Bouvet Island,bv,BouvetIsland,:flag_bv:
+Brazil,br,Brazil,:flag_br:
+British Indian Ocean Territory,io,BritishIndianOceanTerritory,:flag_io:
+British Virgin Islands,vg,BritishVirginIslands,:flag_vg:
+Brunei,bn,Brunei,:flag_bn:
+Bulgaria,bg,Bulgaria,:flag_bg:
+Burkina Faso,bf,BurkinaFaso,:flag_bf:
+Burundi,bi,Burundi,:flag_bi:
+Cambodia,kh,Cambodia,:flag_kh:
+Cameroon,cm,Cameroon,:flag_cm:
+Canada,ca,Canada,:flag_ca:
+Cape Verde,cv,CapeVerde,:flag_cv:
+Caribbean Netherlands,bq,CaribbeanNetherlands,:flag_bq:
+Cayman Islands,ky,CaymanIslands,:flag_ky:
+Central African Republic,cf,CentralAfricanRepublic,:flag_cf:
+Chad,td,Chad,:flag_td:
+Chile,cl,Chile,:flag_cl:
+China,cn,China,:flag_cn:
+Christmas Island,cx,ChristmasIsland,:flag_cx:
+Cocos (Keeling) Islands,cc,CocosKeelingIslands,:flag_cc:
+Colombia,co,Colombia,:flag_co:
+Comoros,km,Comoros,:flag_km:
+Cook Islands,ck,CookIslands,:flag_ck:
+Costa Rica,cr,CostaRica,:flag_cr:
+Croatia,hr,Croatia,:flag_hr:
+Cuba,cu,Cuba,:flag_cu:
+Curaçao,cw,Curaçao,:flag_cw:
+Cyprus,cy,Cyprus,:flag_cy:
+Czechia,cz,Czechia,:flag_cz:
+Denmark,dk,Denmark,:flag_dk:
+Djibouti,dj,Djibouti,:flag_dj:
+Dominica,dm,Dominica,:flag_dm:
+Dominican Republic,do,DominicanRepublic,:flag_do:
+DR Congo,cd,DRCongo,:flag_cd:
+Ecuador,ec,Ecuador,:flag_ec:
+Egypt,eg,Egypt,:flag_eg:
+El Salvador,sv,ElSalvador,:flag_sv:
+Equatorial Guinea,gq,EquatorialGuinea,:flag_gq:
+Eritrea,er,Eritrea,:flag_er:
+Estonia,ee,Estonia,:flag_ee:
+Eswatini,sz,Eswatini,:flag_sz:
+Ethiopia,et,Ethiopia,:flag_et:
+Falkland Islands,fk,FalklandIslands,:flag_fk:
+Faroe Islands,fo,FaroeIslands,:flag_fo:
+Fiji,fj,Fiji,:flag_fj:
 Finland,fi,Finland,:flag_fi:
-Great Britain,gb,GreatBritain,:flag_gb:
+France,fr,France,:flag_fr:
+French Guiana,gf,FrenchGuiana,:flag_gf:
+French Polynesia,pf,FrenchPolynesia,:flag_pf:
+French Southern and Antarctic Lands,tf,FrenchSouthernandAntarcticLands,:flag_tf:
+Gabon,ga,Gabon,:flag_ga:
+Gambia,gm,Gambia,:flag_gm:
+Georgia,ge,Georgia,:flag_ge:
+Germany,de,Germany,:flag_de:
+Ghana,gh,Ghana,:flag_gh:
+Gibraltar,gi,Gibraltar,:flag_gi:
+Greece,gr,Greece,:flag_gr:
+Greenland,gl,Greenland,:flag_gl:
+Grenada,gd,Grenada,:flag_gd:
+Guadeloupe,gp,Guadeloupe,:flag_gp:
+Guam,gu,Guam,:flag_gu:
+Guatemala,gt,Guatemala,:flag_gt:
+Guernsey,gg,Guernsey,:flag_gg:
+Guinea,gn,Guinea,:flag_gn:
+Guinea-Bissau,gw,GuineaBissau,:flag_gw:
+Guyana,gy,Guyana,:flag_gy:
+Haiti,ht,Haiti,:flag_ht:
+Heard Island and McDonald Islands,hm,HeardIslandandMcDonaldIslands,:flag_hm:
+Honduras,hn,Honduras,:flag_hn:
+Hong Kong,hk,HongKong,:flag_hk:
+Hungary,hu,Hungary,:flag_hu:
+Iceland,is,Iceland,:flag_is:
+India,in,India,:flag_in:
+Indonesia,id,Indonesia,:flag_id:
+Iran,ir,Iran,:flag_ir:
+Iraq,iq,Iraq,:flag_iq:
+Ireland,ie,Ireland,:flag_ie:
+Isle of Man,im,IsleofMan,:flag_im:
+Israel,il,Israel,:flag_il:
+Italy,it,Italy,:flag_it:
+Ivory Coast,ci,IvoryCoast,:flag_ci:
+Jamaica,jm,Jamaica,:flag_jm:
+Japan,jp,Japan,:flag_jp:
+Jersey,je,Jersey,:flag_je:
+Jordan,jo,Jordan,:flag_jo:
+Kazakhstan,kz,Kazakhstan,:flag_kz:
+Kenya,ke,Kenya,:flag_ke:
+Kiribati,ki,Kiribati,:flag_ki:
+Kosovo,xk,Kosovo,:flag_xk:
+Kuwait,kw,Kuwait,:flag_kw:
+Kyrgyzstan,kg,Kyrgyzstan,:flag_kg:
+Laos,la,Laos,:flag_la:
+Latvia,lv,Latvia,:flag_lv:
+Lebanon,lb,Lebanon,:flag_lb:
+Lesotho,ls,Lesotho,:flag_ls:
+Liberia,lr,Liberia,:flag_lr:
+Libya,ly,Libya,:flag_ly:
+Liechtenstein,li,Liechtenstein,:flag_li:
+Lithuania,lt,Lithuania,:flag_lt:
+Luxembourg,lu,Luxembourg,:flag_lu:
+Macau,mo,Macau,:flag_mo:
+Madagascar,mg,Madagascar,:flag_mg:
+Malawi,mw,Malawi,:flag_mw:
+Malaysia,my,Malaysia,:flag_my:
+Maldives,mv,Maldives,:flag_mv:
+Mali,ml,Mali,:flag_ml:
+Malta,mt,Malta,:flag_mt:
+Marshall Islands,mh,MarshallIslands,:flag_mh:
+Martinique,mq,Martinique,:flag_mq:
+Mauritania,mr,Mauritania,:flag_mr:
+Mauritius,mu,Mauritius,:flag_mu:
+Mayotte,yt,Mayotte,:flag_yt:
+Mexico,mx,Mexico,:flag_mx:
+Micronesia,fm,Micronesia,:flag_fm:
+Moldova,md,Moldova,:flag_md:
+Monaco,mc,Monaco,:flag_mc:
+Mongolia,mn,Mongolia,:flag_mn:
+Montenegro,me,Montenegro,:flag_me:
+Montserrat,ms,Montserrat,:flag_ms:
+Morocco,ma,Morocco,:flag_ma:
+Mozambique,mz,Mozambique,:flag_mz:
+Myanmar,mm,Myanmar,:flag_mm:
+Namibia,na,Namibia,:flag_na:
+Nauru,nr,Nauru,:flag_nr:
+Nepal,np,Nepal,:flag_np:
+Netherlands,nl,Netherlands,:flag_nl:
+New Caledonia,nc,NewCaledonia,:flag_nc:
+New Zealand,nz,NewZealand,:flag_nz:
+Nicaragua,ni,Nicaragua,:flag_ni:
+Niger,ne,Niger,:flag_ne:
+Nigeria,ng,Nigeria,:flag_ng:
+Niue,nu,Niue,:flag_nu:
+Norfolk Island,nf,NorfolkIsland,:flag_nf:
+North Korea,kp,NorthKorea,:flag_kp:
+North Macedonia,mk,NorthMacedonia,:flag_mk:
+Northern Mariana Islands,mp,NorthernMarianaIslands,:flag_mp:
+Norway,no,Norway,:flag_no:
+Oman,om,Oman,:flag_om:
+Pakistan,pk,Pakistan,:flag_pk:
+Palau,pw,Palau,:flag_pw:
+Palestine,ps,Palestine,:flag_ps:
+Panama,pa,Panama,:flag_pa:
+Papua New Guinea,pg,PapuaNewGuinea,:flag_pg:
+Paraguay,py,Paraguay,:flag_py:
+Peru,pe,Peru,:flag_pe:
+Philippines,ph,Philippines,:flag_ph:
+Pitcairn Islands,pn,PitcairnIslands,:flag_pn:
+Poland,pl,Poland,:flag_pl:
+Portugal,pt,Portugal,:flag_pt:
+Puerto Rico,pr,PuertoRico,:flag_pr:
+Qatar,qa,Qatar,:flag_qa:
+Republic of the Congo,cg,RepublicoftheCongo,:flag_cg:
+Réunion,re,Reunion,:flag_re:
+Romania,ro,Romania,:flag_ro:
+Russia,ru,Russia,:flag_ru:
+Rwanda,rw,Rwanda,:flag_rw:
+Saint Barthélemy,bl,SaintBarthélemy,:flag_bl:
+Saint Helena - Ascension and Tristan da Cunha,sh,SaintHelena_AscensionandTristandaCunha,:flag_sh:
+Saint Kitts and Nevis,kn,SaintKittsandNevis,:flag_kn:
+Saint Lucia,lc,SaintLucia,:flag_lc:
+Saint Martin,mf,SaintMartin,:flag_mf:
+Saint Pierre and Miquelon,pm,SaintPierreandMiquelon,:flag_pm:
+Saint Vincent and the Grenadines,vc,SaintVincentandtheGrenadines,:flag_vc:
+Samoa,ws,Samoa,:flag_ws:
+San Marino,sm,SanMarino,:flag_sm:
+São Tomé and Príncipe,st,SaoTomeandPrincipe,:flag_st:
+Saudi Arabia,sa,SaudiArabia,:flag_sa:
+Senegal,sn,Senegal,:flag_sn:
+Serbia,rs,Serbia,:flag_rs:
+Seychelles,sc,Seychelles,:flag_sc:
+Sierra Leone,sl,SierraLeone,:flag_sl:
+Singapore,sg,Singapore,:flag_sg:
+Sint Maarten,sx,SintMaarten,:flag_sx:
+Slovakia,sk,Slovakia,:flag_sk:
+Slovenia,si,Slovenia,:flag_si:
+Solomon Islands,sb,SolomonIslands,:flag_sb:
+Somalia,so,Somalia,:flag_so:
+South Africa,za,SouthAfrica,:flag_za:
+South Georgia,gs,SouthGeorgia,:flag_gs:
+South Korea,kr,SouthKorea,:flag_kr:
+South Sudan,ss,SouthSudan,:flag_ss:
+Spain,es,Spain,:flag_es:
+Sri Lanka,lk,SriLanka,:flag_lk:
+Sudan,sd,Sudan,:flag_sd:
+Suriname,sr,Suriname,:flag_sr:
+Svalbard and Jan Mayen,sj,SvalbardandJanMayen,:flag_sj:
+Sweden,se,Sweden,:flag_se:
+Switzerland,ch,Switzerland,:flag_ch:
+Syria,sy,Syria,:flag_sy:
+Taiwan,tw,Taiwan,:flag_tw:
+Tajikistan,tj,Tajikistan,:flag_tj:
+Tanzania,tz,Tanzania,:flag_tz:
+Thailand,th,Thailand,:flag_th:
+Timor-Leste,tl,TimorLeste,:flag_tl:
+Togo,tg,Togo,:flag_tg:
+Tokelau,tk,Tokelau,:flag_tk:
+Tonga,to,Tonga,:flag_to:
+Trinidad and Tobago,tt,TrinidadandTobago,:flag_tt:
+Tunisia,tn,Tunisia,:flag_tn:
+Turkey,tr,Turkey,:flag_tr:
+Turkmenistan,tm,Turkmenistan,:flag_tm:
+Turks and Caicos Islands,tc,TurksandCaicosIslands,:flag_tc:
+Tuvalu,tv,Tuvalu,:flag_tv:
+Uganda,ug,Uganda,:flag_ug:
+Ukraine,ua,Ukraine,:flag_ua:
+United Arab Emirates,ae,UnitedArabEmirates,:flag_ae:
+United Kingdom,gb,UnitedKingdom,:flag_gb:
+United States,us,UnitedStates,:flag_us:
+United States Minor Outlying Islands,um,UnitedStatesMinorOutlyingIslands,:flag_um:
+United States Virgin Islands,vi,UnitedStatesVirginIslands,:flag_vi:
+Uruguay,uy,Uruguay,:flag_uy:
+Uzbekistan,uz,Uzbekistan,:flag_uz:
+Vanuatu,vu,Vanuatu,:flag_vu:
+Vatican City,va,VaticanCity,:flag_va:
+Venezuela,ve,Venezuela,:flag_ve:
+Vietnam,vn,Vietnam,:flag_vn:
+Wallis and Futuna,wf,WallisandFutuna,:flag_wf:
+Western Sahara,eh,WesternSahara,:flag_eh:
+Yemen,ye,Yemen,:flag_ye:
+Zambia,zm,Zambia,:flag_zm:
+Zimbabwe,zw,Zimbabwe,:flag_zw:

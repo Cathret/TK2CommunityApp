@@ -11,6 +11,9 @@ namespace TK2Bot.ClassesGenerator
         private const string CONTINENT_CSV_FILE = "continents.csv";
         private const string COUNTRIES_CSV_FILE = "countries.csv";
 
+        private const string COUNTRIES_ENUM_NAME = "COUNTRIES";
+        private const string CONTINENTS_ENUM_NAME = "CONTINENTS";
+
         private class LocationInfo
         {
             public string? Name { get; set; }
@@ -19,31 +22,38 @@ namespace TK2Bot.ClassesGenerator
             public string? EmojiStr { get; set; }
         }
 
+        private static string CreateDictionaries(string _locationName, IEnumerable<LocationInfo> _locationsInfo)
+        {
+            IEnumerable<LocationInfo> locationsInfo = _locationsInfo as LocationInfo[] ?? _locationsInfo.ToArray();
+
+            string locationTranslationVar =
+                $"        private static readonly Dictionary<string, ELocation> LOCATION_TRANSLATION_{_locationName} = new Dictionary<string, ELocation>()\n" +
+                "        {\n" +
+                locationsInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"            {{ \"{_oneTrackInfo.Name}\", ELocation.{_oneTrackInfo.Enum} }},\n") +
+                "        };\n";
+            
+            string aliasTranslationVar =
+                $"        private static readonly Dictionary<ELocation, string> ALIAS_TRANSLATION_{_locationName} = new Dictionary<ELocation, string>()\n" +
+                "        {\n" +
+                locationsInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"            {{ ELocation.{_oneTrackInfo.Enum}, \"{_oneTrackInfo.Alias}\" }},\n") +
+                "        };\n";
+            
+            string emojiTranslationVar =
+                $"        private static readonly Dictionary<ELocation, string> EMOJI_TRANSLATION_{_locationName} = new Dictionary<ELocation, string>()\n" +
+                "        {\n" +
+                locationsInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"            {{ ELocation.{_oneTrackInfo.Enum}, \"{_oneTrackInfo.EmojiStr}\" }},\n") +
+                "        };\n";
+
+            return locationTranslationVar + "\n" + aliasTranslationVar + "\n" + emojiTranslationVar;
+        }
+
         private static bool GenerateLocationUtilsData(IEnumerable<LocationInfo> _countriesInfo, IEnumerable<LocationInfo> _continentsInfo)
         {
             IEnumerable<LocationInfo> countriesInfo = _countriesInfo as LocationInfo[] ?? _countriesInfo.ToArray();
             IEnumerable<LocationInfo> continentsInfo = _continentsInfo as LocationInfo[] ?? _continentsInfo.ToArray();
-            
-            string locationTranslationVar =
-                "        private static readonly Dictionary<string, ELocation> LOCATION_TRANSLATION = new Dictionary<string, ELocation>()\n" +
-                "        {\n" +
-                countriesInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"            {{ \"{_oneTrackInfo.Name}\", ELocation.{_oneTrackInfo.Enum} }},\n") +
-                continentsInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"            {{ \"{_oneTrackInfo.Name}\", ELocation.{_oneTrackInfo.Enum} }},\n") +
-                "        };\n";
-            
-            string aliasTranslationVar =
-                "        private static readonly Dictionary<ELocation, string> ALIAS_TRANSLATION = new Dictionary<ELocation, string>()\n" +
-                "        {\n" +
-                countriesInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"            {{ ELocation.{_oneTrackInfo.Enum}, \"{_oneTrackInfo.Alias}\" }},\n") +
-                continentsInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"            {{ ELocation.{_oneTrackInfo.Enum}, \"{_oneTrackInfo.Alias}\" }},\n") +
-                "        };\n";
-            
-            string emojiTranslationVar =
-                "        private static readonly Dictionary<ELocation, string> EMOJI_TRANSLATION = new Dictionary<ELocation, string>()\n" +
-                "        {\n" +
-                countriesInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"            {{ ELocation.{_oneTrackInfo.Enum}, \"{_oneTrackInfo.EmojiStr}\" }},\n") +
-                continentsInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"            {{ ELocation.{_oneTrackInfo.Enum}, \"{_oneTrackInfo.EmojiStr}\" }},\n") +
-                "        };\n";
+
+            string countriesDictionaries = CreateDictionaries(COUNTRIES_ENUM_NAME, countriesInfo);
+            string continentsDictionaries = CreateDictionaries(CONTINENTS_ENUM_NAME, continentsInfo);
 
             string translatorContent =
                 "// GENERATED FILE - DO NOT MODIFY //\n\n" +
@@ -52,11 +62,9 @@ namespace TK2Bot.ClassesGenerator
                 "{\n" +
                 "    public static partial class LocationUtils\n" +
                 "    {\n" +
-                locationTranslationVar +
+                countriesDictionaries +
                 "\n" +
-                aliasTranslationVar +
-                "\n" +
-                emojiTranslationVar +
+                continentsDictionaries +
                 "    }\n" +
                 "}\n";
             
@@ -71,22 +79,6 @@ namespace TK2Bot.ClassesGenerator
             IEnumerable<LocationInfo> countriesInfo = _countriesInfo as LocationInfo[] ?? _countriesInfo.ToArray();
             IEnumerable<LocationInfo> continentsInfo = _continentsInfo as LocationInfo[] ?? _continentsInfo.ToArray();
 
-            string countryMask = $"        COUNTRY = {countriesInfo.ElementAt(0).Enum}";
-            for (int i = 1; i < countriesInfo.Count(); i++)
-            {
-                LocationInfo oneLocationInfo = countriesInfo.ElementAt(i);
-                countryMask += $" | {oneLocationInfo.Enum}";
-            }
-            countryMask += ",\n";
-
-            string continentMask = $"        CONTINENT = {continentsInfo.ElementAt(0).Enum}";
-            for (int i = 1; i < continentsInfo.Count(); i++)
-            {
-                LocationInfo oneLocationInfo = continentsInfo.ElementAt(i);
-                continentMask += $" | {oneLocationInfo.Enum}";
-            }
-            continentMask += ",\n";
-
             Int32 bitShift = -1;
             
             string locationEnumContent =
@@ -94,16 +86,12 @@ namespace TK2Bot.ClassesGenerator
                 "using DSharpPlus.SlashCommands;\n\n" +
                 "namespace TK2Bot.API\n" +
                 "{\n" +
-                "    [Flags]\n" +
                 "    public enum ELocation\n" +
                 "    {\n" +
                 "        [ChoiceName(\"None\")]\n" +
                 "        NO_FILTER = 0,\n" +
-                countriesInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"\n        [ChoiceName(\"Country: {_oneTrackInfo.Name}\")]\n        {_oneTrackInfo.Enum} = 1 << {(++bitShift).ToString()},\n") +
-                continentsInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"\n        [ChoiceName(\"Continent: {_oneTrackInfo.Name}\")]\n        {_oneTrackInfo.Enum} = 1 << {(++bitShift).ToString()},\n") +
-                "\n" +
-                countryMask +
-                continentMask +
+                countriesInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"\n        [ChoiceName(\"Country: {_oneTrackInfo.Name}\")]\n        {_oneTrackInfo.Enum} = {(++bitShift).ToString()},\n") +
+                continentsInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"\n        [ChoiceName(\"Continent: {_oneTrackInfo.Name}\")]\n        {_oneTrackInfo.Enum} = {(++bitShift).ToString()},\n") +
                 "    }\n" +
                 "}";
             
