@@ -13,21 +13,21 @@ namespace TK2Bot
                     .WithContent("Invalid Filter.");
             }
             
-            Leaderboards leaderboards = await ApiSystem.GetTrackLeaderboards(_trackId, _location);
+            TrackLeaderboards trackLeaderboards = await ApiSystem.GetTrackLeaderboards(_trackId, _location);
             
-            TrackInfo trackInfo = leaderboards.TrackInfo;
+            TrackInfo trackInfo = trackLeaderboards.TrackInfo;
             
             string leaderboardsHeader = string.Empty;
             string leaderboardsContent = string.Empty;
 
-            if (leaderboards.LeaderboardRecords.Any())
+            if (trackLeaderboards.LeaderboardRecords.Any())
             {
                 leaderboardsHeader = "\n𒆜 **Leaderboards** 𒆜\n\n";
 
-                LeaderboardRecord worseRecord = leaderboards.LeaderboardRecords.Last();
+                LeaderboardRecord worseRecord = trackLeaderboards.LeaderboardRecords.Last();
                 UInt32 maxPosLength = (uint)worseRecord.PlayerStats.PosWorldwide.ToString().Length;
 
-                foreach (LeaderboardRecord oneRecord in leaderboards.LeaderboardRecords)
+                foreach (LeaderboardRecord oneRecord in trackLeaderboards.LeaderboardRecords)
                 {
                     PlayerInfo playerInfo = oneRecord.PlayerInfo;
                     ContinentInfo continentInfo = oneRecord.ContinentInfo;

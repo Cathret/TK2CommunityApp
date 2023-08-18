@@ -1,6 +1,6 @@
 ﻿namespace TK2Bot.API
 {
-    public struct Leaderboards
+    public struct TrackLeaderboards
     {
         public TrackInfo TrackInfo { get; internal init; }
         
