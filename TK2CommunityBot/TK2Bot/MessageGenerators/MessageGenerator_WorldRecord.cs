@@ -7,7 +7,7 @@ namespace TK2Bot
     {
         public static async Task<DiscordMessageBuilder> CreateWrMessage(ETrackId _trackId, ELocation _location)
         {
-            if (LocationUtils.IsValidOption(_location) == false)
+            if (!Enum.IsDefined(typeof(ELocation), _location))
             {
                 return new DiscordMessageBuilder()
                     .WithContent("Invalid Filter.");
@@ -21,18 +21,11 @@ namespace TK2Bot
 
             string locationRecordTitle = "World Record";
             string locationRecordDesc = "WR";
-            // TODO: use single GetEmoji function instead of splitting country/continent
-            if ((_location & ELocation.COUNTRY) != ELocation.NO_FILTER)
+            if (_location != ELocation.NO_FILTER)
             {
-                locationRecordTitle = $"{LocationUtils.GetLocationNameFromLocationEnum(_location)}'s Record";
-                string countryFlag = $":flag_{LocationUtils.GetAlias(_location)}:";
-                locationRecordDesc = $"{countryFlag}'s record";
-            }
-            else if ((_location & ELocation.CONTINENT) != ELocation.NO_FILTER)
-            {
-                locationRecordTitle = $"{LocationUtils.GetLocationNameFromLocationEnum(_location)}'s Record";
-                string continentEmoji = RankingUtils.GetContinentEmojiTmp(LocationUtils.GetAlias(_location).ToUpper());
-                locationRecordDesc = $"{continentEmoji}'s record";
+                locationRecordTitle = $"{LocationUtils.GetName(_location)}'s Record";
+                string locationEmoji = $"{LocationUtils.GetEmoji(_location)}";
+                locationRecordDesc = $"{locationEmoji}'s record";
             }
 
             DiscordEmbedBuilder embedBuilder = new DiscordEmbedBuilder()
