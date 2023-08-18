@@ -7,777 +7,780 @@ namespace TK2Bot.API
     public enum ELocation
     {
         [ChoiceName("None")]
-        NO_FILTER = 0,
+        NO_FILTER,
 
         [ChoiceName("Country: Afghanistan")]
-        Afghanistan = 0,
+        Afghanistan,
 
         [ChoiceName("Country: Åland Islands")]
-        AlandIslands = 1,
+        AlandIslands,
 
         [ChoiceName("Country: Albania")]
-        Albania = 2,
+        Albania,
 
         [ChoiceName("Country: Algeria")]
-        Algeria = 3,
+        Algeria,
 
         [ChoiceName("Country: American Samoa")]
-        AmericanSamoa = 4,
+        AmericanSamoa,
 
         [ChoiceName("Country: Andorra")]
-        Andorra = 5,
+        Andorra,
 
         [ChoiceName("Country: Angola")]
-        Angola = 6,
+        Angola,
 
         [ChoiceName("Country: Anguilla")]
-        Anguilla = 7,
+        Anguilla,
 
         [ChoiceName("Country: Antarctica")]
-        Antarctica = 8,
+        Antarctica,
 
         [ChoiceName("Country: Antigua and Barbuda")]
-        AntiguaandBarbuda = 9,
+        AntiguaandBarbuda,
 
         [ChoiceName("Country: Argentina")]
-        Argentina = 10,
+        Argentina,
 
         [ChoiceName("Country: Armenia")]
-        Armenia = 11,
+        Armenia,
 
         [ChoiceName("Country: Aruba")]
-        Aruba = 12,
+        Aruba,
 
         [ChoiceName("Country: Australia")]
-        Australia = 13,
+        Australia,
 
         [ChoiceName("Country: Austria")]
-        Austria = 14,
+        Austria,
 
         [ChoiceName("Country: Azerbaijan")]
-        Azerbaijan = 15,
+        Azerbaijan,
 
         [ChoiceName("Country: Bahamas")]
-        Bahamas = 16,
+        Bahamas,
 
         [ChoiceName("Country: Bahrain")]
-        Bahrain = 17,
+        Bahrain,
 
         [ChoiceName("Country: Bangladesh")]
-        Bangladesh = 18,
+        Bangladesh,
 
         [ChoiceName("Country: Barbados")]
-        Barbados = 19,
+        Barbados,
 
         [ChoiceName("Country: Belarus")]
-        Belarus = 20,
+        Belarus,
 
         [ChoiceName("Country: Belgium")]
-        Belgium = 21,
+        Belgium,
 
         [ChoiceName("Country: Belize")]
-        Belize = 22,
+        Belize,
 
         [ChoiceName("Country: Benin")]
-        Benin = 23,
+        Benin,
 
         [ChoiceName("Country: Bermuda")]
-        Bermuda = 24,
+        Bermuda,
 
         [ChoiceName("Country: Bhutan")]
-        Bhutan = 25,
+        Bhutan,
 
         [ChoiceName("Country: Bolivia")]
-        Bolivia = 26,
+        Bolivia,
 
         [ChoiceName("Country: Bosnia and Herzegovina")]
-        BosniaandHerzegovina = 27,
+        BosniaandHerzegovina,
 
         [ChoiceName("Country: Botswana")]
-        Botswana = 28,
+        Botswana,
 
         [ChoiceName("Country: Bouvet Island")]
-        BouvetIsland = 29,
+        BouvetIsland,
 
         [ChoiceName("Country: Brazil")]
-        Brazil = 30,
+        Brazil,
 
         [ChoiceName("Country: British Indian Ocean Territory")]
-        BritishIndianOceanTerritory = 31,
+        BritishIndianOceanTerritory,
 
         [ChoiceName("Country: British Virgin Islands")]
-        BritishVirginIslands = 32,
+        BritishVirginIslands,
 
         [ChoiceName("Country: Brunei")]
-        Brunei = 33,
+        Brunei,
 
         [ChoiceName("Country: Bulgaria")]
-        Bulgaria = 34,
+        Bulgaria,
 
         [ChoiceName("Country: Burkina Faso")]
-        BurkinaFaso = 35,
+        BurkinaFaso,
 
         [ChoiceName("Country: Burundi")]
-        Burundi = 36,
+        Burundi,
 
         [ChoiceName("Country: Cambodia")]
-        Cambodia = 37,
+        Cambodia,
 
         [ChoiceName("Country: Cameroon")]
-        Cameroon = 38,
+        Cameroon,
 
         [ChoiceName("Country: Canada")]
-        Canada = 39,
+        Canada,
 
         [ChoiceName("Country: Cape Verde")]
-        CapeVerde = 40,
+        CapeVerde,
 
         [ChoiceName("Country: Caribbean Netherlands")]
-        CaribbeanNetherlands = 41,
+        CaribbeanNetherlands,
 
         [ChoiceName("Country: Cayman Islands")]
-        CaymanIslands = 42,
+        CaymanIslands,
 
         [ChoiceName("Country: Central African Republic")]
-        CentralAfricanRepublic = 43,
+        CentralAfricanRepublic,
 
         [ChoiceName("Country: Chad")]
-        Chad = 44,
+        Chad,
 
         [ChoiceName("Country: Chile")]
-        Chile = 45,
+        Chile,
 
         [ChoiceName("Country: China")]
-        China = 46,
+        China,
 
         [ChoiceName("Country: Christmas Island")]
-        ChristmasIsland = 47,
+        ChristmasIsland,
 
         [ChoiceName("Country: Cocos (Keeling) Islands")]
-        CocosKeelingIslands = 48,
+        CocosKeelingIslands,
 
         [ChoiceName("Country: Colombia")]
-        Colombia = 49,
+        Colombia,
 
         [ChoiceName("Country: Comoros")]
-        Comoros = 50,
+        Comoros,
 
         [ChoiceName("Country: Cook Islands")]
-        CookIslands = 51,
+        CookIslands,
 
         [ChoiceName("Country: Costa Rica")]
-        CostaRica = 52,
+        CostaRica,
 
         [ChoiceName("Country: Croatia")]
-        Croatia = 53,
+        Croatia,
 
         [ChoiceName("Country: Cuba")]
-        Cuba = 54,
+        Cuba,
 
         [ChoiceName("Country: Curaçao")]
-        Curaçao = 55,
+        Curaçao,
 
         [ChoiceName("Country: Cyprus")]
-        Cyprus = 56,
+        Cyprus,
 
         [ChoiceName("Country: Czechia")]
-        Czechia = 57,
+        Czechia,
 
         [ChoiceName("Country: Denmark")]
-        Denmark = 58,
+        Denmark,
 
         [ChoiceName("Country: Djibouti")]
-        Djibouti = 59,
+        Djibouti,
 
         [ChoiceName("Country: Dominica")]
-        Dominica = 60,
+        Dominica,
 
         [ChoiceName("Country: Dominican Republic")]
-        DominicanRepublic = 61,
+        DominicanRepublic,
 
         [ChoiceName("Country: DR Congo")]
-        DRCongo = 62,
+        DRCongo,
 
         [ChoiceName("Country: Ecuador")]
-        Ecuador = 63,
+        Ecuador,
 
         [ChoiceName("Country: Egypt")]
-        Egypt = 64,
+        Egypt,
 
         [ChoiceName("Country: El Salvador")]
-        ElSalvador = 65,
+        ElSalvador,
 
         [ChoiceName("Country: Equatorial Guinea")]
-        EquatorialGuinea = 66,
+        EquatorialGuinea,
 
         [ChoiceName("Country: Eritrea")]
-        Eritrea = 67,
+        Eritrea,
 
         [ChoiceName("Country: Estonia")]
-        Estonia = 68,
+        Estonia,
 
         [ChoiceName("Country: Eswatini")]
-        Eswatini = 69,
+        Eswatini,
 
         [ChoiceName("Country: Ethiopia")]
-        Ethiopia = 70,
+        Ethiopia,
 
         [ChoiceName("Country: Falkland Islands")]
-        FalklandIslands = 71,
+        FalklandIslands,
 
         [ChoiceName("Country: Faroe Islands")]
-        FaroeIslands = 72,
+        FaroeIslands,
 
         [ChoiceName("Country: Fiji")]
-        Fiji = 73,
+        Fiji,
 
         [ChoiceName("Country: Finland")]
-        Finland = 74,
+        Finland,
 
         [ChoiceName("Country: France")]
-        France = 75,
+        France,
 
         [ChoiceName("Country: French Guiana")]
-        FrenchGuiana = 76,
+        FrenchGuiana,
 
         [ChoiceName("Country: French Polynesia")]
-        FrenchPolynesia = 77,
+        FrenchPolynesia,
 
         [ChoiceName("Country: French Southern and Antarctic Lands")]
-        FrenchSouthernandAntarcticLands = 78,
+        FrenchSouthernandAntarcticLands,
 
         [ChoiceName("Country: Gabon")]
-        Gabon = 79,
+        Gabon,
 
         [ChoiceName("Country: Gambia")]
-        Gambia = 80,
+        Gambia,
 
         [ChoiceName("Country: Georgia")]
-        Georgia = 81,
+        Georgia,
 
         [ChoiceName("Country: Germany")]
-        Germany = 82,
+        Germany,
 
         [ChoiceName("Country: Ghana")]
-        Ghana = 83,
+        Ghana,
 
         [ChoiceName("Country: Gibraltar")]
-        Gibraltar = 84,
+        Gibraltar,
 
         [ChoiceName("Country: Greece")]
-        Greece = 85,
+        Greece,
 
         [ChoiceName("Country: Greenland")]
-        Greenland = 86,
+        Greenland,
 
         [ChoiceName("Country: Grenada")]
-        Grenada = 87,
+        Grenada,
 
         [ChoiceName("Country: Guadeloupe")]
-        Guadeloupe = 88,
+        Guadeloupe,
 
         [ChoiceName("Country: Guam")]
-        Guam = 89,
+        Guam,
 
         [ChoiceName("Country: Guatemala")]
-        Guatemala = 90,
+        Guatemala,
 
         [ChoiceName("Country: Guernsey")]
-        Guernsey = 91,
+        Guernsey,
 
         [ChoiceName("Country: Guinea")]
-        Guinea = 92,
+        Guinea,
 
         [ChoiceName("Country: Guinea-Bissau")]
-        GuineaBissau = 93,
+        GuineaBissau,
 
         [ChoiceName("Country: Guyana")]
-        Guyana = 94,
+        Guyana,
 
         [ChoiceName("Country: Haiti")]
-        Haiti = 95,
+        Haiti,
 
         [ChoiceName("Country: Heard Island and McDonald Islands")]
-        HeardIslandandMcDonaldIslands = 96,
+        HeardIslandandMcDonaldIslands,
 
         [ChoiceName("Country: Honduras")]
-        Honduras = 97,
+        Honduras,
 
         [ChoiceName("Country: Hong Kong")]
-        HongKong = 98,
+        HongKong,
 
         [ChoiceName("Country: Hungary")]
-        Hungary = 99,
+        Hungary,
 
         [ChoiceName("Country: Iceland")]
-        Iceland = 100,
+        Iceland,
 
         [ChoiceName("Country: India")]
-        India = 101,
+        India,
 
         [ChoiceName("Country: Indonesia")]
-        Indonesia = 102,
+        Indonesia,
 
         [ChoiceName("Country: Iran")]
-        Iran = 103,
+        Iran,
 
         [ChoiceName("Country: Iraq")]
-        Iraq = 104,
+        Iraq,
 
         [ChoiceName("Country: Ireland")]
-        Ireland = 105,
+        Ireland,
 
         [ChoiceName("Country: Isle of Man")]
-        IsleofMan = 106,
+        IsleofMan,
 
         [ChoiceName("Country: Israel")]
-        Israel = 107,
+        Israel,
 
         [ChoiceName("Country: Italy")]
-        Italy = 108,
+        Italy,
 
         [ChoiceName("Country: Ivory Coast")]
-        IvoryCoast = 109,
+        IvoryCoast,
 
         [ChoiceName("Country: Jamaica")]
-        Jamaica = 110,
+        Jamaica,
 
         [ChoiceName("Country: Japan")]
-        Japan = 111,
+        Japan,
 
         [ChoiceName("Country: Jersey")]
-        Jersey = 112,
+        Jersey,
 
         [ChoiceName("Country: Jordan")]
-        Jordan = 113,
+        Jordan,
 
         [ChoiceName("Country: Kazakhstan")]
-        Kazakhstan = 114,
+        Kazakhstan,
 
         [ChoiceName("Country: Kenya")]
-        Kenya = 115,
+        Kenya,
 
         [ChoiceName("Country: Kiribati")]
-        Kiribati = 116,
+        Kiribati,
 
         [ChoiceName("Country: Kosovo")]
-        Kosovo = 117,
+        Kosovo,
 
         [ChoiceName("Country: Kuwait")]
-        Kuwait = 118,
+        Kuwait,
 
         [ChoiceName("Country: Kyrgyzstan")]
-        Kyrgyzstan = 119,
+        Kyrgyzstan,
 
         [ChoiceName("Country: Laos")]
-        Laos = 120,
+        Laos,
 
         [ChoiceName("Country: Latvia")]
-        Latvia = 121,
+        Latvia,
 
         [ChoiceName("Country: Lebanon")]
-        Lebanon = 122,
+        Lebanon,
 
         [ChoiceName("Country: Lesotho")]
-        Lesotho = 123,
+        Lesotho,
 
         [ChoiceName("Country: Liberia")]
-        Liberia = 124,
+        Liberia,
 
         [ChoiceName("Country: Libya")]
-        Libya = 125,
+        Libya,
 
         [ChoiceName("Country: Liechtenstein")]
-        Liechtenstein = 126,
+        Liechtenstein,
 
         [ChoiceName("Country: Lithuania")]
-        Lithuania = 127,
+        Lithuania,
 
         [ChoiceName("Country: Luxembourg")]
-        Luxembourg = 128,
+        Luxembourg,
 
         [ChoiceName("Country: Macau")]
-        Macau = 129,
+        Macau,
 
         [ChoiceName("Country: Madagascar")]
-        Madagascar = 130,
+        Madagascar,
 
         [ChoiceName("Country: Malawi")]
-        Malawi = 131,
+        Malawi,
 
         [ChoiceName("Country: Malaysia")]
-        Malaysia = 132,
+        Malaysia,
 
         [ChoiceName("Country: Maldives")]
-        Maldives = 133,
+        Maldives,
 
         [ChoiceName("Country: Mali")]
-        Mali = 134,
+        Mali,
 
         [ChoiceName("Country: Malta")]
-        Malta = 135,
+        Malta,
 
         [ChoiceName("Country: Marshall Islands")]
-        MarshallIslands = 136,
+        MarshallIslands,
 
         [ChoiceName("Country: Martinique")]
-        Martinique = 137,
+        Martinique,
 
         [ChoiceName("Country: Mauritania")]
-        Mauritania = 138,
+        Mauritania,
 
         [ChoiceName("Country: Mauritius")]
-        Mauritius = 139,
+        Mauritius,
 
         [ChoiceName("Country: Mayotte")]
-        Mayotte = 140,
+        Mayotte,
 
         [ChoiceName("Country: Mexico")]
-        Mexico = 141,
+        Mexico,
 
         [ChoiceName("Country: Micronesia")]
-        Micronesia = 142,
+        Micronesia,
 
         [ChoiceName("Country: Moldova")]
-        Moldova = 143,
+        Moldova,
 
         [ChoiceName("Country: Monaco")]
-        Monaco = 144,
+        Monaco,
 
         [ChoiceName("Country: Mongolia")]
-        Mongolia = 145,
+        Mongolia,
 
         [ChoiceName("Country: Montenegro")]
-        Montenegro = 146,
+        Montenegro,
 
         [ChoiceName("Country: Montserrat")]
-        Montserrat = 147,
+        Montserrat,
 
         [ChoiceName("Country: Morocco")]
-        Morocco = 148,
+        Morocco,
 
         [ChoiceName("Country: Mozambique")]
-        Mozambique = 149,
+        Mozambique,
 
         [ChoiceName("Country: Myanmar")]
-        Myanmar = 150,
+        Myanmar,
 
         [ChoiceName("Country: Namibia")]
-        Namibia = 151,
+        Namibia,
 
         [ChoiceName("Country: Nauru")]
-        Nauru = 152,
+        Nauru,
 
         [ChoiceName("Country: Nepal")]
-        Nepal = 153,
+        Nepal,
 
         [ChoiceName("Country: Netherlands")]
-        Netherlands = 154,
+        Netherlands,
 
         [ChoiceName("Country: New Caledonia")]
-        NewCaledonia = 155,
+        NewCaledonia,
 
         [ChoiceName("Country: New Zealand")]
-        NewZealand = 156,
+        NewZealand,
 
         [ChoiceName("Country: Nicaragua")]
-        Nicaragua = 157,
+        Nicaragua,
 
         [ChoiceName("Country: Niger")]
-        Niger = 158,
+        Niger,
 
         [ChoiceName("Country: Nigeria")]
-        Nigeria = 159,
+        Nigeria,
 
         [ChoiceName("Country: Niue")]
-        Niue = 160,
+        Niue,
 
         [ChoiceName("Country: Norfolk Island")]
-        NorfolkIsland = 161,
+        NorfolkIsland,
 
         [ChoiceName("Country: North Korea")]
-        NorthKorea = 162,
+        NorthKorea,
 
         [ChoiceName("Country: North Macedonia")]
-        NorthMacedonia = 163,
+        NorthMacedonia,
 
         [ChoiceName("Country: Northern Mariana Islands")]
-        NorthernMarianaIslands = 164,
+        NorthernMarianaIslands,
 
         [ChoiceName("Country: Norway")]
-        Norway = 165,
+        Norway,
 
         [ChoiceName("Country: Oman")]
-        Oman = 166,
+        Oman,
 
         [ChoiceName("Country: Pakistan")]
-        Pakistan = 167,
+        Pakistan,
 
         [ChoiceName("Country: Palau")]
-        Palau = 168,
+        Palau,
 
         [ChoiceName("Country: Palestine")]
-        Palestine = 169,
+        Palestine,
 
         [ChoiceName("Country: Panama")]
-        Panama = 170,
+        Panama,
 
         [ChoiceName("Country: Papua New Guinea")]
-        PapuaNewGuinea = 171,
+        PapuaNewGuinea,
 
         [ChoiceName("Country: Paraguay")]
-        Paraguay = 172,
+        Paraguay,
 
         [ChoiceName("Country: Peru")]
-        Peru = 173,
+        Peru,
 
         [ChoiceName("Country: Philippines")]
-        Philippines = 174,
+        Philippines,
 
         [ChoiceName("Country: Pitcairn Islands")]
-        PitcairnIslands = 175,
+        PitcairnIslands,
 
         [ChoiceName("Country: Poland")]
-        Poland = 176,
+        Poland,
 
         [ChoiceName("Country: Portugal")]
-        Portugal = 177,
+        Portugal,
 
         [ChoiceName("Country: Puerto Rico")]
-        PuertoRico = 178,
+        PuertoRico,
 
         [ChoiceName("Country: Qatar")]
-        Qatar = 179,
+        Qatar,
 
         [ChoiceName("Country: Republic of the Congo")]
-        RepublicoftheCongo = 180,
+        RepublicoftheCongo,
 
         [ChoiceName("Country: Réunion")]
-        Reunion = 181,
+        Reunion,
 
         [ChoiceName("Country: Romania")]
-        Romania = 182,
+        Romania,
 
         [ChoiceName("Country: Russia")]
-        Russia = 183,
+        Russia,
 
         [ChoiceName("Country: Rwanda")]
-        Rwanda = 184,
+        Rwanda,
 
         [ChoiceName("Country: Saint Barthélemy")]
-        SaintBarthélemy = 185,
+        SaintBarthélemy,
 
         [ChoiceName("Country: Saint Helena - Ascension and Tristan da Cunha")]
-        SaintHelena_AscensionandTristandaCunha = 186,
+        SaintHelena_AscensionandTristandaCunha,
 
         [ChoiceName("Country: Saint Kitts and Nevis")]
-        SaintKittsandNevis = 187,
+        SaintKittsandNevis,
 
         [ChoiceName("Country: Saint Lucia")]
-        SaintLucia = 188,
+        SaintLucia,
 
         [ChoiceName("Country: Saint Martin")]
-        SaintMartin = 189,
+        SaintMartin,
 
         [ChoiceName("Country: Saint Pierre and Miquelon")]
-        SaintPierreandMiquelon = 190,
+        SaintPierreandMiquelon,
 
         [ChoiceName("Country: Saint Vincent and the Grenadines")]
-        SaintVincentandtheGrenadines = 191,
+        SaintVincentandtheGrenadines,
 
         [ChoiceName("Country: Samoa")]
-        Samoa = 192,
+        Samoa,
 
         [ChoiceName("Country: San Marino")]
-        SanMarino = 193,
+        SanMarino,
 
         [ChoiceName("Country: São Tomé and Príncipe")]
-        SaoTomeandPrincipe = 194,
+        SaoTomeandPrincipe,
 
         [ChoiceName("Country: Saudi Arabia")]
-        SaudiArabia = 195,
+        SaudiArabia,
 
         [ChoiceName("Country: Senegal")]
-        Senegal = 196,
+        Senegal,
 
         [ChoiceName("Country: Serbia")]
-        Serbia = 197,
+        Serbia,
 
         [ChoiceName("Country: Seychelles")]
-        Seychelles = 198,
+        Seychelles,
 
         [ChoiceName("Country: Sierra Leone")]
-        SierraLeone = 199,
+        SierraLeone,
 
         [ChoiceName("Country: Singapore")]
-        Singapore = 200,
+        Singapore,
 
         [ChoiceName("Country: Sint Maarten")]
-        SintMaarten = 201,
+        SintMaarten,
 
         [ChoiceName("Country: Slovakia")]
-        Slovakia = 202,
+        Slovakia,
 
         [ChoiceName("Country: Slovenia")]
-        Slovenia = 203,
+        Slovenia,
 
         [ChoiceName("Country: Solomon Islands")]
-        SolomonIslands = 204,
+        SolomonIslands,
 
         [ChoiceName("Country: Somalia")]
-        Somalia = 205,
+        Somalia,
 
         [ChoiceName("Country: South Africa")]
-        SouthAfrica = 206,
+        SouthAfrica,
 
         [ChoiceName("Country: South Georgia")]
-        SouthGeorgia = 207,
+        SouthGeorgia,
 
         [ChoiceName("Country: South Korea")]
-        SouthKorea = 208,
+        SouthKorea,
 
         [ChoiceName("Country: South Sudan")]
-        SouthSudan = 209,
+        SouthSudan,
 
         [ChoiceName("Country: Spain")]
-        Spain = 210,
+        Spain,
 
         [ChoiceName("Country: Sri Lanka")]
-        SriLanka = 211,
+        SriLanka,
 
         [ChoiceName("Country: Sudan")]
-        Sudan = 212,
+        Sudan,
 
         [ChoiceName("Country: Suriname")]
-        Suriname = 213,
+        Suriname,
 
         [ChoiceName("Country: Svalbard and Jan Mayen")]
-        SvalbardandJanMayen = 214,
+        SvalbardandJanMayen,
 
         [ChoiceName("Country: Sweden")]
-        Sweden = 215,
+        Sweden,
 
         [ChoiceName("Country: Switzerland")]
-        Switzerland = 216,
+        Switzerland,
 
         [ChoiceName("Country: Syria")]
-        Syria = 217,
+        Syria,
 
         [ChoiceName("Country: Taiwan")]
-        Taiwan = 218,
+        Taiwan,
 
         [ChoiceName("Country: Tajikistan")]
-        Tajikistan = 219,
+        Tajikistan,
 
         [ChoiceName("Country: Tanzania")]
-        Tanzania = 220,
+        Tanzania,
 
         [ChoiceName("Country: Thailand")]
-        Thailand = 221,
+        Thailand,
 
         [ChoiceName("Country: Timor-Leste")]
-        TimorLeste = 222,
+        TimorLeste,
 
         [ChoiceName("Country: Togo")]
-        Togo = 223,
+        Togo,
 
         [ChoiceName("Country: Tokelau")]
-        Tokelau = 224,
+        Tokelau,
 
         [ChoiceName("Country: Tonga")]
-        Tonga = 225,
+        Tonga,
 
         [ChoiceName("Country: Trinidad and Tobago")]
-        TrinidadandTobago = 226,
+        TrinidadandTobago,
 
         [ChoiceName("Country: Tunisia")]
-        Tunisia = 227,
+        Tunisia,
 
         [ChoiceName("Country: Turkey")]
-        Turkey = 228,
+        Turkey,
 
         [ChoiceName("Country: Turkmenistan")]
-        Turkmenistan = 229,
+        Turkmenistan,
 
         [ChoiceName("Country: Turks and Caicos Islands")]
-        TurksandCaicosIslands = 230,
+        TurksandCaicosIslands,
 
         [ChoiceName("Country: Tuvalu")]
-        Tuvalu = 231,
+        Tuvalu,
 
         [ChoiceName("Country: Uganda")]
-        Uganda = 232,
+        Uganda,
 
         [ChoiceName("Country: Ukraine")]
-        Ukraine = 233,
+        Ukraine,
 
         [ChoiceName("Country: United Arab Emirates")]
-        UnitedArabEmirates = 234,
+        UnitedArabEmirates,
 
         [ChoiceName("Country: United Kingdom")]
-        UnitedKingdom = 235,
+        UnitedKingdom,
 
         [ChoiceName("Country: United States")]
-        UnitedStates = 236,
+        UnitedStates,
 
         [ChoiceName("Country: United States Minor Outlying Islands")]
-        UnitedStatesMinorOutlyingIslands = 237,
+        UnitedStatesMinorOutlyingIslands,
 
         [ChoiceName("Country: United States Virgin Islands")]
-        UnitedStatesVirginIslands = 238,
+        UnitedStatesVirginIslands,
 
         [ChoiceName("Country: Uruguay")]
-        Uruguay = 239,
+        Uruguay,
 
         [ChoiceName("Country: Uzbekistan")]
-        Uzbekistan = 240,
+        Uzbekistan,
 
         [ChoiceName("Country: Vanuatu")]
-        Vanuatu = 241,
+        Vanuatu,
 
         [ChoiceName("Country: Vatican City")]
-        VaticanCity = 242,
+        VaticanCity,
 
         [ChoiceName("Country: Venezuela")]
-        Venezuela = 243,
+        Venezuela,
 
         [ChoiceName("Country: Vietnam")]
-        Vietnam = 244,
+        Vietnam,
 
         [ChoiceName("Country: Wallis and Futuna")]
-        WallisandFutuna = 245,
+        WallisandFutuna,
 
         [ChoiceName("Country: Western Sahara")]
-        WesternSahara = 246,
+        WesternSahara,
 
         [ChoiceName("Country: Yemen")]
-        Yemen = 247,
+        Yemen,
 
         [ChoiceName("Country: Zambia")]
-        Zambia = 248,
+        Zambia,
 
         [ChoiceName("Country: Zimbabwe")]
-        Zimbabwe = 249,
+        Zimbabwe,
 
         [ChoiceName("Continent: Europe")]
-        Europe = 250,
+        Europe,
 
         [ChoiceName("Continent: North America")]
-        NorthAmerica = 251,
+        NorthAmerica,
 
         [ChoiceName("Continent: South America")]
-        SouthAmerica = 252,
+        SouthAmerica,
 
         [ChoiceName("Continent: Africa")]
-        Africa = 253,
+        Africa,
 
         [ChoiceName("Continent: Oceania")]
-        Oceania = 254,
+        Oceania,
 
         [ChoiceName("Continent: Asia")]
-        Asia = 255,
+        Asia,
 
         [ChoiceName("Continent: Antarctic")]
-        Antarctic = 256,
+        Antarctic,
+
+        [ChoiceName("Invalid")]
+        INVALID,
     }
 }

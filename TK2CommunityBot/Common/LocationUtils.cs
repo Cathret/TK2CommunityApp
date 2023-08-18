@@ -68,7 +68,7 @@ namespace TK2Bot
                 ? GetLocationEnumFromContinent(_locationName)
                 : IsCountry(_locationName)
                     ? GetLocationEnumFromCountry(_locationName)
-                    : ELocation.NO_FILTER;
+                    : ELocation.INVALID;
         }
 
         public static ELocation? GetEnumFromContinentAlias(string _continentAlias)
@@ -87,7 +87,7 @@ namespace TK2Bot
                 ? GetEnumFromContinentAlias(_locationAlias)
                 : IsCountryAlias(_locationAlias)
                     ? GetEnumFromCountryAlias(_locationAlias)
-                    : ELocation.NO_FILTER;
+                    : ELocation.INVALID;
         }
 
         public static string GetContinentName(ELocation _location)
