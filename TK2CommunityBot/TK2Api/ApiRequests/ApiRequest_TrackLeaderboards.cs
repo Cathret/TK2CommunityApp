@@ -10,9 +10,16 @@ namespace TK2Bot.API
 
             string requestUri = $"track/{mapSlug}/leaderboard{GetLocationFilterOptions(_location)}";
 
-            string contentAsString = await HTTP_CLIENT.GetStringAsync(requestUri);
+            ApiGetResponse getResponse = await ExecuteGetRequest(requestUri);
+            if (getResponse.IsSuccess == false)
+            {
+                return new TrackLeaderboards()
+                {
+                    LeaderboardRecords = Array.Empty<TrackLeaderboardEntry>()
+                };
+            }
             
-            dynamic contentAsJson = JObject.Parse(contentAsString);
+            dynamic contentAsJson = getResponse.JsonContent;
             
             List<TrackLeaderboardEntry> allLeaderboardRecords = new List<TrackLeaderboardEntry>();
             foreach (dynamic oneRecord in contentAsJson.data.records)

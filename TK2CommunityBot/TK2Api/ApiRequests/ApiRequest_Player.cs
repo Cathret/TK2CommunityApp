@@ -6,14 +6,18 @@ namespace TK2Bot.API
     {
         public static async Task<FullPlayerInfo> GetFullPlayerInfoFromName(string _playerName)
         {
-            string contentAsString = await HTTP_CLIENT.GetStringAsync($"player?search={_playerName}");
-
-            dynamic contentAsJson = JObject.Parse(contentAsString);
-
-            if (contentAsJson.status == "error")
+            string requestUri = $"player?search={_playerName}";
+            
+            ApiGetResponse getResponse = await ExecuteGetRequest(requestUri);
+            if (getResponse.IsSuccess == false)
             {
-                return new FullPlayerInfo() { IsValid = false };
+                return new FullPlayerInfo()
+                {
+                    IsValid = false
+                };
             }
+            
+            dynamic contentAsJson = getResponse.JsonContent;
 
             PlayerInfo playerInfo = new PlayerInfo()
             {
@@ -49,7 +53,7 @@ namespace TK2Bot.API
             {
                 playerTrackTimes.Add(new PlayerTrackTime()
                     {
-                        PlayerInfo = playerInfo,
+                        PlayerInfo  = playerInfo,
                         PlayerStats = new PlayerStats()
                         {
                             PosWorldwide = oneRecord.data.positions.worldwide,
@@ -57,13 +61,13 @@ namespace TK2Bot.API
                             PosCountry   = oneRecord.data.positions.country,
                             Points       = oneRecord.data.points
                         },
-                        TrackInfo = new TrackInfo()
+                        TrackInfo   = new TrackInfo()
                         {
                             MapName        = oneRecord.track.name,
                             ImageUrl       = oneRecord.track.image_url,
                             LeaderboardUrl = oneRecord.track.leaderboard_url
                         },
-                        RunTime = TimeSpan.FromMilliseconds(double.Parse(oneRecord.score.ToString())),
+                        RunTime     = TimeSpan.FromMilliseconds(double.Parse(oneRecord.score.ToString())),
                     }
                 );
             }

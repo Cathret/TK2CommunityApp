@@ -8,9 +8,16 @@ namespace TK2Bot.API
         {
             string requestUri = $"leaderboard{GetLocationFilterOptions(_location)}";
 
-            string contentAsString = await HTTP_CLIENT.GetStringAsync(requestUri);
+            ApiGetResponse getResponse = await ExecuteGetRequest(requestUri);
+            if (getResponse.IsSuccess == false)
+            {
+                return new GlobalLeaderboards()
+                {
+                    LeaderboardEntries = Array.Empty<GlobalLeaderboardEntry>()
+                };
+            }
             
-            dynamic contentAsJson = JObject.Parse(contentAsString);
+            dynamic contentAsJson = getResponse.JsonContent;
             
             List<GlobalLeaderboardEntry> allLeaderboardEntries = new List<GlobalLeaderboardEntry>();
             foreach (dynamic oneEntry in contentAsJson.data.records)

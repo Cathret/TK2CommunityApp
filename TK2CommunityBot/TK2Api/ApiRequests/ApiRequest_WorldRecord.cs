@@ -11,7 +11,6 @@ namespace TK2Bot.API
             string requestUri = $"track/{mapSlug}/world-record{GetLocationFilterOptions(_location)}";
 
             ApiGetResponse getResponse = await ExecuteGetRequest(requestUri);
-
             if (getResponse.IsSuccess == false)
             {
                 return new WorldRecord()
