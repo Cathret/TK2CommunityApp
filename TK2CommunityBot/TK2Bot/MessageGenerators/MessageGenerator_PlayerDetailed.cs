@@ -36,7 +36,11 @@ namespace TK2Bot
                 Footer = EMBED_FOOTER
             };
 
-            // embedBuilder.AddField(FAKE_EMPTY_FIELD, FAKE_EMPTY_FIELD, false);
+            ELocation countryLocation = LocationUtils.GetEnumFromName(countryInfo.Name) ?? ELocation.NO_FILTER;
+            string countryEmoji = LocationUtils.GetEmoji(countryLocation);
+            
+            ELocation continentLocation = LocationUtils.GetEnumFromName(continentInfo.Name) ?? ELocation.NO_FILTER;
+            string continentEmoji = LocationUtils.GetEmoji(continentLocation);
 
             for (int trackIdx = 0; trackIdx < playerRecords.PlayerTrackTimes.Length; trackIdx++)
             {
@@ -50,8 +54,8 @@ namespace TK2Bot
                                           $"**Points:** {RankingUtils.GetPrettyStringForPoints(oneTrackTime.PlayerStats.Points)}\n" +
                                           $"\n" +
                                           $":globe_with_meridians: **Worldwide:** {posWorld}\n" +
-                                          $"{RankingUtils.GetContinentEmojiTmp(continentInfo.Alias)} **{continentInfo.Name}:** {posContinent}\n" +
-                                          $":flag_{countryInfo.Alias.ToLower()}: **{countryInfo.Name}:** {posCountry}\n";
+                                          $"{continentEmoji} **{continentInfo.Name}:** {posContinent}\n" +
+                                          $"{countryEmoji} **{countryInfo.Name}:** {posCountry}\n";
 
                 embedBuilder.AddField($"__{oneTrackTime.TrackInfo.MapName}__", fieldDescription, true);
 

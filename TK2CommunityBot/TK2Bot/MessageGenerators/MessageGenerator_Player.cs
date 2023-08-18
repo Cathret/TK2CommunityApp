@@ -35,7 +35,13 @@ namespace TK2Bot
                 Footer = EMBED_FOOTER
             };
             string tableHeader = "\n" +"𒆜 **Time Trial Records** 𒆜\n\n";
-           
+
+            ELocation countryLocation = LocationUtils.GetEnumFromName(countryInfo.Name) ?? ELocation.NO_FILTER;
+            string countryEmoji = LocationUtils.GetEmoji(countryLocation);
+            
+            ELocation continentLocation = LocationUtils.GetEnumFromName(continentInfo.Name) ?? ELocation.NO_FILTER;
+            string continentEmoji = LocationUtils.GetEmoji(continentLocation);
+            
             string tableContent = "";
             foreach (PlayerTrackTime oneTrackTime in playerRecords.PlayerTrackTimes)
             {
@@ -45,7 +51,7 @@ namespace TK2Bot
                 string posCountry = RankingUtils.GetPrettyStringForRank(oneTrackTime.PlayerStats.PosCountry);
 
                 // row for different tracks
-                tableContent += $" `☑️{oneTrackTime.TrackInfo.MapName}:` ⌛{formattedTime}, :flag_{countryInfo.Alias.ToLower()}: {posCountry}, {RankingUtils.GetContinentEmojiTmp(continentInfo.Alias)} {posContinent}, :globe_with_meridians: {posWorld}\n";
+                tableContent += $" `☑️{oneTrackTime.TrackInfo.MapName}:` ⌛{formattedTime}, {countryEmoji} {posCountry}, {continentEmoji} {posContinent}, :globe_with_meridians: {posWorld}\n";
             }
 
             // table header
