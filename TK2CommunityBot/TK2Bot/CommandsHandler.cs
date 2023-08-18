@@ -57,6 +57,12 @@ namespace TK2Bot
             await _context.EditResponseAsync(new DiscordWebhookBuilder(await MessageGenerator.CreateTrackLeaderboardsMessage(_trackId, locationFilter)));
         }
         
-        // TODO: add "all location filters"
+        [SlashCommand("locationlist", "Get List of usable Alias to filter research")]
+        private async Task LocationListCommand(InteractionContext _context,
+            [Option("Search", "Part of the location looked up")] string _search)
+        {
+            await _context.CreateResponseAsync(InteractionResponseType.DeferredChannelMessageWithSource);
+            await _context.EditResponseAsync(new DiscordWebhookBuilder(await MessageGenerator.CreateLocationListMessage(_search)));
+        }
     }
 }
