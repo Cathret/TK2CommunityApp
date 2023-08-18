@@ -42,7 +42,7 @@ namespace TK2Bot
         {
             await _context.CreateResponseAsync(InteractionResponseType.DeferredChannelMessageWithSource);
 
-            ELocation locationFilter = LocationUtils.GetEnumFromAlias(_locationAliasFilter) ?? ELocation.NO_FILTER;
+            ELocation locationFilter = LocationUtils.GetEnumFromAlias(_locationAliasFilter) ?? ELocation.INVALID;
             await _context.EditResponseAsync(new DiscordWebhookBuilder(await MessageGenerator.CreateWrMessage(_trackId, locationFilter)));
         }
 
@@ -53,7 +53,7 @@ namespace TK2Bot
         {
             await _context.CreateResponseAsync(InteractionResponseType.DeferredChannelMessageWithSource);
             
-            ELocation locationFilter = LocationUtils.GetEnumFromAlias(_locationAliasFilter) ?? ELocation.NO_FILTER;
+            ELocation locationFilter = LocationUtils.GetEnumFromAlias(_locationAliasFilter) ?? ELocation.INVALID;
             await _context.EditResponseAsync(new DiscordWebhookBuilder(await MessageGenerator.CreateTrackLeaderboardsMessage(_trackId, locationFilter)));
         }
         
