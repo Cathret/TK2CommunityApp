@@ -34,7 +34,7 @@ namespace TK2Bot
                 },
                 Footer = EMBED_FOOTER
             };
-            string tableHeader = "\n" +"𒆜 **Time Trial Records** 𒆜\n\n";
+            string tableHeader = "\n𒆜 **Time Trial Records** 𒆜\n\n";
 
             ELocation countryLocation = LocationUtils.GetEnumFromName(countryInfo.Name) ?? ELocation.NO_FILTER;
             string countryEmoji = LocationUtils.GetEmoji(countryLocation);
