@@ -6,35 +6,9 @@ namespace TK2Bot
     {
         private static readonly NumberFormatInfo POINTS_FORMAT_INFO = new NumberFormatInfo() { NumberGroupSeparator = " " };
 
-        private static string GetNumberNoPad(UInt32 _rank)
+        private static string GetNumberWithPad(UInt32 _number, UInt32 _paddingLeft)
         {
-            return $"{_rank}";
-        }
-        
-        private static string GetNumberPad1(UInt32 _rank)
-        {
-            return $"{_rank.ToString(),1}";
-        }
-        
-        private static string GetNumberPad2(UInt32 _rank)
-        {
-            return $"{_rank.ToString(),2}";
-        }
-        
-        private static string GetNumberPad3(UInt32 _rank)
-        {
-            return $"{_rank.ToString(),3}";
-        }
-
-        private static string GetNumberWithPad(UInt32 _rank, UInt32 _paddingLeft)
-        {
-            return _paddingLeft switch
-            {
-                1 => GetNumberPad1(_rank),
-                2 => GetNumberPad2(_rank),
-                3 => GetNumberPad3(_rank),
-                _ => GetNumberNoPad(_rank)
-            };
+            return _paddingLeft == 0 ? _number.ToString() : _number.ToString().PadLeft((int)_paddingLeft);
         }
         
         public static string GetPrettyStringForRank(UInt32 _rank, UInt32 _paddingLeft = 0)
@@ -55,9 +29,10 @@ namespace TK2Bot
             };
         }
 
-        public static string GetPrettyStringForPoints(UInt32 _points)
+        public static string GetPrettyStringForPoints(UInt32 _points, UInt32 _paddingLeft = 0)
         {
-            return _points.ToString("N0", POINTS_FORMAT_INFO);
+            int truePadding = (int)(_paddingLeft + Math.Floor(((decimal)_paddingLeft / 3)));
+            return _points.ToString("N0", POINTS_FORMAT_INFO).PadLeft(truePadding);
         }
     }
 }
