@@ -64,11 +64,13 @@ namespace TK2Bot
         
         public static ELocation? GetEnumFromName(string _locationName)
         {
-            return IsContinent(_locationName)
-                ? GetLocationEnumFromContinent(_locationName)
-                : IsCountry(_locationName)
-                    ? GetLocationEnumFromCountry(_locationName)
-                    : ELocation.INVALID;
+            return string.IsNullOrEmpty(_locationName)
+                ? ELocation.NO_FILTER
+                : IsContinent(_locationName)
+                    ? GetLocationEnumFromContinent(_locationName)
+                    : IsCountry(_locationName)
+                        ? GetLocationEnumFromCountry(_locationName)
+                        : ELocation.INVALID;
         }
 
         public static ELocation? GetEnumFromContinentAlias(string _continentAlias)
@@ -83,11 +85,13 @@ namespace TK2Bot
         
         public static ELocation? GetEnumFromAlias(string _locationAlias)
         {
-            return IsContinentAlias(_locationAlias)
-                ? GetEnumFromContinentAlias(_locationAlias)
-                : IsCountryAlias(_locationAlias)
-                    ? GetEnumFromCountryAlias(_locationAlias)
-                    : ELocation.INVALID;
+            return string.IsNullOrEmpty(_locationAlias)
+                ? ELocation.NO_FILTER
+                : IsContinentAlias(_locationAlias)
+                    ? GetEnumFromContinentAlias(_locationAlias)
+                    : IsCountryAlias(_locationAlias)
+                        ? GetEnumFromCountryAlias(_locationAlias)
+                        : ELocation.INVALID;
         }
 
         public static string GetContinentName(ELocation _location)
