@@ -46,8 +46,8 @@ namespace TK2Bot
             await _context.EditResponseAsync(new DiscordWebhookBuilder(await MessageGenerator.CreateWrMessage(_trackId, locationFilter)));
         }
 
-        [SlashCommand("leaderboards", "Request the Leaderboards of a Track")]
-        private async Task LeaderboardsCommand(InteractionContext _context,
+        [SlashCommand("mapleaderboards", "Request the Leaderboards of a Track")]
+        private async Task MapLeaderboardsCommand(InteractionContext _context,
             [Option("Map", "Map for which we want the Leaderboards")] ETrackId _trackId,
             [Option("LocationAliasFilter", "Filter to get information only for a specific location (eu, na, fr, gb..)")] string _locationAliasFilter = "")
         {
@@ -55,6 +55,16 @@ namespace TK2Bot
             
             ELocation locationFilter = LocationUtils.GetEnumFromAlias(_locationAliasFilter) ?? ELocation.NO_FILTER;
             await _context.EditResponseAsync(new DiscordWebhookBuilder(await MessageGenerator.CreateTrackLeaderboardsMessage(_trackId, locationFilter)));
+        }
+        
+        [SlashCommand("leaderboards", "Request the Global Leaderboards")]
+        private async Task LeaderboardsCommand(InteractionContext _context,
+            [Option("LocationAliasFilter", "Filter to get information only for a specific location (eu, na, fr, gb..)")] string _locationAliasFilter = "")
+        {
+            await _context.CreateResponseAsync(InteractionResponseType.DeferredChannelMessageWithSource);
+            
+            ELocation locationFilter = LocationUtils.GetEnumFromAlias(_locationAliasFilter) ?? ELocation.NO_FILTER;
+            await _context.EditResponseAsync(new DiscordWebhookBuilder(await MessageGenerator.CreateGlobalLeaderboardsMessage(locationFilter)));
         }
         
         [SlashCommand("locationlist", "Get List of usable Alias to filter research")]
