@@ -79,8 +79,6 @@ namespace TK2Bot.ClassesGenerator
             IEnumerable<LocationInfo> countriesInfo = _countriesInfo as LocationInfo[] ?? _countriesInfo.ToArray();
             IEnumerable<LocationInfo> continentsInfo = _continentsInfo as LocationInfo[] ?? _continentsInfo.ToArray();
 
-            Int32 bitShift = -1;
-            
             string locationEnumContent =
                 "// GENERATED FILE - DO NOT MODIFY //\n\n" +
                 "using DSharpPlus.SlashCommands;\n\n" +
@@ -89,9 +87,12 @@ namespace TK2Bot.ClassesGenerator
                 "    public enum ELocation\n" +
                 "    {\n" +
                 "        [ChoiceName(\"None\")]\n" +
-                "        NO_FILTER = 0,\n" +
-                countriesInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"\n        [ChoiceName(\"Country: {_oneTrackInfo.Name}\")]\n        {_oneTrackInfo.Enum} = {(++bitShift).ToString()},\n") +
-                continentsInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"\n        [ChoiceName(\"Continent: {_oneTrackInfo.Name}\")]\n        {_oneTrackInfo.Enum} = {(++bitShift).ToString()},\n") +
+                "        NO_FILTER,\n" +
+                countriesInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"\n        [ChoiceName(\"Country: {_oneTrackInfo.Name}\")]\n        {_oneTrackInfo.Enum},\n") +
+                continentsInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"\n        [ChoiceName(\"Continent: {_oneTrackInfo.Name}\")]\n        {_oneTrackInfo.Enum},\n") +
+                "\n" +
+                "        [ChoiceName(\"Invalid\")]\n" +
+                "        INVALID,\n" +
                 "    }\n" +
                 "}";
             
