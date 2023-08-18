@@ -15,5 +15,24 @@ namespace TK2Bot
             Text    = TK2_LINK,
             IconUrl = TK2_LOGO
         };
+
+        private static DiscordMessageBuilder GenerateErrorMessage(string _content)
+        {
+            DiscordEmbedBuilder embedBuilder = new DiscordEmbedBuilder()
+            {
+                Title       = $"Command Error",
+                Description = $"**__Error:__** {_content}",
+                Timestamp   = DateTimeOffset.UtcNow,
+                Color       = DiscordColor.Red,
+                Thumbnail   = new DiscordEmbedBuilder.EmbedThumbnail()
+                {
+                    Url = TK2_LOGO,
+                },
+                Footer = EMBED_FOOTER
+            };
+
+            return new DiscordMessageBuilder()
+                .WithEmbed(embedBuilder.Build());
+        }
     }
 }
