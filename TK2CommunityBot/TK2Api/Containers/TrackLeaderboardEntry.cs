@@ -1,6 +1,6 @@
 ﻿namespace TK2Bot.API
 {
-    public struct LeaderboardRecord
+    public struct TrackLeaderboardEntry
     {
         public PlayerInfo PlayerInfo { get; internal init; }
         public ContinentInfo ContinentInfo { get; internal init; }

@@ -14,10 +14,10 @@ namespace TK2Bot.API
             
             dynamic contentAsJson = JObject.Parse(contentAsString);
             
-            List<LeaderboardRecord> allLeaderboardRecords = new List<LeaderboardRecord>();
+            List<TrackLeaderboardEntry> allLeaderboardRecords = new List<TrackLeaderboardEntry>();
             foreach (dynamic oneRecord in contentAsJson.data.records)
             {
-                allLeaderboardRecords.Add(new LeaderboardRecord()
+                allLeaderboardRecords.Add(new TrackLeaderboardEntry()
                     {
                         PlayerInfo = new PlayerInfo()
                         {

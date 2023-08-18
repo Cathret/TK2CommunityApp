@@ -24,10 +24,10 @@ namespace TK2Bot
             {
                 leaderboardsHeader = "\n𒆜 **Leaderboards** 𒆜\n\n";
 
-                LeaderboardRecord worseRecord = trackLeaderboards.LeaderboardRecords.Last();
-                UInt32 maxPosLength = (uint)worseRecord.PlayerStats.PosWorldwide.ToString().Length;
+                TrackLeaderboardEntry worseEntry = trackLeaderboards.LeaderboardRecords.Last();
+                UInt32 maxPosLength = (uint)worseEntry.PlayerStats.PosWorldwide.ToString().Length;
 
-                foreach (LeaderboardRecord oneRecord in trackLeaderboards.LeaderboardRecords)
+                foreach (TrackLeaderboardEntry oneRecord in trackLeaderboards.LeaderboardRecords)
                 {
                     PlayerInfo playerInfo = oneRecord.PlayerInfo;
                     ContinentInfo continentInfo = oneRecord.ContinentInfo;
