@@ -49,6 +49,25 @@ namespace TK2Bot.API
             }
         }
 
+        private struct ApiGetResponse
+        {
+            public bool IsSuccess { get; internal init; }
+            public dynamic JsonContent { get; internal init; }
+        }
+        
+        private static async Task<ApiGetResponse> ExecuteGetRequest(string _requestUri)
+        {
+            string contentAsString = await HTTP_CLIENT.GetStringAsync(_requestUri);
+            
+            dynamic contentAsJson = JObject.Parse(contentAsString);
+
+            return new ApiGetResponse()
+            {
+                IsSuccess = contentAsJson.status.ToString().Equals("success"),
+                JsonContent = contentAsJson,
+            };
+        }
+
         private static string GetLocationFilterOptions(ELocation _location)
         {
             if (_location == ELocation.NO_FILTER)
