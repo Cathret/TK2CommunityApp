@@ -14,6 +14,16 @@ namespace TK2Bot
             return LOCATION_TRANSLATION_COUNTRIES.ContainsKey(_locationName);
         }
         
+        public static bool IsContinentAlias(string _locationAlias)
+        {
+            return ALIAS_TRANSLATION_CONTINENTS.ContainsValue(_locationAlias);
+        }
+
+        public static bool IsCountryAlias(string _locationAlias)
+        {
+            return ALIAS_TRANSLATION_COUNTRIES.ContainsValue(_locationAlias);
+        }
+        
         public static bool IsContinent(ELocation _location)
         {
             return LOCATION_TRANSLATION_CONTINENTS.ContainsValue(_location);
@@ -52,12 +62,31 @@ namespace TK2Bot
             return LOCATION_TRANSLATION_COUNTRIES.TryGetValue(_countryName, out ELocation location) ? location : null;
         }
         
-        public static ELocation? GetEnum(string _locationName)
+        public static ELocation? GetEnumFromName(string _locationName)
         {
             return IsContinent(_locationName)
                 ? GetLocationEnumFromContinent(_locationName)
                 : IsCountry(_locationName)
                     ? GetLocationEnumFromCountry(_locationName)
+                    : ELocation.NO_FILTER;
+        }
+
+        public static ELocation? GetEnumFromContinentAlias(string _continentAlias)
+        {
+            return ALIAS_TRANSLATION_CONTINENTS.First(_pair => _pair.Value == _continentAlias).Key;
+        }
+        
+        public static ELocation? GetEnumFromCountryAlias(string _countryAlias)
+        {
+            return ALIAS_TRANSLATION_COUNTRIES.First(_pair => _pair.Value == _countryAlias).Key;
+        }
+        
+        public static ELocation? GetEnumFromAlias(string _locationAlias)
+        {
+            return IsContinentAlias(_locationAlias)
+                ? GetEnumFromContinentAlias(_locationAlias)
+                : IsCountryAlias(_locationAlias)
+                    ? GetEnumFromCountryAlias(_locationAlias)
                     : ELocation.NO_FILTER;
         }
 
