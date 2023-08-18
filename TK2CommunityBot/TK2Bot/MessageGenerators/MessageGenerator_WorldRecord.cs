@@ -7,17 +7,22 @@ namespace TK2Bot
     {
         public static async Task<DiscordMessageBuilder> CreateWrMessage(ETrackId _trackId, ELocation _location)
         {
-            if (!Enum.IsDefined(typeof(ELocation), _location))
+            if (_location == ELocation.INVALID)
             {
-                return new DiscordMessageBuilder()
-                    .WithContent("Invalid Filter.");
+                return GenerateErrorMessage("Invalid Filter");
             }
             
-            PlayerTrackTime worldRecord = await ApiSystem.GetWorldRecordForTrack(_trackId, _location);
-            PlayerInfo playerInfo = worldRecord.PlayerInfo;
-            TrackInfo trackInfo = worldRecord.TrackInfo;
+            WorldRecord worldRecord = await ApiSystem.GetWorldRecordForTrack(_trackId, _location);
+            if (worldRecord.IsValid == false)
+            {
+                return GenerateErrorMessage($"API returned an error for Track **{MapTranslator.GetMapNameFromTrackId(_trackId)}** and Location **{LocationUtils.GetName(_location)}**.");
+            }
+            
+            PlayerTrackTime wrTrackTime = worldRecord.WrTrackTime;
+            PlayerInfo playerInfo = wrTrackTime.PlayerInfo;
+            TrackInfo trackInfo = wrTrackTime.TrackInfo;
 
-            string formattedDuration = worldRecord.RunTime.ToString(TIMER_FORMAT);
+            string formattedDuration = wrTrackTime.RunTime.ToString(TIMER_FORMAT);
 
             string locationRecordTitle = "World Record";
             string locationRecordDesc = "WR";

@@ -4,15 +4,23 @@ namespace TK2Bot.API
 {
     public static partial class ApiSystem
     {
-        public static async Task<PlayerTrackTime> GetWorldRecordForTrack(ETrackId _trackId, ELocation _location)
+        public static async Task<WorldRecord> GetWorldRecordForTrack(ETrackId _trackId, ELocation _location)
         {
             string mapSlug = MapTranslator.GetSlugFromTrackId(_trackId);
 
             string requestUri = $"track/{mapSlug}/world-record{GetLocationFilterOptions(_location)}";
 
-            string contentAsString = await HTTP_CLIENT.GetStringAsync(requestUri);
+            ApiGetResponse getResponse = await ExecuteGetRequest(requestUri);
+
+            if (getResponse.IsSuccess == false)
+            {
+                return new WorldRecord()
+                {
+                    IsValid = false
+                };
+            }
             
-            dynamic contentAsJson = JObject.Parse(contentAsString);
+            dynamic contentAsJson = getResponse.JsonContent;
 
             PlayerInfo wrHolderInfo = new PlayerInfo()
             {
@@ -36,7 +44,11 @@ namespace TK2Bot.API
                 PlayerStats = new PlayerStats(),
             };
 
-            return wrTrackTime;
+            return new WorldRecord()
+            {
+                IsValid = true,
+                WrTrackTime = wrTrackTime
+            };
         }
     }
 }
