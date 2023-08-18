@@ -8,11 +8,9 @@ namespace TK2Bot
         public static async Task<DiscordMessageBuilder> CreatePlayerDetailedMessage(string _playerName)
         {
             FullPlayerInfo fullPlayerInfo = await ApiSystem.GetFullPlayerInfoFromName(_playerName);
-
             if (fullPlayerInfo.IsValid == false)
             {
-                return new DiscordMessageBuilder()
-                    .WithContent($"Can't find player from PlayerName [{_playerName}]");
+                return GenerateErrorMessage($"Can't find player from PlayerName **{_playerName}**.");
             }
 
             PlayerInfo playerInfo = fullPlayerInfo.PlayerInfo;

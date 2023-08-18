@@ -7,7 +7,7 @@ namespace TK2Bot
     {
         public static async Task<DiscordMessageBuilder> CreateGlobalLeaderboardsMessage(ELocation _location)
         {
-            return new DiscordMessageBuilder().WithContent("Not implemented.");
+            return GenerateErrorMessage("Not implemented.");
             
             if (!Enum.IsDefined(typeof(ELocation), _location))
             {

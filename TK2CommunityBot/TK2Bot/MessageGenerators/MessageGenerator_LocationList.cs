@@ -10,8 +10,7 @@ namespace TK2Bot
             IEnumerable<ELocation> foundLocations = LocationUtils.SearchLocation(_search);
             if (!foundLocations.Any())
             {
-                return new DiscordMessageBuilder()
-                    .WithContent($"Can't find any location with [{_search}]");
+                return GenerateErrorMessage($"Can't find any location with **{_search}**.");
             }
             
             DiscordEmbedBuilder embedBuilder = new DiscordEmbedBuilder()

@@ -7,10 +7,9 @@ namespace TK2Bot
     {
         public static async Task<DiscordMessageBuilder> CreateTrackLeaderboardsMessage(ETrackId _trackId, ELocation _location)
         {
-            if (!Enum.IsDefined(typeof(ELocation), _location))
+            if (_location == ELocation.INVALID)
             {
-                return new DiscordMessageBuilder()
-                    .WithContent("Invalid Filter.");
+                return GenerateErrorMessage("Invalid Filter");
             }
             
             TrackLeaderboards trackLeaderboards = await ApiSystem.GetTrackLeaderboards(_trackId, _location);
