@@ -54,7 +54,6 @@ namespace TK2Bot.API
             string contentAsString = await HTTP_CLIENT.GetStringAsync($"player?search={_playerName}");
 
             dynamic contentAsJson = JObject.Parse(contentAsString);
-            Console.WriteLine($"PlayerInfo: {contentAsJson.ToString()}");
 
             if (contentAsJson.status == "error")
             {
@@ -136,27 +135,12 @@ namespace TK2Bot.API
         {
             string mapSlug = MapTranslator.GetSlugFromTrackId(_trackId);
 
-            string requestUri = $"track/{mapSlug}/world-record";
-
-            if (_location != ELocation.NO_FILTER)
-            {
-                string filterName =
-                    (_location & ELocation.COUNTRY) != ELocation.NO_FILTER
-                        ? "country"
-                        : (_location & ELocation.CONTINENT) != ELocation.NO_FILTER
-                            ? "continent"
-                            : string.Empty;
-                if (filterName != string.Empty)
-                {
-                    requestUri += $"?{filterName}={LocationUtils.GetAlias(_location)}";
-                }
-            }
+            string requestUri = $"track/{mapSlug}/world-record{GetLocationFilterOptions(_location)}";
 
             string contentAsString = await HTTP_CLIENT.GetStringAsync(requestUri);
             
             dynamic contentAsJson = JObject.Parse(contentAsString);
 
-            //dynamic contentAsJson = JsonConvert.DeserializeObject(contentAsString)!;
             PlayerInfo wrHolderInfo = new PlayerInfo()
             {
                 PlayerName = contentAsJson.data.record.player.name,
@@ -182,28 +166,73 @@ namespace TK2Bot.API
             return wrTrackTime;
         }
             
-        public static TrackTimes GetTimesForTrack(ETrackId _trackId, UInt32 _lowestPlacementIncluded, UInt32 _highestPlacementIncluded)
+        public static async Task<Leaderboards> GetTrackLeaderboards(ETrackId _trackId, ELocation _location)
         {
-            // TODO: Request API to get times for TrackID and convert into our type
-            PlayerTrackTime[] allTrackTimes = new PlayerTrackTime[]
+            string mapSlug = MapTranslator.GetSlugFromTrackId(_trackId);
+
+            string requestUri = $"track/{mapSlug}/leaderboard{GetLocationFilterOptions(_location)}";
+
+            string contentAsString = await HTTP_CLIENT.GetStringAsync(requestUri);
+            
+            dynamic contentAsJson = JObject.Parse(contentAsString);
+            
+            List<LeaderboardRecord> allLeaderboardRecords = new List<LeaderboardRecord>();
+            foreach (dynamic oneRecord in contentAsJson.data.records)
             {
-                new PlayerTrackTime()
+                allLeaderboardRecords.Add(new LeaderboardRecord()
+                    {
+                        PlayerInfo = new PlayerInfo()
+                        {
+                            PlayerName = oneRecord.player.name,
+                            ProfileUrl = oneRecord.player.profile_url,
+                            AvatarUrl  = oneRecord.player.avatar_url
+                        },
+                        CountryInfo = new CountryInfo()
+                        {
+                            Name     = oneRecord.player.country.name,
+                            Alias    = oneRecord.player.country.alpha2,
+                            ImageUrl = oneRecord.player.country.image_url,
+                        },
+                        ContinentInfo = new ContinentInfo()
+                        {
+                            Name     = oneRecord.player.continent.name,
+                            Alias    = oneRecord.player.continent.alpha2,
+                            ImageUrl = oneRecord.player.continent.image_url,
+                        },
+                        PlayerStats = new PlayerStats()
+                        {
+                            PosWorldwide = oneRecord.data.positions.worldwide,
+                            PosContinent = oneRecord.data.positions.continent,
+                            PosCountry   = oneRecord.data.positions.country,
+                            Points       = oneRecord.data.points
+                        },
+                        RunTime  = TimeSpan.FromMilliseconds(double.Parse(oneRecord.score.ToString())),
+                    }
+                );
+            }
+
+            Leaderboards leaderboards = new Leaderboards()
+            {
+                TrackInfo = new TrackInfo()
                 {
-                    RunTime     = TimeSpan.FromMilliseconds(65000),
+                    MapName        = contentAsJson.data.track.name,
+                    ImageUrl       = contentAsJson.data.track.image_url,
+                    LeaderboardUrl = contentAsJson.data.track.leaderboard_url,
                 },
-                
-                new PlayerTrackTime()
-                {
-                    RunTime     = TimeSpan.FromMilliseconds(95000),
-                },
-                
-                new PlayerTrackTime()
-                {
-                    RunTime     = TimeSpan.FromMilliseconds(100000),
-                },
+                LeaderboardRecords = allLeaderboardRecords.ToArray(),
             };
 
-            return new TrackTimes() { PlayerTrackTimes = allTrackTimes };
+            return leaderboards;
+        }
+
+        private static string GetLocationFilterOptions(ELocation _location)
+        {
+            if (_location == ELocation.NO_FILTER)
+                return string.Empty;
+
+            string filterName = LocationUtils.GetLocationTypeStr(_location);
+            string alias = LocationUtils.GetAlias(_location);
+            return $"?{filterName}={alias}";
         }
     }
 }
