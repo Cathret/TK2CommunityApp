@@ -146,5 +146,25 @@ namespace TK2Bot
                     ? GetCountryEmoji(_location)
                     : string.Empty;
         }
+
+        public static IEnumerable<ELocation> SearchLocation(string _search)
+        {
+            List<ELocation> foundLocations = new List<ELocation>();
+
+            IEnumerable<KeyValuePair<string,ELocation>> continentsFound = LOCATION_TRANSLATION_CONTINENTS.Where(_pair => _pair.Key.ToLower().Contains(_search.ToLower()));
+            IEnumerable<KeyValuePair<string,ELocation>> countriesFound = LOCATION_TRANSLATION_COUNTRIES.Where(_pair => _pair.Key.ToLower().Contains(_search.ToLower()));
+
+            foreach ((string? key, ELocation value) in continentsFound)
+            {
+                foundLocations.Add(value);
+            }
+            
+            foreach ((string? key, ELocation value) in countriesFound)
+            {
+                foundLocations.Add(value);
+            }
+
+            return foundLocations;
+        }
     }
 }
