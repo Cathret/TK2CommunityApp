@@ -49,7 +49,7 @@ namespace TK2Bot
                 string posContinent = RankingUtils.GetPrettyStringForRank(oneTrackTime.PlayerStats.PosContinent);
                 string posCountry = RankingUtils.GetPrettyStringForRank(oneTrackTime.PlayerStats.PosCountry);
 
-                embedBuilder.AddField(oneTrackTime.TrackInfo.MapName, $"⌛{formattedTime}, {countryEmoji} {posCountry}, {continentEmoji} {posContinent}, :globe_with_meridians: {posWorld}", false);
+                embedBuilder.AddField(oneTrackTime.TrackInfo.MapName, $"⌛{formattedTime} | {countryEmoji} {posCountry} | {continentEmoji} {posContinent} | :globe_with_meridians: {posWorld}", false);
             }
 
             return new DiscordMessageBuilder()
