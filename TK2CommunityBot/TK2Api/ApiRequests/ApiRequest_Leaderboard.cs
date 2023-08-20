@@ -19,8 +19,6 @@ namespace TK2Bot.API
             
             dynamic contentAsJson = getResponse.JsonContent;
             
-            Console.Write(contentAsJson);
-            
             List<GlobalLeaderboardEntry> allLeaderboardEntries = new List<GlobalLeaderboardEntry>();
             foreach (dynamic oneEntry in contentAsJson.data.players)
             {

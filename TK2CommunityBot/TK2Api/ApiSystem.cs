@@ -61,12 +61,15 @@ namespace TK2Bot.API
         
         private static async Task<ApiGetResponse> ExecuteGetRequest(string _requestUri)
         {
+            if (CACHE_MANAGER.CheckIfNeedRefresh())
+            {
+                CACHE_MANAGER.ClearCache();
+            }
+            
             dynamic contentAsJson;
             if (CACHE_MANAGER.HasCachedValue(_requestUri))
             {
                 contentAsJson = CACHE_MANAGER.GetCachedJson(_requestUri)!;
-                
-                Console.WriteLine($"Retrieved from Cache [{_requestUri}] = [{contentAsJson}]");
             }
             else
             {
@@ -74,7 +77,6 @@ namespace TK2Bot.API
                 contentAsJson = JObject.Parse(contentAsString);
                 
                 CACHE_MANAGER.SetCachedJson(_requestUri, contentAsJson);
-                Console.WriteLine($"Added to Cache [{_requestUri}] = [{contentAsJson}]");
             }
 
             return new ApiGetResponse()

@@ -2,7 +2,21 @@
 {
     public class ApiCacheManager
     {
-        private Dictionary<string, dynamic> m_cacheMap = new Dictionary<string, dynamic>();
+        private static readonly DateTime BASE_TIME = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+        
+        private readonly Dictionary<string, dynamic> m_cacheMap = new Dictionary<string, dynamic>();
+        
+        private DateTime m_nextUpdateTime = DateTime.UtcNow;
+
+        public bool CheckIfNeedRefresh()
+        {
+            return m_nextUpdateTime <= DateTime.UtcNow;
+        }
+
+        public void ClearCache()
+        {
+            m_cacheMap.Clear();
+        }
 
         public bool HasCachedValue(string _uri)
         {
@@ -16,6 +30,11 @@
         
         public void SetCachedJson(string _uri, dynamic _jsonContent)
         {
+            if (CheckIfNeedRefresh())
+            {
+                m_nextUpdateTime = BASE_TIME.AddSeconds((double)_jsonContent.next_update);
+            }
+            
             m_cacheMap[_uri] = _jsonContent;
         }
     }
