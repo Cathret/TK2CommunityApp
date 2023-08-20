@@ -4,14 +4,14 @@ namespace TK2Bot.API
 {
     public static partial class ApiSystem
     {
-        public static async Task<GlobalLeaderboards> GetGlobalLeaderboards(ELocation _location)
+        public static async Task<GlobalLeaderboard> GetGlobalLeaderboard(ELocation _location)
         {
             string requestUri = $"leaderboard{GetLocationFilterOptions(_location)}";
 
             ApiGetResponse getResponse = await ExecuteGetRequest(requestUri);
             if (getResponse.IsSuccess == false)
             {
-                return new GlobalLeaderboards()
+                return new GlobalLeaderboard()
                 {
                     LeaderboardEntries = Array.Empty<GlobalLeaderboardEntry>()
                 };
@@ -53,7 +53,7 @@ namespace TK2Bot.API
                 );
             }
 
-            return new GlobalLeaderboards()
+            return new GlobalLeaderboard()
             {
                 LeaderboardEntries = allLeaderboardEntries.ToArray(),
             };;

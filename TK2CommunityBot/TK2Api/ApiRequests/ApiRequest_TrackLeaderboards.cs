@@ -4,7 +4,7 @@ namespace TK2Bot.API
 {
     public static partial class ApiSystem
     {
-        public static async Task<TrackLeaderboards> GetTrackLeaderboards(ETrackId _trackId, ELocation _location)
+        public static async Task<TrackLeaderboard> GetTrackLeaderboard(ETrackId _trackId, ELocation _location)
         {
             string mapSlug = MapTranslator.GetSlugFromTrackId(_trackId);
 
@@ -13,7 +13,7 @@ namespace TK2Bot.API
             ApiGetResponse getResponse = await ExecuteGetRequest(requestUri);
             if (getResponse.IsSuccess == false)
             {
-                return new TrackLeaderboards()
+                return new TrackLeaderboard()
                 {
                     LeaderboardRecords = Array.Empty<TrackLeaderboardEntry>()
                 };
@@ -56,7 +56,7 @@ namespace TK2Bot.API
                 );
             }
 
-            TrackLeaderboards trackLeaderboards = new TrackLeaderboards()
+            TrackLeaderboard trackLeaderboard = new TrackLeaderboard()
             {
                 TrackInfo = new TrackInfo()
                 {
@@ -67,7 +67,7 @@ namespace TK2Bot.API
                 LeaderboardRecords = allLeaderboardRecords.ToArray(),
             };
 
-            return trackLeaderboards;
+            return trackLeaderboard;
         }
     }
 }

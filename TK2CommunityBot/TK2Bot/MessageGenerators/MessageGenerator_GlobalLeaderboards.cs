@@ -5,29 +5,29 @@ namespace TK2Bot
 {
     public static partial class MessageGenerator
     {
-        public static async Task<DiscordMessageBuilder> CreateGlobalLeaderboardsMessage(ELocation _location)
+        public static async Task<DiscordMessageBuilder> CreateGlobalLeaderboardMessage(ELocation _location)
         {
             if (_location == ELocation.INVALID)
             {
                 return GenerateErrorMessage("Invalid Filter");
             }
 
-            GlobalLeaderboards globalLeaderboards = await ApiSystem.GetGlobalLeaderboards(_location);
+            GlobalLeaderboard globalLeaderboard = await ApiSystem.GetGlobalLeaderboard(_location);
             
-            string leaderboardsHeader = string.Empty;
-            string leaderboardsContent = string.Empty;
+            string leaderboardHeader;
+            string leaderboardContent = string.Empty;
 
-            if (globalLeaderboards.LeaderboardEntries.Any())
+            if (globalLeaderboard.LeaderboardEntries.Any())
             {
-                leaderboardsHeader = "\n𒆜 **Leaderboards** 𒆜\n\n";
+                leaderboardHeader = "\n𒆜 **Leaderboards** 𒆜\n\n";
 
-                GlobalLeaderboardEntry bestEntry = globalLeaderboards.LeaderboardEntries.First();
+                GlobalLeaderboardEntry bestEntry = globalLeaderboard.LeaderboardEntries.First();
                 UInt32 maxPointsLength = (uint)bestEntry.PlayerStats.Points.ToString().Length;
                 
-                GlobalLeaderboardEntry worseEntry = globalLeaderboards.LeaderboardEntries.Last();
+                GlobalLeaderboardEntry worseEntry = globalLeaderboard.LeaderboardEntries.Last();
                 UInt32 maxPosLength = (uint)worseEntry.PlayerStats.PosWorldwide.ToString().Length;
 
-                foreach (GlobalLeaderboardEntry oneRecord in globalLeaderboards.LeaderboardEntries)
+                foreach (GlobalLeaderboardEntry oneRecord in globalLeaderboard.LeaderboardEntries)
                 {
                     PlayerInfo playerInfo = oneRecord.PlayerInfo;
                     ContinentInfo continentInfo = oneRecord.ContinentInfo;
@@ -44,7 +44,7 @@ namespace TK2Bot
                     string posWorldwide = RankingUtils.GetPrettyStringForRank(playerStats.PosWorldwide, maxPosLength);
                     string posContinent = RankingUtils.GetPrettyStringForRank(playerStats.PosContinent, maxPosLength);
                     string posCountry = RankingUtils.GetPrettyStringForRank(playerStats.PosCountry, maxPosLength);
-                    leaderboardsContent += $" `{points}` | :globe_with_meridians: `{posWorldwide}` | {continentEmoji} `{posContinent}` | {countryEmoji} `{posCountry}` - **{playerInfo.PlayerName}**\n";
+                    leaderboardContent += $" `{points}` | :globe_with_meridians: `{posWorldwide}` | {continentEmoji} `{posContinent}` | {countryEmoji} `{posCountry}` - **{playerInfo.PlayerName}**\n";
                 }
             }
             else
@@ -54,7 +54,7 @@ namespace TK2Bot
                 {
                     noLeaderboardStr += $" for {LocationUtils.GetEmoji(_location)} {LocationUtils.GetName(_location)}";
                 }
-                leaderboardsHeader = $"\n𒆜 **{noLeaderboardStr}** 𒆜\n\n";
+                leaderboardHeader = $"\n𒆜 **{noLeaderboardStr}** 𒆜\n\n";
             }
 
             string embedLocationTitle = "Global";
@@ -66,7 +66,7 @@ namespace TK2Bot
             DiscordEmbedBuilder embedBuilder = new DiscordEmbedBuilder()
             {
                 Title       = $"{embedLocationTitle} Leaderboards",
-                Description = $"\n{leaderboardsHeader}{leaderboardsContent}",
+                Description = $"\n{leaderboardHeader}{leaderboardContent}",
                 Url         = TK2_LINK, // TODO: use global leaderboards link
                 Timestamp   = DateTimeOffset.UtcNow,
                 Color       = DiscordColor.Teal,

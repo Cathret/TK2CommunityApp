@@ -5,7 +5,7 @@ namespace TK2Bot
 {
     public static partial class MessageGenerator
     {
-        public static async Task<DiscordMessageBuilder> CreateLocationListMessage(string _search)
+        public static DiscordMessageBuilder CreateLocationListMessage(string _search)
         {
             IEnumerable<ELocation> foundLocations = LocationUtils.SearchLocation(_search);
             if (!foundLocations.Any())
