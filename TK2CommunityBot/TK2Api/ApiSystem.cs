@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using DSharpPlus;
+using Newtonsoft.Json.Linq;
 
 namespace TK2Bot.API
 {
@@ -12,6 +13,9 @@ namespace TK2Bot.API
         
         private static readonly string API_LOGIN = Environment.GetEnvironmentVariable("TK2_API_LOGIN")!;
         private static readonly string API_KEY = Environment.GetEnvironmentVariable("TK2_API_KEY")!;
+
+        private static readonly ApiCacheManager CACHE_MANAGER = new ApiCacheManager();
+        
         private static AuthInfoData AuthInfo { get; set; }
 
         private static readonly HttpClient HTTP_CLIENT = new()
@@ -57,9 +61,21 @@ namespace TK2Bot.API
         
         private static async Task<ApiGetResponse> ExecuteGetRequest(string _requestUri)
         {
-            string contentAsString = await HTTP_CLIENT.GetStringAsync(_requestUri);
-            
-            dynamic contentAsJson = JObject.Parse(contentAsString);
+            dynamic contentAsJson;
+            if (CACHE_MANAGER.HasCachedValue(_requestUri))
+            {
+                contentAsJson = CACHE_MANAGER.GetCachedJson(_requestUri)!;
+                
+                Console.WriteLine($"Retrieved from Cache [{_requestUri}] = [{contentAsJson}]");
+            }
+            else
+            {
+                string contentAsString = await HTTP_CLIENT.GetStringAsync(_requestUri);
+                contentAsJson = JObject.Parse(contentAsString);
+                
+                CACHE_MANAGER.SetCachedJson(_requestUri, contentAsJson);
+                Console.WriteLine($"Added to Cache [{_requestUri}] = [{contentAsJson}]");
+            }
 
             return new ApiGetResponse()
             {
