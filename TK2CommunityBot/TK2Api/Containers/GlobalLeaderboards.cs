@@ -2,6 +2,6 @@
 {
     public class GlobalLeaderboards
     {
-        public GlobalLeaderboardEntry[] LeaderboardEntries { get; internal init; }
+        public GlobalLeaderboardEntry[] LeaderboardEntries { get; internal init; } = null!;
     }
 }

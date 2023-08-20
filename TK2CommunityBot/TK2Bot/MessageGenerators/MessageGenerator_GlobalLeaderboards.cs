@@ -7,14 +7,11 @@ namespace TK2Bot
     {
         public static async Task<DiscordMessageBuilder> CreateGlobalLeaderboardsMessage(ELocation _location)
         {
-            return GenerateErrorMessage("Not implemented.");
-            
-            if (!Enum.IsDefined(typeof(ELocation), _location))
+            if (_location == ELocation.INVALID)
             {
-                return new DiscordMessageBuilder()
-                    .WithContent("Invalid Filter.");
+                return GenerateErrorMessage("Invalid Filter");
             }
-            
+
             GlobalLeaderboards globalLeaderboards = await ApiSystem.GetGlobalLeaderboards(_location);
             
             string leaderboardsHeader = string.Empty;

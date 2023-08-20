@@ -20,45 +20,43 @@ namespace TK2Bot.API
             dynamic contentAsJson = getResponse.JsonContent;
             
             List<GlobalLeaderboardEntry> allLeaderboardEntries = new List<GlobalLeaderboardEntry>();
-            foreach (dynamic oneEntry in contentAsJson.data.records)
+            foreach (dynamic oneEntry in contentAsJson.data.players)
             {
                 allLeaderboardEntries.Add(new GlobalLeaderboardEntry()
                     {
                         PlayerInfo = new PlayerInfo()
                         {
-                            PlayerName = oneEntry.player.name,
-                            ProfileUrl = oneEntry.player.profile_url,
-                            AvatarUrl  = oneEntry.player.avatar_url
+                            PlayerName = oneEntry.name,
+                            ProfileUrl = oneEntry.profile_url,
+                            AvatarUrl  = oneEntry.avatar_url
                         },
                         CountryInfo = new CountryInfo()
                         {
-                            Name     = oneEntry.player.country.name,
-                            Alias    = oneEntry.player.country.alpha2,
-                            ImageUrl = oneEntry.player.country.image_url,
+                            Name     = oneEntry.country.name,
+                            Alias    = oneEntry.country.alpha2,
+                            ImageUrl = oneEntry.country.image_url,
                         },
                         ContinentInfo = new ContinentInfo()
                         {
-                            Name     = oneEntry.player.continent.name,
-                            Alias    = oneEntry.player.continent.alpha2,
-                            ImageUrl = oneEntry.player.continent.image_url,
+                            Name     = oneEntry.continent.name,
+                            Alias    = oneEntry.continent.alpha2,
+                            ImageUrl = oneEntry.continent.image_url,
                         },
                         PlayerStats = new PlayerStats()
                         {
-                            PosWorldwide = oneEntry.data.positions.worldwide,
-                            PosContinent = oneEntry.data.positions.continent,
-                            PosCountry   = oneEntry.data.positions.country,
-                            Points       = oneEntry.data.points
+                            PosWorldwide = oneEntry.global.positions.worldwide,
+                            PosContinent = oneEntry.global.positions.continent,
+                            PosCountry   = oneEntry.global.positions.country,
+                            Points       = oneEntry.global.points
                         },
                     }
                 );
             }
 
-            GlobalLeaderboards globalLeaderboards = new GlobalLeaderboards()
+            return new GlobalLeaderboards()
             {
                 LeaderboardEntries = allLeaderboardEntries.ToArray(),
-            };
-
-            return globalLeaderboards;
+            };;
         }
     }
 }
