@@ -26,13 +26,15 @@ namespace TK2Bot
                 Url         = playerInfo.ProfileUrl,
                 Timestamp   = DateTimeOffset.UtcNow,
                 Color     = DiscordColor.Green,
-                Thumbnail   = new DiscordEmbedBuilder.EmbedThumbnail()
+                Thumbnail = new DiscordEmbedBuilder.EmbedThumbnail()
                 {
                     Url = playerInfo.AvatarUrl,
                 },
                 Footer = EMBED_FOOTER
             };
-            string tableHeader = "\n𒆜 **Time Trial Records** 𒆜\n\n";
+            
+            // records header
+            embedBuilder.AddField("𒆜 Time Trial Records 𒆜", "Here are the track times and rankings for each track:");
 
             ELocation countryLocation = LocationUtils.GetEnumFromName(countryInfo.Name) ?? ELocation.NO_FILTER;
             string countryEmoji = LocationUtils.GetEmoji(countryLocation);
@@ -40,7 +42,6 @@ namespace TK2Bot
             ELocation continentLocation = LocationUtils.GetEnumFromName(continentInfo.Name) ?? ELocation.NO_FILTER;
             string continentEmoji = LocationUtils.GetEmoji(continentLocation);
             
-            string tableContent = "";
             foreach (PlayerTrackTime oneTrackTime in playerRecords.PlayerTrackTimes)
             {
                 string formattedTime = oneTrackTime.RunTime.ToString(TIMER_FORMAT);
@@ -48,12 +49,8 @@ namespace TK2Bot
                 string posContinent = RankingUtils.GetPrettyStringForRank(oneTrackTime.PlayerStats.PosContinent);
                 string posCountry = RankingUtils.GetPrettyStringForRank(oneTrackTime.PlayerStats.PosCountry);
 
-                // row for different tracks
-                tableContent += $" `☑️{oneTrackTime.TrackInfo.MapName}:` ⌛{formattedTime}, {countryEmoji} {posCountry}, {continentEmoji} {posContinent}, :globe_with_meridians: {posWorld}\n";
+                embedBuilder.AddField(oneTrackTime.TrackInfo.MapName, $"⌛{formattedTime}, {countryEmoji} {posCountry}, {continentEmoji} {posContinent}, :globe_with_meridians: {posWorld}", false);
             }
-
-            // table header
-            embedBuilder.Description += "\n" + tableHeader + tableContent;
 
             return new DiscordMessageBuilder()
                 .WithEmbed(embedBuilder.Build());
