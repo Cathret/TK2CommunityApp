@@ -19,6 +19,8 @@ namespace TK2Bot.API
             
             dynamic contentAsJson = getResponse.JsonContent;
             
+            Console.Write(contentAsJson);
+            
             List<GlobalLeaderboardEntry> allLeaderboardEntries = new List<GlobalLeaderboardEntry>();
             foreach (dynamic oneEntry in contentAsJson.data.players)
             {
@@ -53,9 +55,19 @@ namespace TK2Bot.API
                 );
             }
 
+            dynamic jsonPagination = contentAsJson.data.pagination;
+            PaginationInformation paginationInfo = new PaginationInformation()
+            {
+                ItemsCount      = jsonPagination.items_count,
+                ItemsTotalCount = jsonPagination.items_total_count,
+                Page            = jsonPagination.page,
+                LastPage        = jsonPagination.last_page
+            };
+
             return new GlobalLeaderboard()
             {
                 LeaderboardEntries = allLeaderboardEntries.ToArray(),
+                PaginationInfo = paginationInfo
             };;
         }
     }
