@@ -44,7 +44,7 @@ namespace TK2Bot
                     string posWorldwide = RankingUtils.GetPrettyStringForRank(playerStats.PosWorldwide, maxPosLength);
                     string posContinent = RankingUtils.GetPrettyStringForRank(playerStats.PosContinent, maxPosLength);
                     string posCountry = RankingUtils.GetPrettyStringForRank(playerStats.PosCountry, maxPosLength);
-                    leaderboardContent += $" `{points}` | :globe_with_meridians: `{posWorldwide}` | {continentEmoji} `{posContinent}` | {countryEmoji} `{posCountry}` - **{playerInfo.PlayerName}**\n";
+                    leaderboardContent += $" `{points} pts` | :globe_with_meridians: `{posWorldwide}` | {continentEmoji} `{posContinent}` | {countryEmoji} `{posCountry}` - **{playerInfo.PlayerName}**\n";
                 }
             }
             else
