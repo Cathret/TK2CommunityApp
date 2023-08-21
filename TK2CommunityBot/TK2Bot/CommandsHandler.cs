@@ -46,9 +46,9 @@ namespace TK2Bot
             await _context.EditResponseAsync(new DiscordWebhookBuilder(await MessageGenerator.CreateWrMessage(_trackId, locationFilter)));
         }
 
-        [SlashCommand("mapleaderboard", "Request the Leaderboard of a Track")]
-        private async Task MapLeaderboardCommand(InteractionContext _context,
-            [Option("Map", "Map for which we want the Leaderboard")] ETrackId _trackId,
+        [SlashCommand("trackleaderboard", "Request the Leaderboard of a Track")]
+        private async Task TrackLeaderboardCommand(InteractionContext _context,
+            [Option("Track", "Track for which we want the Leaderboard")] ETrackId _trackId,
             [Option("LocationAliasFilter", "Filter to get information only for a specific location (eu, na, fr, gb..)")] string _locationAliasFilter = "")
         {
             await _context.CreateResponseAsync(InteractionResponseType.DeferredChannelMessageWithSource);
