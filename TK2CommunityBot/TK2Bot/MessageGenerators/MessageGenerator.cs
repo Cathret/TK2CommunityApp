@@ -7,7 +7,8 @@ namespace TK2Bot
         private const string TIMER_FORMAT = @"m\:ss\.fff";
         private const string FAKE_EMPTY_FIELD = "\u200B";
 
-        private const string TITLE_EMOJI = "<:ZagGlare:1138405512745066558>";
+        private const string TITLE_LEFT_EMOJI = "<:pigeonCoolFlipped:1143158497857507479>";
+        private const string TITLE_RIGHT_EMOJI = "<:pigeonCool:1130943265705832608>";
 
         private const string TK2_LINK = "https://the-karters-community.com/";
         private const string TK2_LOGO = "https://the-karters-community.com/images/the-karters-logo.png";

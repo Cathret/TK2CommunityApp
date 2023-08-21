@@ -34,7 +34,7 @@ namespace TK2Bot
             };
             
             // records header
-            embedBuilder.AddField($"{TITLE_EMOJI} Time Trial Records {TITLE_EMOJI}", "Here are the track times and rankings for each track:");
+            embedBuilder.AddField($"{TITLE_LEFT_EMOJI} Time Trial Records {TITLE_RIGHT_EMOJI}", "Here are the track times and rankings for each track:");
 
             ELocation countryLocation = LocationUtils.GetEnumFromName(countryInfo.Name) ?? ELocation.NO_FILTER;
             string countryEmoji = LocationUtils.GetEmoji(countryLocation);
