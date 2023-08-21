@@ -1,5 +1,4 @@
-﻿using DSharpPlus;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 
 namespace TK2Bot.API
 {
@@ -8,8 +7,11 @@ namespace TK2Bot.API
         private struct AuthInfoData
         {
             public string Token { get; internal init; }
-            public TimeSpan ExpirationDate { get; internal init; }
+            public DateTime ExpirationDate { get; internal init; }
         }
+        
+        private static readonly DateTime BASE_TIME = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+        public static DateTime BaseUtcTime { get { return BASE_TIME; } }
         
         private static readonly string API_LOGIN = Environment.GetEnvironmentVariable("TK2_API_LOGIN")!;
         private static readonly string API_KEY = Environment.GetEnvironmentVariable("TK2_API_KEY")!;
@@ -22,6 +24,11 @@ namespace TK2Bot.API
         {
             BaseAddress = new Uri("https://the-karters-community.com/api/"),
         };
+
+        private static bool AuthentificationExpired()
+        {
+            return AuthInfo.ExpirationDate < DateTime.UtcNow;
+        }
 
         public static async Task TryAuthentificate()
         {
@@ -38,7 +45,7 @@ namespace TK2Bot.API
                 AuthInfo = new AuthInfoData()
                 {
                     Token          = json.authorization.token,
-                    //ExpirationDate = DateTimeOffset.Parse(json.authorization.expires_at.timestamp.ToString()),
+                    ExpirationDate = ApiSystem.BaseUtcTime.AddSeconds((double)json.authorization.expires_at.timestamp)
                 };
 
                 Console.WriteLine("[INFO] Retrieved Authentication Data");
@@ -52,6 +59,33 @@ namespace TK2Bot.API
                 await Console.Error.WriteLineAsync("[ERROR] Could not retrieve Authentication Data");
             }
         }
+        
+        public static async Task RefreshAuthentification()
+        {
+            // Make request to login for 1 day and get json from response
+            string contentAsString = await HTTP_CLIENT.GetStringAsync("refresh");
+            
+            // We have our json, so we check if it succeeded, and if it did we will set AuthInfo to correct Token and ExpirationDate
+            dynamic json = JObject.Parse(contentAsString);
+            if (json.status == "success")
+            {
+                AuthInfo = new AuthInfoData()
+                {
+                    Token          = json.authorization.token,
+                    ExpirationDate = BaseUtcTime.AddSeconds((double)json.authorization.expires_at.timestamp)
+                };
+
+                Console.WriteLine("[INFO] Refreshed Authentication Data");
+
+                HTTP_CLIENT.DefaultRequestHeaders.Clear();
+                HTTP_CLIENT.DefaultRequestHeaders.Add("authorization", $"Bearer {AuthInfo.Token}");
+                HTTP_CLIENT.DefaultRequestHeaders.Add("X-Requested-With", "XMLHttpRequest");
+            }
+            else
+            {
+                await Console.Error.WriteLineAsync("[ERROR] Could not refresh Authentication Data");
+            }
+        }
 
         private struct ApiGetResponse
         {
@@ -61,6 +95,11 @@ namespace TK2Bot.API
         
         private static async Task<ApiGetResponse> ExecuteGetRequest(string _requestUri)
         {
+            if (AuthentificationExpired())
+            {
+                await RefreshAuthentification();
+            }
+            
             if (CACHE_MANAGER.CheckIfNeedRefresh())
             {
                 CACHE_MANAGER.ClearCache();

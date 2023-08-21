@@ -2,8 +2,6 @@
 {
     public class ApiCacheManager
     {
-        private static readonly DateTime BASE_TIME = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-        
         private readonly Dictionary<string, dynamic> m_cacheMap = new Dictionary<string, dynamic>();
         
         private DateTime m_nextUpdateTime = DateTime.UtcNow;
@@ -32,7 +30,7 @@
         {
             if (CheckIfNeedRefresh())
             {
-                m_nextUpdateTime = BASE_TIME.AddSeconds((double)_jsonContent.next_update);
+                m_nextUpdateTime = ApiSystem.BaseUtcTime.AddSeconds((double)_jsonContent.next_update);
             }
             
             m_cacheMap[_uri] = _jsonContent;
