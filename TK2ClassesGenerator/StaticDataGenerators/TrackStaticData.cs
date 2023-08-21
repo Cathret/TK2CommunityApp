@@ -8,7 +8,7 @@ namespace TK2Bot.ClassesGenerator
         private static readonly string TK2_GENERATED_MAPTRANSLATOR = DataGenInfo.TK2_GENERATED_DIR + "MapTranslator_Generated.cs";
         private static readonly string TK2_GENERATED_TRACKID = DataGenInfo.TK2_GENERATED_DIR + "ETrackId_Generated.cs";
 
-        private const string TRACK_CSV_FILE = "tracks.csv";
+        private const string TRACK_CSV_FILE = DataGenInfo.STATIC_DATA_DIR + "tracks.csv";
 
         private class TrackInfo
         {

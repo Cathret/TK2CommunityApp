@@ -8,8 +8,8 @@ namespace TK2Bot.ClassesGenerator
         private static readonly string TK2_GENERATED_LOCATIONUTILS = DataGenInfo.TK2_GENERATED_DIR + "LocationUtils_Generated.cs";
         private static readonly string TK2_GENERATED_LOCATION = DataGenInfo.TK2_GENERATED_DIR + "ELocation_Generated.cs";
 
-        private const string CONTINENT_CSV_FILE = "continents.csv";
-        private const string COUNTRIES_CSV_FILE = "countries.csv";
+        private const string CONTINENT_CSV_FILE = DataGenInfo.STATIC_DATA_DIR + "continents.csv";
+        private const string COUNTRIES_CSV_FILE = DataGenInfo.STATIC_DATA_DIR + "countries.csv";
 
         private const string COUNTRIES_ENUM_NAME = "COUNTRIES";
         private const string CONTINENTS_ENUM_NAME = "CONTINENTS";
