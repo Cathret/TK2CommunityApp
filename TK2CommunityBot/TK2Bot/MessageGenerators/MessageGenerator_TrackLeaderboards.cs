@@ -21,7 +21,7 @@ namespace TK2Bot
 
             if (trackLeaderboard.LeaderboardRecords.Any())
             {
-                leaderboardHeader = "\n𒆜 **Leaderboards** 𒆜\n\n";
+                leaderboardHeader = $"\n{TITLE_EMOJI} **Leaderboards** {TITLE_EMOJI}\n\n";
 
                 TrackLeaderboardEntry worseEntry = trackLeaderboard.LeaderboardRecords.Last();
                 UInt32 maxPosLength = (uint)worseEntry.PlayerStats.PosWorldwide.ToString().Length;
@@ -54,7 +54,7 @@ namespace TK2Bot
                 {
                     noLeaderboardStr += $" for {LocationUtils.GetEmoji(_location)} {LocationUtils.GetName(_location)}";
                 }
-                leaderboardHeader = $"\n𒆜 **{noLeaderboardStr}** 𒆜\n\n";
+                leaderboardHeader = $"\n{TITLE_EMOJI} **{noLeaderboardStr}** {TITLE_EMOJI}\n\n";
             }
 
             DiscordEmbedBuilder embedBuilder = new DiscordEmbedBuilder()

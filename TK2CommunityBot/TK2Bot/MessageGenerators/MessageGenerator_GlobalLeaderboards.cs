@@ -19,7 +19,7 @@ namespace TK2Bot
 
             if (globalLeaderboard.LeaderboardEntries.Any())
             {
-                leaderboardHeader = "\n𒆜 **Leaderboards** 𒆜\n\n";
+                leaderboardHeader = $"\n{TITLE_EMOJI} **Leaderboards** {TITLE_EMOJI}\n\n";
 
                 GlobalLeaderboardEntry bestEntry = globalLeaderboard.LeaderboardEntries.First();
                 UInt32 maxPointsLength = (uint)bestEntry.PlayerStats.Points.ToString().Length;
@@ -54,7 +54,7 @@ namespace TK2Bot
                 {
                     noLeaderboardStr += $" for {LocationUtils.GetEmoji(_location)} {LocationUtils.GetName(_location)}";
                 }
-                leaderboardHeader = $"\n𒆜 **{noLeaderboardStr}** 𒆜\n\n";
+                leaderboardHeader = $"\n{TITLE_EMOJI} **{noLeaderboardStr}** {TITLE_EMOJI}\n\n";
             }
 
             string embedLocationTitle = "Global";
