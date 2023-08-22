@@ -1,5 +1,6 @@
 ﻿using DSharpPlus;
-using DSharpPlus.CommandsNext;
+using DSharpPlus.Entities;
+using DSharpPlus.SlashCommands;
 
 namespace TK2Bot
 {
@@ -15,13 +16,11 @@ namespace TK2Bot
                 MinimumLogLevel = Settings.LOG_LEVEL,
             });
             
-            CommandsNextExtension globalCommandsHandler = discordClient.UseCommandsNext(new CommandsNextConfiguration()
-            {
-                StringPrefixes  = new[] { Settings.COMMAND_PREFIX },
-            });
+            await API.ApiSystem.TryAuthentificate();
             
-            globalCommandsHandler.RegisterCommands<CommandsHandler>();
-
+            SlashCommandsExtension slashCommandsExtension = discordClient.UseSlashCommands();
+            slashCommandsExtension.RegisterCommands<CommandsHandler>();
+            
             await discordClient.ConnectAsync();
             await Task.Delay(-1); // Avoid closing console
         }
