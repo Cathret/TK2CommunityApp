@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TK2CommunityBot", "TK2Commu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TK2ClassesGenerator", "TK2ClassesGenerator\TK2ClassesGenerator.csproj", "{4D659773-0C09-4935-B790-078BD875F663}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TK2RichPresenceTest", "TK2RichPresenceTest\TK2RichPresenceTest.csproj", "{E5347C5F-0610-4119-BC6C-4F9B1C99CCF5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4D659773-0C09-4935-B790-078BD875F663}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D659773-0C09-4935-B790-078BD875F663}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D659773-0C09-4935-B790-078BD875F663}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5347C5F-0610-4119-BC6C-4F9B1C99CCF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5347C5F-0610-4119-BC6C-4F9B1C99CCF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5347C5F-0610-4119-BC6C-4F9B1C99CCF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5347C5F-0610-4119-BC6C-4F9B1C99CCF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
