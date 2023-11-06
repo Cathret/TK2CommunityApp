@@ -2,9 +2,10 @@
 {
     internal static class Program
     {
+        private const int WAIT_TIMER_MS = 1000 / 60;
         private static readonly string BOT_CLIENT_ID = Environment.GetEnvironmentVariable("TK2_BOT_CLIENT_ID")!;
 
-        private static async Task Main()
+        private static int Main()
         {
             DiscordHandler discordHandler = new DiscordHandler(long.Parse(BOT_CLIENT_ID));
             
@@ -14,8 +15,10 @@
             while (updateSuccess)
             {
                 updateSuccess = discordHandler.RichPresenceUpdate();
-                await Task.Delay(1000 / 60);
+                Thread.Sleep(WAIT_TIMER_MS);
             }
+
+            return 0;
         }
     }
 }
