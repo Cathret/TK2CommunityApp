@@ -52,8 +52,7 @@ namespace TK2Bot
                 embedBuilder.AddField(oneTrackTime.TrackInfo.MapName, $"⌛{formattedTime} | {countryEmoji} {posCountry} | {continentEmoji} {posContinent} | :globe_with_meridians: {posWorld}", false);
             }
 
-            return new DiscordMessageBuilder()
-                .WithEmbed(embedBuilder.Build());
+            return GenerateEmbedMessage(embedBuilder);
         }
     }
 }

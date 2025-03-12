@@ -71,8 +71,7 @@ namespace TK2Bot
                 Footer = EMBED_FOOTER
             };
 
-            return new DiscordMessageBuilder()
-                .WithEmbed(embedBuilder.Build());
+            return GenerateEmbedMessage(embedBuilder);
         }
     }
 }

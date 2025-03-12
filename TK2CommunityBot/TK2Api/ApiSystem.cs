@@ -32,6 +32,12 @@ namespace TK2Bot.API
 
         public static async Task TryAuthentificate()
         {
+            if (string.IsNullOrEmpty(API_LOGIN))
+                throw new Exception("API LOGIN not set");
+            
+            if (string.IsNullOrEmpty(API_KEY))
+                throw new Exception("API KEY not set");
+            
             // Setup Headers which will be used for all requests
             HTTP_CLIENT.DefaultRequestHeaders.Add("x-api-credentials", $"{API_LOGIN}@{API_KEY}");
             
@@ -45,7 +51,7 @@ namespace TK2Bot.API
                 AuthInfo = new AuthInfoData()
                 {
                     Token          = json.authorization.token,
-                    ExpirationDate = ApiSystem.BaseUtcTime.AddSeconds((double)json.authorization.expires_at.timestamp)
+                    ExpirationDate = BaseUtcTime.AddSeconds((double)json.authorization.expires_at.timestamp)
                 };
 
                 Console.WriteLine("[INFO] Retrieved Authentication Data");
