@@ -39,8 +39,7 @@ namespace TK2Bot
 
             embedBuilder.Description += "\n" + resultContent;
 
-            return new DiscordMessageBuilder()
-                .WithEmbed(embedBuilder.Build());
+            return GenerateEmbedMessage(embedBuilder);
         }
     }
 }

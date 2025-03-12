@@ -81,17 +81,17 @@ namespace TK2Bot.ClassesGenerator
 
             string locationEnumContent =
                 "// GENERATED FILE - DO NOT MODIFY //\n\n" +
-                "using DSharpPlus.SlashCommands;\n\n" +
+                "using DSharpPlus.Commands.Processors.SlashCommands.ArgumentModifiers;\n\n" +
                 "namespace TK2Bot.API\n" +
                 "{\n" +
                 "    public enum ELocation\n" +
                 "    {\n" +
-                "        [ChoiceName(\"None\")]\n" +
+                "        [ChoiceDisplayName(\"None\")]\n" +
                 "        NO_FILTER,\n" +
-                countriesInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"\n        [ChoiceName(\"Country: {_oneTrackInfo.Name}\")]\n        {_oneTrackInfo.Enum},\n") +
-                continentsInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"\n        [ChoiceName(\"Continent: {_oneTrackInfo.Name}\")]\n        {_oneTrackInfo.Enum},\n") +
+                countriesInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"\n        [ChoiceDisplayName(\"Country: {_oneTrackInfo.Name}\")]\n        {_oneTrackInfo.Enum},\n") +
+                continentsInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"\n        [ChoiceDisplayName(\"Continent: {_oneTrackInfo.Name}\")]\n        {_oneTrackInfo.Enum},\n") +
                 "\n" +
-                "        [ChoiceName(\"Invalid\")]\n" +
+                "        [ChoiceDisplayName(\"Invalid\")]\n" +
                 "        INVALID,\n" +
                 "    }\n" +
                 "}";
