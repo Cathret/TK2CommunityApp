@@ -31,13 +31,13 @@ namespace TK2Bot.ClassesGenerator
                 "        {\n" +
                 locationsInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"            {{ \"{_oneTrackInfo.Name}\", ELocation.{_oneTrackInfo.Enum} }},\n") +
                 "        };\n";
-            
+
             string aliasTranslationVar =
                 $"        private static readonly Dictionary<ELocation, string> ALIAS_TRANSLATION_{_locationName} = new Dictionary<ELocation, string>()\n" +
                 "        {\n" +
                 locationsInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"            {{ ELocation.{_oneTrackInfo.Enum}, \"{_oneTrackInfo.Alias}\" }},\n") +
                 "        };\n";
-            
+
             string emojiTranslationVar =
                 $"        private static readonly Dictionary<ELocation, string> EMOJI_TRANSLATION_{_locationName} = new Dictionary<ELocation, string>()\n" +
                 "        {\n" +
@@ -67,7 +67,7 @@ namespace TK2Bot.ClassesGenerator
                 continentsDictionaries +
                 "    }\n" +
                 "}\n";
-            
+
             using StreamWriter translatorWriter = new StreamWriter(TK2_GENERATED_LOCATIONUTILS);
             translatorWriter.Write(translatorContent);
 
@@ -88,20 +88,20 @@ namespace TK2Bot.ClassesGenerator
                 "    {\n" +
                 "        [ChoiceDisplayName(\"None\")]\n" +
                 "        NO_FILTER,\n" +
-                countriesInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"\n        [ChoiceDisplayName(\"Country: {_oneTrackInfo.Name}\")]\n        {_oneTrackInfo.Enum},\n") +
-                continentsInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"\n        [ChoiceDisplayName(\"Continent: {_oneTrackInfo.Name}\")]\n        {_oneTrackInfo.Enum},\n") +
+                countriesInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"\n        [ChoiceDisplayName(\"{_oneTrackInfo.Name}\")]\n        {_oneTrackInfo.Enum},\n") +
+                continentsInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"\n        [ChoiceDisplayName(\"{_oneTrackInfo.Name}\")]\n        {_oneTrackInfo.Enum},\n") +
                 "\n" +
                 "        [ChoiceDisplayName(\"Invalid\")]\n" +
                 "        INVALID,\n" +
                 "    }\n" +
                 "}";
-            
+
             using StreamWriter trackIdWriter = new StreamWriter(TK2_GENERATED_LOCATION);
             trackIdWriter.Write(locationEnumContent);
 
             return true;
         }
-        
+
         public static bool Generate()
         {
             using StreamReader countryFileReader = new StreamReader(COUNTRIES_CSV_FILE);
@@ -109,7 +109,7 @@ namespace TK2Bot.ClassesGenerator
             IEnumerable<LocationInfo>? allCountriesInfo = csvCountryReader.GetRecords<LocationInfo>();
             if (allCountriesInfo == null)
                 return false;
-            
+
             using StreamReader continentFileReader = new StreamReader(CONTINENT_CSV_FILE);
             using CsvReader csvContinentReader = new CsvReader(continentFileReader, CultureInfo.InvariantCulture);
             IEnumerable<LocationInfo>? allContinentsInfo = csvContinentReader.GetRecords<LocationInfo>();
@@ -118,7 +118,7 @@ namespace TK2Bot.ClassesGenerator
 
             IEnumerable<LocationInfo> countriesInfo = allCountriesInfo as LocationInfo[] ?? allCountriesInfo.ToArray();
             IEnumerable<LocationInfo> continentsInfo = allContinentsInfo as LocationInfo[] ?? allContinentsInfo.ToArray();
-            
+
             GenerateLocationUtilsData(countriesInfo, continentsInfo);
             GenerateEnumLocation(countriesInfo, continentsInfo);
 
