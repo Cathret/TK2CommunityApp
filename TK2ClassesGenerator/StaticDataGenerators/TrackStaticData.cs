@@ -57,12 +57,12 @@ namespace TK2Bot.ClassesGenerator
         {
             string trackIdContent =
                 "// GENERATED FILE - DO NOT MODIFY //\n\n" +
-                "using DSharpPlus.SlashCommands;\n\n" +
+                "using DSharpPlus.Commands.Processors.SlashCommands.ArgumentModifiers;\n\n" +
                 "namespace TK2Bot.API\n" +
                 "{\n" +
                 "    public enum ETrackId\n" +
                 "    {" +
-                _tracksInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"\n        [ChoiceName(\"{_oneTrackInfo.TrackName}\")]\n        {_oneTrackInfo.EnumName},\n") +
+                _tracksInfo.Aggregate("", (_current, _oneTrackInfo) => _current + $"\n        [ChoiceDisplayName(\"{_oneTrackInfo.TrackName}\")]\n        {_oneTrackInfo.EnumName},\n") +
                 "    }\n" +
                 "}";
             

@@ -19,6 +19,13 @@ namespace TK2Bot
             IconUrl = TK2_LOGO
         };
 
+        // Used for Single Embed Messages
+        private static DiscordMessageBuilder GenerateEmbedMessage(DiscordEmbed _embed)
+        {
+            return new DiscordMessageBuilder()
+                .AddEmbeds([_embed]);
+        }
+
         private static DiscordMessageBuilder GenerateErrorMessage(string _content)
         {
             DiscordEmbedBuilder embedBuilder = new DiscordEmbedBuilder()
@@ -34,8 +41,7 @@ namespace TK2Bot
                 Footer = EMBED_FOOTER
             };
 
-            return new DiscordMessageBuilder()
-                .WithEmbed(embedBuilder.Build());
+            return GenerateEmbedMessage(embedBuilder);
         }
     }
 }

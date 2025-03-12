@@ -1,21 +1,21 @@
 // GENERATED FILE - DO NOT MODIFY //
 
-using DSharpPlus.SlashCommands;
+using DSharpPlus.Commands.Processors.SlashCommands.ArgumentModifiers;
 
 namespace TK2Bot.API
 {
     public enum ETrackId
     {
-        [ChoiceName("Woodsy Lane")]
+        [ChoiceDisplayName("Woodsy Lane")]
         WoodsyLane,
 
-        [ChoiceName("Shiny Shroom")]
+        [ChoiceDisplayName("Shiny Shroom")]
         ShinyShroom,
 
-        [ChoiceName("Molten Miles")]
+        [ChoiceDisplayName("Molten Miles")]
         MoltenMiles,
 
-        [ChoiceName("Mythic Moonlight")]
+        [ChoiceDisplayName("Mythic Moonlight")]
         MythicMoonlight,
     }
 }
