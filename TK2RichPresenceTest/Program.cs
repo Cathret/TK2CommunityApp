@@ -2,13 +2,13 @@
 {
     internal static class Program
     {
-        private const bool DEBUG_DUAL_DISCORD = false;
+        private const bool DEBUG_DUAL_DISCORD = true;
 
         private const int WAIT_TIMER_MS = 1000 / 60;
         private const uint STEAM_APP_ID = 2269950;
-        
+
         private static readonly string BOT_CLIENT_ID = Environment.GetEnvironmentVariable("TK2_BOT_CLIENT_ID")!;
-        
+
         private static int Main()
         {
             return DEBUG_DUAL_DISCORD ? DebugDualDiscord() : RunSingleDiscord();
@@ -45,7 +45,7 @@
             {
                 updateStableSuccess = discordStable.RichPresenceUpdate();
                 updateCanarySuccess = discordCanary.RichPresenceUpdate();
-                
+
                 Thread.Sleep(WAIT_TIMER_MS);
             }
 
