@@ -7,7 +7,7 @@ namespace TK2Bot.API
         public static async Task<FullPlayerInfo> GetFullPlayerInfoFromName(string _playerName)
         {
             string requestUri = $"player?search={_playerName}";
-            
+
             ApiGetResponse getResponse = await ExecuteGetRequest(requestUri);
             if (getResponse.IsSuccess == false)
             {
@@ -16,7 +16,7 @@ namespace TK2Bot.API
                     IsValid = false
                 };
             }
-            
+
             dynamic contentAsJson = getResponse.JsonContent;
 
             PlayerInfo playerInfo = new PlayerInfo()
