@@ -1,27 +1,32 @@
 ﻿using DSharpPlus;
+using DSharpPlus.Commands;
 using DSharpPlus.Entities;
-using DSharpPlus.SlashCommands;
 
 namespace TK2Bot
 {
     internal static class Program
     {
-        private static async Task Main(string[] _args)
+        private static async Task Main()
         {
-            DiscordClient discordClient = new(new DiscordConfiguration()
-            {
-                TokenType       = TokenType.Bot,
-                Token           = Settings.BOT_TOKEN,
-                Intents         = Settings.INTENTS,
-                MinimumLogLevel = Settings.LOG_LEVEL,
-            });
-            
             await API.ApiSystem.TryAuthentificate();
-            
-            SlashCommandsExtension slashCommandsExtension = discordClient.UseSlashCommands();
-            slashCommandsExtension.RegisterCommands<CommandsHandler>();
-            
-            await discordClient.ConnectAsync();
+
+            DiscordClientBuilder discordClientBuilder = DiscordClientBuilder.CreateDefault(Settings.BOT_TOKEN, Settings.INTENTS);
+            discordClientBuilder.SetLogLevel(Settings.LOG_LEVEL);
+            discordClientBuilder.UseCommands(
+                (_, _extension) =>
+                {
+                    _extension.AddCommands([typeof(CommandsHandler)]);
+                },
+                new CommandsConfiguration
+                {
+                    RegisterDefaultCommandProcessors = true,
+                    UseDefaultCommandErrorHandler = true,
+                }
+            );
+
+            DiscordClient discordClient = discordClientBuilder.Build();
+            DiscordActivity activityStatus = new("Testing things", DiscordActivityType.Playing);
+            await discordClient.ConnectAsync(activityStatus, DiscordUserStatus.Online);
             await Task.Delay(-1); // Avoid closing console
         }
     }

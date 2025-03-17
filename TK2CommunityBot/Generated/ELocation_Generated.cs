@@ -1,786 +1,786 @@
 // GENERATED FILE - DO NOT MODIFY //
 
-using DSharpPlus.SlashCommands;
+using DSharpPlus.Commands.Processors.SlashCommands.ArgumentModifiers;
 
 namespace TK2Bot.API
 {
     public enum ELocation
     {
-        [ChoiceName("None")]
+        [ChoiceDisplayName("None")]
         NO_FILTER,
 
-        [ChoiceName("Country: Afghanistan")]
+        [ChoiceDisplayName("Afghanistan")]
         Afghanistan,
 
-        [ChoiceName("Country: Åland Islands")]
+        [ChoiceDisplayName("Åland Islands")]
         AlandIslands,
 
-        [ChoiceName("Country: Albania")]
+        [ChoiceDisplayName("Albania")]
         Albania,
 
-        [ChoiceName("Country: Algeria")]
+        [ChoiceDisplayName("Algeria")]
         Algeria,
 
-        [ChoiceName("Country: American Samoa")]
+        [ChoiceDisplayName("American Samoa")]
         AmericanSamoa,
 
-        [ChoiceName("Country: Andorra")]
+        [ChoiceDisplayName("Andorra")]
         Andorra,
 
-        [ChoiceName("Country: Angola")]
+        [ChoiceDisplayName("Angola")]
         Angola,
 
-        [ChoiceName("Country: Anguilla")]
+        [ChoiceDisplayName("Anguilla")]
         Anguilla,
 
-        [ChoiceName("Country: Antarctica")]
+        [ChoiceDisplayName("Antarctica")]
         Antarctica,
 
-        [ChoiceName("Country: Antigua and Barbuda")]
+        [ChoiceDisplayName("Antigua and Barbuda")]
         AntiguaandBarbuda,
 
-        [ChoiceName("Country: Argentina")]
+        [ChoiceDisplayName("Argentina")]
         Argentina,
 
-        [ChoiceName("Country: Armenia")]
+        [ChoiceDisplayName("Armenia")]
         Armenia,
 
-        [ChoiceName("Country: Aruba")]
+        [ChoiceDisplayName("Aruba")]
         Aruba,
 
-        [ChoiceName("Country: Australia")]
+        [ChoiceDisplayName("Australia")]
         Australia,
 
-        [ChoiceName("Country: Austria")]
+        [ChoiceDisplayName("Austria")]
         Austria,
 
-        [ChoiceName("Country: Azerbaijan")]
+        [ChoiceDisplayName("Azerbaijan")]
         Azerbaijan,
 
-        [ChoiceName("Country: Bahamas")]
+        [ChoiceDisplayName("Bahamas")]
         Bahamas,
 
-        [ChoiceName("Country: Bahrain")]
+        [ChoiceDisplayName("Bahrain")]
         Bahrain,
 
-        [ChoiceName("Country: Bangladesh")]
+        [ChoiceDisplayName("Bangladesh")]
         Bangladesh,
 
-        [ChoiceName("Country: Barbados")]
+        [ChoiceDisplayName("Barbados")]
         Barbados,
 
-        [ChoiceName("Country: Belarus")]
+        [ChoiceDisplayName("Belarus")]
         Belarus,
 
-        [ChoiceName("Country: Belgium")]
+        [ChoiceDisplayName("Belgium")]
         Belgium,
 
-        [ChoiceName("Country: Belize")]
+        [ChoiceDisplayName("Belize")]
         Belize,
 
-        [ChoiceName("Country: Benin")]
+        [ChoiceDisplayName("Benin")]
         Benin,
 
-        [ChoiceName("Country: Bermuda")]
+        [ChoiceDisplayName("Bermuda")]
         Bermuda,
 
-        [ChoiceName("Country: Bhutan")]
+        [ChoiceDisplayName("Bhutan")]
         Bhutan,
 
-        [ChoiceName("Country: Bolivia")]
+        [ChoiceDisplayName("Bolivia")]
         Bolivia,
 
-        [ChoiceName("Country: Bosnia and Herzegovina")]
+        [ChoiceDisplayName("Bosnia and Herzegovina")]
         BosniaandHerzegovina,
 
-        [ChoiceName("Country: Botswana")]
+        [ChoiceDisplayName("Botswana")]
         Botswana,
 
-        [ChoiceName("Country: Bouvet Island")]
+        [ChoiceDisplayName("Bouvet Island")]
         BouvetIsland,
 
-        [ChoiceName("Country: Brazil")]
+        [ChoiceDisplayName("Brazil")]
         Brazil,
 
-        [ChoiceName("Country: British Indian Ocean Territory")]
+        [ChoiceDisplayName("British Indian Ocean Territory")]
         BritishIndianOceanTerritory,
 
-        [ChoiceName("Country: British Virgin Islands")]
+        [ChoiceDisplayName("British Virgin Islands")]
         BritishVirginIslands,
 
-        [ChoiceName("Country: Brunei")]
+        [ChoiceDisplayName("Brunei")]
         Brunei,
 
-        [ChoiceName("Country: Bulgaria")]
+        [ChoiceDisplayName("Bulgaria")]
         Bulgaria,
 
-        [ChoiceName("Country: Burkina Faso")]
+        [ChoiceDisplayName("Burkina Faso")]
         BurkinaFaso,
 
-        [ChoiceName("Country: Burundi")]
+        [ChoiceDisplayName("Burundi")]
         Burundi,
 
-        [ChoiceName("Country: Cambodia")]
+        [ChoiceDisplayName("Cambodia")]
         Cambodia,
 
-        [ChoiceName("Country: Cameroon")]
+        [ChoiceDisplayName("Cameroon")]
         Cameroon,
 
-        [ChoiceName("Country: Canada")]
+        [ChoiceDisplayName("Canada")]
         Canada,
 
-        [ChoiceName("Country: Cape Verde")]
+        [ChoiceDisplayName("Cape Verde")]
         CapeVerde,
 
-        [ChoiceName("Country: Caribbean Netherlands")]
+        [ChoiceDisplayName("Caribbean Netherlands")]
         CaribbeanNetherlands,
 
-        [ChoiceName("Country: Cayman Islands")]
+        [ChoiceDisplayName("Cayman Islands")]
         CaymanIslands,
 
-        [ChoiceName("Country: Central African Republic")]
+        [ChoiceDisplayName("Central African Republic")]
         CentralAfricanRepublic,
 
-        [ChoiceName("Country: Chad")]
+        [ChoiceDisplayName("Chad")]
         Chad,
 
-        [ChoiceName("Country: Chile")]
+        [ChoiceDisplayName("Chile")]
         Chile,
 
-        [ChoiceName("Country: China")]
+        [ChoiceDisplayName("China")]
         China,
 
-        [ChoiceName("Country: Christmas Island")]
+        [ChoiceDisplayName("Christmas Island")]
         ChristmasIsland,
 
-        [ChoiceName("Country: Cocos (Keeling) Islands")]
+        [ChoiceDisplayName("Cocos (Keeling) Islands")]
         CocosKeelingIslands,
 
-        [ChoiceName("Country: Colombia")]
+        [ChoiceDisplayName("Colombia")]
         Colombia,
 
-        [ChoiceName("Country: Comoros")]
+        [ChoiceDisplayName("Comoros")]
         Comoros,
 
-        [ChoiceName("Country: Cook Islands")]
+        [ChoiceDisplayName("Cook Islands")]
         CookIslands,
 
-        [ChoiceName("Country: Costa Rica")]
+        [ChoiceDisplayName("Costa Rica")]
         CostaRica,
 
-        [ChoiceName("Country: Croatia")]
+        [ChoiceDisplayName("Croatia")]
         Croatia,
 
-        [ChoiceName("Country: Cuba")]
+        [ChoiceDisplayName("Cuba")]
         Cuba,
 
-        [ChoiceName("Country: Curaçao")]
+        [ChoiceDisplayName("Curaçao")]
         Curaçao,
 
-        [ChoiceName("Country: Cyprus")]
+        [ChoiceDisplayName("Cyprus")]
         Cyprus,
 
-        [ChoiceName("Country: Czechia")]
+        [ChoiceDisplayName("Czechia")]
         Czechia,
 
-        [ChoiceName("Country: Denmark")]
+        [ChoiceDisplayName("Denmark")]
         Denmark,
 
-        [ChoiceName("Country: Djibouti")]
+        [ChoiceDisplayName("Djibouti")]
         Djibouti,
 
-        [ChoiceName("Country: Dominica")]
+        [ChoiceDisplayName("Dominica")]
         Dominica,
 
-        [ChoiceName("Country: Dominican Republic")]
+        [ChoiceDisplayName("Dominican Republic")]
         DominicanRepublic,
 
-        [ChoiceName("Country: DR Congo")]
+        [ChoiceDisplayName("DR Congo")]
         DRCongo,
 
-        [ChoiceName("Country: Ecuador")]
+        [ChoiceDisplayName("Ecuador")]
         Ecuador,
 
-        [ChoiceName("Country: Egypt")]
+        [ChoiceDisplayName("Egypt")]
         Egypt,
 
-        [ChoiceName("Country: El Salvador")]
+        [ChoiceDisplayName("El Salvador")]
         ElSalvador,
 
-        [ChoiceName("Country: Equatorial Guinea")]
+        [ChoiceDisplayName("Equatorial Guinea")]
         EquatorialGuinea,
 
-        [ChoiceName("Country: Eritrea")]
+        [ChoiceDisplayName("Eritrea")]
         Eritrea,
 
-        [ChoiceName("Country: Estonia")]
+        [ChoiceDisplayName("Estonia")]
         Estonia,
 
-        [ChoiceName("Country: Eswatini")]
+        [ChoiceDisplayName("Eswatini")]
         Eswatini,
 
-        [ChoiceName("Country: Ethiopia")]
+        [ChoiceDisplayName("Ethiopia")]
         Ethiopia,
 
-        [ChoiceName("Country: Falkland Islands")]
+        [ChoiceDisplayName("Falkland Islands")]
         FalklandIslands,
 
-        [ChoiceName("Country: Faroe Islands")]
+        [ChoiceDisplayName("Faroe Islands")]
         FaroeIslands,
 
-        [ChoiceName("Country: Fiji")]
+        [ChoiceDisplayName("Fiji")]
         Fiji,
 
-        [ChoiceName("Country: Finland")]
+        [ChoiceDisplayName("Finland")]
         Finland,
 
-        [ChoiceName("Country: France")]
+        [ChoiceDisplayName("France")]
         France,
 
-        [ChoiceName("Country: French Guiana")]
+        [ChoiceDisplayName("French Guiana")]
         FrenchGuiana,
 
-        [ChoiceName("Country: French Polynesia")]
+        [ChoiceDisplayName("French Polynesia")]
         FrenchPolynesia,
 
-        [ChoiceName("Country: French Southern and Antarctic Lands")]
+        [ChoiceDisplayName("French Southern and Antarctic Lands")]
         FrenchSouthernandAntarcticLands,
 
-        [ChoiceName("Country: Gabon")]
+        [ChoiceDisplayName("Gabon")]
         Gabon,
 
-        [ChoiceName("Country: Gambia")]
+        [ChoiceDisplayName("Gambia")]
         Gambia,
 
-        [ChoiceName("Country: Georgia")]
+        [ChoiceDisplayName("Georgia")]
         Georgia,
 
-        [ChoiceName("Country: Germany")]
+        [ChoiceDisplayName("Germany")]
         Germany,
 
-        [ChoiceName("Country: Ghana")]
+        [ChoiceDisplayName("Ghana")]
         Ghana,
 
-        [ChoiceName("Country: Gibraltar")]
+        [ChoiceDisplayName("Gibraltar")]
         Gibraltar,
 
-        [ChoiceName("Country: Greece")]
+        [ChoiceDisplayName("Greece")]
         Greece,
 
-        [ChoiceName("Country: Greenland")]
+        [ChoiceDisplayName("Greenland")]
         Greenland,
 
-        [ChoiceName("Country: Grenada")]
+        [ChoiceDisplayName("Grenada")]
         Grenada,
 
-        [ChoiceName("Country: Guadeloupe")]
+        [ChoiceDisplayName("Guadeloupe")]
         Guadeloupe,
 
-        [ChoiceName("Country: Guam")]
+        [ChoiceDisplayName("Guam")]
         Guam,
 
-        [ChoiceName("Country: Guatemala")]
+        [ChoiceDisplayName("Guatemala")]
         Guatemala,
 
-        [ChoiceName("Country: Guernsey")]
+        [ChoiceDisplayName("Guernsey")]
         Guernsey,
 
-        [ChoiceName("Country: Guinea")]
+        [ChoiceDisplayName("Guinea")]
         Guinea,
 
-        [ChoiceName("Country: Guinea-Bissau")]
+        [ChoiceDisplayName("Guinea-Bissau")]
         GuineaBissau,
 
-        [ChoiceName("Country: Guyana")]
+        [ChoiceDisplayName("Guyana")]
         Guyana,
 
-        [ChoiceName("Country: Haiti")]
+        [ChoiceDisplayName("Haiti")]
         Haiti,
 
-        [ChoiceName("Country: Heard Island and McDonald Islands")]
+        [ChoiceDisplayName("Heard Island and McDonald Islands")]
         HeardIslandandMcDonaldIslands,
 
-        [ChoiceName("Country: Honduras")]
+        [ChoiceDisplayName("Honduras")]
         Honduras,
 
-        [ChoiceName("Country: Hong Kong")]
+        [ChoiceDisplayName("Hong Kong")]
         HongKong,
 
-        [ChoiceName("Country: Hungary")]
+        [ChoiceDisplayName("Hungary")]
         Hungary,
 
-        [ChoiceName("Country: Iceland")]
+        [ChoiceDisplayName("Iceland")]
         Iceland,
 
-        [ChoiceName("Country: India")]
+        [ChoiceDisplayName("India")]
         India,
 
-        [ChoiceName("Country: Indonesia")]
+        [ChoiceDisplayName("Indonesia")]
         Indonesia,
 
-        [ChoiceName("Country: Iran")]
+        [ChoiceDisplayName("Iran")]
         Iran,
 
-        [ChoiceName("Country: Iraq")]
+        [ChoiceDisplayName("Iraq")]
         Iraq,
 
-        [ChoiceName("Country: Ireland")]
+        [ChoiceDisplayName("Ireland")]
         Ireland,
 
-        [ChoiceName("Country: Isle of Man")]
+        [ChoiceDisplayName("Isle of Man")]
         IsleofMan,
 
-        [ChoiceName("Country: Israel")]
+        [ChoiceDisplayName("Israel")]
         Israel,
 
-        [ChoiceName("Country: Italy")]
+        [ChoiceDisplayName("Italy")]
         Italy,
 
-        [ChoiceName("Country: Ivory Coast")]
+        [ChoiceDisplayName("Ivory Coast")]
         IvoryCoast,
 
-        [ChoiceName("Country: Jamaica")]
+        [ChoiceDisplayName("Jamaica")]
         Jamaica,
 
-        [ChoiceName("Country: Japan")]
+        [ChoiceDisplayName("Japan")]
         Japan,
 
-        [ChoiceName("Country: Jersey")]
+        [ChoiceDisplayName("Jersey")]
         Jersey,
 
-        [ChoiceName("Country: Jordan")]
+        [ChoiceDisplayName("Jordan")]
         Jordan,
 
-        [ChoiceName("Country: Kazakhstan")]
+        [ChoiceDisplayName("Kazakhstan")]
         Kazakhstan,
 
-        [ChoiceName("Country: Kenya")]
+        [ChoiceDisplayName("Kenya")]
         Kenya,
 
-        [ChoiceName("Country: Kiribati")]
+        [ChoiceDisplayName("Kiribati")]
         Kiribati,
 
-        [ChoiceName("Country: Kosovo")]
+        [ChoiceDisplayName("Kosovo")]
         Kosovo,
 
-        [ChoiceName("Country: Kuwait")]
+        [ChoiceDisplayName("Kuwait")]
         Kuwait,
 
-        [ChoiceName("Country: Kyrgyzstan")]
+        [ChoiceDisplayName("Kyrgyzstan")]
         Kyrgyzstan,
 
-        [ChoiceName("Country: Laos")]
+        [ChoiceDisplayName("Laos")]
         Laos,
 
-        [ChoiceName("Country: Latvia")]
+        [ChoiceDisplayName("Latvia")]
         Latvia,
 
-        [ChoiceName("Country: Lebanon")]
+        [ChoiceDisplayName("Lebanon")]
         Lebanon,
 
-        [ChoiceName("Country: Lesotho")]
+        [ChoiceDisplayName("Lesotho")]
         Lesotho,
 
-        [ChoiceName("Country: Liberia")]
+        [ChoiceDisplayName("Liberia")]
         Liberia,
 
-        [ChoiceName("Country: Libya")]
+        [ChoiceDisplayName("Libya")]
         Libya,
 
-        [ChoiceName("Country: Liechtenstein")]
+        [ChoiceDisplayName("Liechtenstein")]
         Liechtenstein,
 
-        [ChoiceName("Country: Lithuania")]
+        [ChoiceDisplayName("Lithuania")]
         Lithuania,
 
-        [ChoiceName("Country: Luxembourg")]
+        [ChoiceDisplayName("Luxembourg")]
         Luxembourg,
 
-        [ChoiceName("Country: Macau")]
+        [ChoiceDisplayName("Macau")]
         Macau,
 
-        [ChoiceName("Country: Madagascar")]
+        [ChoiceDisplayName("Madagascar")]
         Madagascar,
 
-        [ChoiceName("Country: Malawi")]
+        [ChoiceDisplayName("Malawi")]
         Malawi,
 
-        [ChoiceName("Country: Malaysia")]
+        [ChoiceDisplayName("Malaysia")]
         Malaysia,
 
-        [ChoiceName("Country: Maldives")]
+        [ChoiceDisplayName("Maldives")]
         Maldives,
 
-        [ChoiceName("Country: Mali")]
+        [ChoiceDisplayName("Mali")]
         Mali,
 
-        [ChoiceName("Country: Malta")]
+        [ChoiceDisplayName("Malta")]
         Malta,
 
-        [ChoiceName("Country: Marshall Islands")]
+        [ChoiceDisplayName("Marshall Islands")]
         MarshallIslands,
 
-        [ChoiceName("Country: Martinique")]
+        [ChoiceDisplayName("Martinique")]
         Martinique,
 
-        [ChoiceName("Country: Mauritania")]
+        [ChoiceDisplayName("Mauritania")]
         Mauritania,
 
-        [ChoiceName("Country: Mauritius")]
+        [ChoiceDisplayName("Mauritius")]
         Mauritius,
 
-        [ChoiceName("Country: Mayotte")]
+        [ChoiceDisplayName("Mayotte")]
         Mayotte,
 
-        [ChoiceName("Country: Mexico")]
+        [ChoiceDisplayName("Mexico")]
         Mexico,
 
-        [ChoiceName("Country: Micronesia")]
+        [ChoiceDisplayName("Micronesia")]
         Micronesia,
 
-        [ChoiceName("Country: Moldova")]
+        [ChoiceDisplayName("Moldova")]
         Moldova,
 
-        [ChoiceName("Country: Monaco")]
+        [ChoiceDisplayName("Monaco")]
         Monaco,
 
-        [ChoiceName("Country: Mongolia")]
+        [ChoiceDisplayName("Mongolia")]
         Mongolia,
 
-        [ChoiceName("Country: Montenegro")]
+        [ChoiceDisplayName("Montenegro")]
         Montenegro,
 
-        [ChoiceName("Country: Montserrat")]
+        [ChoiceDisplayName("Montserrat")]
         Montserrat,
 
-        [ChoiceName("Country: Morocco")]
+        [ChoiceDisplayName("Morocco")]
         Morocco,
 
-        [ChoiceName("Country: Mozambique")]
+        [ChoiceDisplayName("Mozambique")]
         Mozambique,
 
-        [ChoiceName("Country: Myanmar")]
+        [ChoiceDisplayName("Myanmar")]
         Myanmar,
 
-        [ChoiceName("Country: Namibia")]
+        [ChoiceDisplayName("Namibia")]
         Namibia,
 
-        [ChoiceName("Country: Nauru")]
+        [ChoiceDisplayName("Nauru")]
         Nauru,
 
-        [ChoiceName("Country: Nepal")]
+        [ChoiceDisplayName("Nepal")]
         Nepal,
 
-        [ChoiceName("Country: Netherlands")]
+        [ChoiceDisplayName("Netherlands")]
         Netherlands,
 
-        [ChoiceName("Country: New Caledonia")]
+        [ChoiceDisplayName("New Caledonia")]
         NewCaledonia,
 
-        [ChoiceName("Country: New Zealand")]
+        [ChoiceDisplayName("New Zealand")]
         NewZealand,
 
-        [ChoiceName("Country: Nicaragua")]
+        [ChoiceDisplayName("Nicaragua")]
         Nicaragua,
 
-        [ChoiceName("Country: Niger")]
+        [ChoiceDisplayName("Niger")]
         Niger,
 
-        [ChoiceName("Country: Nigeria")]
+        [ChoiceDisplayName("Nigeria")]
         Nigeria,
 
-        [ChoiceName("Country: Niue")]
+        [ChoiceDisplayName("Niue")]
         Niue,
 
-        [ChoiceName("Country: Norfolk Island")]
+        [ChoiceDisplayName("Norfolk Island")]
         NorfolkIsland,
 
-        [ChoiceName("Country: North Korea")]
+        [ChoiceDisplayName("North Korea")]
         NorthKorea,
 
-        [ChoiceName("Country: North Macedonia")]
+        [ChoiceDisplayName("North Macedonia")]
         NorthMacedonia,
 
-        [ChoiceName("Country: Northern Mariana Islands")]
+        [ChoiceDisplayName("Northern Mariana Islands")]
         NorthernMarianaIslands,
 
-        [ChoiceName("Country: Norway")]
+        [ChoiceDisplayName("Norway")]
         Norway,
 
-        [ChoiceName("Country: Oman")]
+        [ChoiceDisplayName("Oman")]
         Oman,
 
-        [ChoiceName("Country: Pakistan")]
+        [ChoiceDisplayName("Pakistan")]
         Pakistan,
 
-        [ChoiceName("Country: Palau")]
+        [ChoiceDisplayName("Palau")]
         Palau,
 
-        [ChoiceName("Country: Palestine")]
+        [ChoiceDisplayName("Palestine")]
         Palestine,
 
-        [ChoiceName("Country: Panama")]
+        [ChoiceDisplayName("Panama")]
         Panama,
 
-        [ChoiceName("Country: Papua New Guinea")]
+        [ChoiceDisplayName("Papua New Guinea")]
         PapuaNewGuinea,
 
-        [ChoiceName("Country: Paraguay")]
+        [ChoiceDisplayName("Paraguay")]
         Paraguay,
 
-        [ChoiceName("Country: Peru")]
+        [ChoiceDisplayName("Peru")]
         Peru,
 
-        [ChoiceName("Country: Philippines")]
+        [ChoiceDisplayName("Philippines")]
         Philippines,
 
-        [ChoiceName("Country: Pitcairn Islands")]
+        [ChoiceDisplayName("Pitcairn Islands")]
         PitcairnIslands,
 
-        [ChoiceName("Country: Poland")]
+        [ChoiceDisplayName("Poland")]
         Poland,
 
-        [ChoiceName("Country: Portugal")]
+        [ChoiceDisplayName("Portugal")]
         Portugal,
 
-        [ChoiceName("Country: Puerto Rico")]
+        [ChoiceDisplayName("Puerto Rico")]
         PuertoRico,
 
-        [ChoiceName("Country: Qatar")]
+        [ChoiceDisplayName("Qatar")]
         Qatar,
 
-        [ChoiceName("Country: Republic of the Congo")]
+        [ChoiceDisplayName("Republic of the Congo")]
         RepublicoftheCongo,
 
-        [ChoiceName("Country: Réunion")]
+        [ChoiceDisplayName("Réunion")]
         Reunion,
 
-        [ChoiceName("Country: Romania")]
+        [ChoiceDisplayName("Romania")]
         Romania,
 
-        [ChoiceName("Country: Russia")]
+        [ChoiceDisplayName("Russia")]
         Russia,
 
-        [ChoiceName("Country: Rwanda")]
+        [ChoiceDisplayName("Rwanda")]
         Rwanda,
 
-        [ChoiceName("Country: Saint Barthélemy")]
+        [ChoiceDisplayName("Saint Barthélemy")]
         SaintBarthélemy,
 
-        [ChoiceName("Country: Saint Helena - Ascension and Tristan da Cunha")]
+        [ChoiceDisplayName("Saint Helena - Ascension and Tristan da Cunha")]
         SaintHelena_AscensionandTristandaCunha,
 
-        [ChoiceName("Country: Saint Kitts and Nevis")]
+        [ChoiceDisplayName("Saint Kitts and Nevis")]
         SaintKittsandNevis,
 
-        [ChoiceName("Country: Saint Lucia")]
+        [ChoiceDisplayName("Saint Lucia")]
         SaintLucia,
 
-        [ChoiceName("Country: Saint Martin")]
+        [ChoiceDisplayName("Saint Martin")]
         SaintMartin,
 
-        [ChoiceName("Country: Saint Pierre and Miquelon")]
+        [ChoiceDisplayName("Saint Pierre and Miquelon")]
         SaintPierreandMiquelon,
 
-        [ChoiceName("Country: Saint Vincent and the Grenadines")]
+        [ChoiceDisplayName("Saint Vincent and the Grenadines")]
         SaintVincentandtheGrenadines,
 
-        [ChoiceName("Country: Samoa")]
+        [ChoiceDisplayName("Samoa")]
         Samoa,
 
-        [ChoiceName("Country: San Marino")]
+        [ChoiceDisplayName("San Marino")]
         SanMarino,
 
-        [ChoiceName("Country: São Tomé and Príncipe")]
+        [ChoiceDisplayName("São Tomé and Príncipe")]
         SaoTomeandPrincipe,
 
-        [ChoiceName("Country: Saudi Arabia")]
+        [ChoiceDisplayName("Saudi Arabia")]
         SaudiArabia,
 
-        [ChoiceName("Country: Senegal")]
+        [ChoiceDisplayName("Senegal")]
         Senegal,
 
-        [ChoiceName("Country: Serbia")]
+        [ChoiceDisplayName("Serbia")]
         Serbia,
 
-        [ChoiceName("Country: Seychelles")]
+        [ChoiceDisplayName("Seychelles")]
         Seychelles,
 
-        [ChoiceName("Country: Sierra Leone")]
+        [ChoiceDisplayName("Sierra Leone")]
         SierraLeone,
 
-        [ChoiceName("Country: Singapore")]
+        [ChoiceDisplayName("Singapore")]
         Singapore,
 
-        [ChoiceName("Country: Sint Maarten")]
+        [ChoiceDisplayName("Sint Maarten")]
         SintMaarten,
 
-        [ChoiceName("Country: Slovakia")]
+        [ChoiceDisplayName("Slovakia")]
         Slovakia,
 
-        [ChoiceName("Country: Slovenia")]
+        [ChoiceDisplayName("Slovenia")]
         Slovenia,
 
-        [ChoiceName("Country: Solomon Islands")]
+        [ChoiceDisplayName("Solomon Islands")]
         SolomonIslands,
 
-        [ChoiceName("Country: Somalia")]
+        [ChoiceDisplayName("Somalia")]
         Somalia,
 
-        [ChoiceName("Country: South Africa")]
+        [ChoiceDisplayName("South Africa")]
         SouthAfrica,
 
-        [ChoiceName("Country: South Georgia")]
+        [ChoiceDisplayName("South Georgia")]
         SouthGeorgia,
 
-        [ChoiceName("Country: South Korea")]
+        [ChoiceDisplayName("South Korea")]
         SouthKorea,
 
-        [ChoiceName("Country: South Sudan")]
+        [ChoiceDisplayName("South Sudan")]
         SouthSudan,
 
-        [ChoiceName("Country: Spain")]
+        [ChoiceDisplayName("Spain")]
         Spain,
 
-        [ChoiceName("Country: Sri Lanka")]
+        [ChoiceDisplayName("Sri Lanka")]
         SriLanka,
 
-        [ChoiceName("Country: Sudan")]
+        [ChoiceDisplayName("Sudan")]
         Sudan,
 
-        [ChoiceName("Country: Suriname")]
+        [ChoiceDisplayName("Suriname")]
         Suriname,
 
-        [ChoiceName("Country: Svalbard and Jan Mayen")]
+        [ChoiceDisplayName("Svalbard and Jan Mayen")]
         SvalbardandJanMayen,
 
-        [ChoiceName("Country: Sweden")]
+        [ChoiceDisplayName("Sweden")]
         Sweden,
 
-        [ChoiceName("Country: Switzerland")]
+        [ChoiceDisplayName("Switzerland")]
         Switzerland,
 
-        [ChoiceName("Country: Syria")]
+        [ChoiceDisplayName("Syria")]
         Syria,
 
-        [ChoiceName("Country: Taiwan")]
+        [ChoiceDisplayName("Taiwan")]
         Taiwan,
 
-        [ChoiceName("Country: Tajikistan")]
+        [ChoiceDisplayName("Tajikistan")]
         Tajikistan,
 
-        [ChoiceName("Country: Tanzania")]
+        [ChoiceDisplayName("Tanzania")]
         Tanzania,
 
-        [ChoiceName("Country: Thailand")]
+        [ChoiceDisplayName("Thailand")]
         Thailand,
 
-        [ChoiceName("Country: Timor-Leste")]
+        [ChoiceDisplayName("Timor-Leste")]
         TimorLeste,
 
-        [ChoiceName("Country: Togo")]
+        [ChoiceDisplayName("Togo")]
         Togo,
 
-        [ChoiceName("Country: Tokelau")]
+        [ChoiceDisplayName("Tokelau")]
         Tokelau,
 
-        [ChoiceName("Country: Tonga")]
+        [ChoiceDisplayName("Tonga")]
         Tonga,
 
-        [ChoiceName("Country: Trinidad and Tobago")]
+        [ChoiceDisplayName("Trinidad and Tobago")]
         TrinidadandTobago,
 
-        [ChoiceName("Country: Tunisia")]
+        [ChoiceDisplayName("Tunisia")]
         Tunisia,
 
-        [ChoiceName("Country: Turkey")]
+        [ChoiceDisplayName("Turkey")]
         Turkey,
 
-        [ChoiceName("Country: Turkmenistan")]
+        [ChoiceDisplayName("Turkmenistan")]
         Turkmenistan,
 
-        [ChoiceName("Country: Turks and Caicos Islands")]
+        [ChoiceDisplayName("Turks and Caicos Islands")]
         TurksandCaicosIslands,
 
-        [ChoiceName("Country: Tuvalu")]
+        [ChoiceDisplayName("Tuvalu")]
         Tuvalu,
 
-        [ChoiceName("Country: Uganda")]
+        [ChoiceDisplayName("Uganda")]
         Uganda,
 
-        [ChoiceName("Country: Ukraine")]
+        [ChoiceDisplayName("Ukraine")]
         Ukraine,
 
-        [ChoiceName("Country: United Arab Emirates")]
+        [ChoiceDisplayName("United Arab Emirates")]
         UnitedArabEmirates,
 
-        [ChoiceName("Country: United Kingdom")]
+        [ChoiceDisplayName("United Kingdom")]
         UnitedKingdom,
 
-        [ChoiceName("Country: United States")]
+        [ChoiceDisplayName("United States")]
         UnitedStates,
 
-        [ChoiceName("Country: United States Minor Outlying Islands")]
+        [ChoiceDisplayName("United States Minor Outlying Islands")]
         UnitedStatesMinorOutlyingIslands,
 
-        [ChoiceName("Country: United States Virgin Islands")]
+        [ChoiceDisplayName("United States Virgin Islands")]
         UnitedStatesVirginIslands,
 
-        [ChoiceName("Country: Uruguay")]
+        [ChoiceDisplayName("Uruguay")]
         Uruguay,
 
-        [ChoiceName("Country: Uzbekistan")]
+        [ChoiceDisplayName("Uzbekistan")]
         Uzbekistan,
 
-        [ChoiceName("Country: Vanuatu")]
+        [ChoiceDisplayName("Vanuatu")]
         Vanuatu,
 
-        [ChoiceName("Country: Vatican City")]
+        [ChoiceDisplayName("Vatican City")]
         VaticanCity,
 
-        [ChoiceName("Country: Venezuela")]
+        [ChoiceDisplayName("Venezuela")]
         Venezuela,
 
-        [ChoiceName("Country: Vietnam")]
+        [ChoiceDisplayName("Vietnam")]
         Vietnam,
 
-        [ChoiceName("Country: Wallis and Futuna")]
+        [ChoiceDisplayName("Wallis and Futuna")]
         WallisandFutuna,
 
-        [ChoiceName("Country: Western Sahara")]
+        [ChoiceDisplayName("Western Sahara")]
         WesternSahara,
 
-        [ChoiceName("Country: Yemen")]
+        [ChoiceDisplayName("Yemen")]
         Yemen,
 
-        [ChoiceName("Country: Zambia")]
+        [ChoiceDisplayName("Zambia")]
         Zambia,
 
-        [ChoiceName("Country: Zimbabwe")]
+        [ChoiceDisplayName("Zimbabwe")]
         Zimbabwe,
 
-        [ChoiceName("Continent: Europe")]
+        [ChoiceDisplayName("Europe")]
         Europe,
 
-        [ChoiceName("Continent: North America")]
+        [ChoiceDisplayName("North America")]
         NorthAmerica,
 
-        [ChoiceName("Continent: South America")]
+        [ChoiceDisplayName("South America")]
         SouthAmerica,
 
-        [ChoiceName("Continent: Africa")]
+        [ChoiceDisplayName("Africa")]
         Africa,
 
-        [ChoiceName("Continent: Oceania")]
+        [ChoiceDisplayName("Oceania")]
         Oceania,
 
-        [ChoiceName("Continent: Asia")]
+        [ChoiceDisplayName("Asia")]
         Asia,
 
-        [ChoiceName("Continent: Antarctic")]
+        [ChoiceDisplayName("Antarctic")]
         Antarctic,
 
-        [ChoiceName("Invalid")]
+        [ChoiceDisplayName("Invalid")]
         INVALID,
     }
 }
