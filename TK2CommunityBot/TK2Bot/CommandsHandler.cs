@@ -40,7 +40,7 @@ namespace TK2Bot
         [Description("Request the WR info of a Track")]
         public static async ValueTask WrCommand(SlashCommandContext _context,
             [Parameter("Map")] [Description("Map for which we want the WR")] ETrackId _trackId,
-            [Parameter("Location")] [Description("Filter to get information only for a specific location")] [SlashAutoCompleteProvider<EnumAutoCompleteProvider<ELocation>>] ELocation _location = ELocation.INVALID)
+            [Parameter("Location")] [Description("Filter to get information only for a specific location")] [SlashAutoCompleteProvider<EnumAutoCompleteProvider<ELocation>>] ELocation _location = ELocation.NO_FILTER)
         {
             await _context.DeferResponseAsync();
             await _context.EditResponseAsync(new DiscordWebhookBuilder(await MessageGenerator.CreateWrMessage(_trackId, _location)));
@@ -50,7 +50,7 @@ namespace TK2Bot
         [Description("Request the Leaderboard of a Track")]
         public static async ValueTask TrackLeaderboardCommand(SlashCommandContext _context,
             [Parameter("Track")] [Description("Track for which we want the Leaderboard")] ETrackId _trackId,
-            [Parameter("Location")] [Description("Filter to get information only for a specific location")] [SlashAutoCompleteProvider<EnumAutoCompleteProvider<ELocation>>] ELocation _location = ELocation.INVALID)
+            [Parameter("Location")] [Description("Filter to get information only for a specific location")] [SlashAutoCompleteProvider<EnumAutoCompleteProvider<ELocation>>] ELocation _location = ELocation.NO_FILTER)
         {
             await _context.DeferResponseAsync();
             await _context.EditResponseAsync(new DiscordWebhookBuilder(await MessageGenerator.CreateTrackLeaderboardMessage(_trackId, _location)));
@@ -59,7 +59,7 @@ namespace TK2Bot
         [Command("leaderboard")]
         [Description("Request the Global Leaderboard")]
         public static async ValueTask LeaderboardCommand(SlashCommandContext _context,
-            [Parameter("Location")] [Description("Filter to get information only for a specific location")] [SlashAutoCompleteProvider<EnumAutoCompleteProvider<ELocation>>] ELocation _location = ELocation.INVALID)
+            [Parameter("Location")] [Description("Filter to get information only for a specific location")] [SlashAutoCompleteProvider<EnumAutoCompleteProvider<ELocation>>] ELocation _location = ELocation.NO_FILTER)
         {
             await _context.DeferResponseAsync();
             await _context.EditResponseAsync(new DiscordWebhookBuilder(await MessageGenerator.CreateGlobalLeaderboardMessage(_location)));
